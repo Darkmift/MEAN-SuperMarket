@@ -1,1 +1,262 @@
-<p>signup works!</p>
+<div class="row sizing">
+  <div class="col-4 padding-custom">
+    <div class="card mt-1 bg-light-blue">
+      <div class="card-body">
+
+        <!-- signupFormA start -->
+        <form class="bg-light p-2 border-custom"
+          #signupFormA="ngForm"
+          (ngSubmit)="onSubmit(signupFormA)">
+
+          <h6 class="ml-1">Welcome {{ tempUserName }}, Please Register.</h6>
+
+          <!-- tzId input control -->
+          <div class="form-group m-2">
+
+            <label for="tzInputId">TZ ID</label>
+
+            <input type="text"
+              class="form-control"
+              id="tzInputId"
+              aria-describedby="tzIdError"
+              placeholder="Enter your TZID"
+              ngModel
+              name="tzId"
+              required
+              #tzId="ngModel"
+              [readonly]="isReadOnly">
+
+            <small *ngIf="tzId.invalid&&tzId.touched;"
+              id="tzIdError"
+              class="text-danger">
+              Please fill out your TZID
+            </small>&nbsp;
+
+          </div>
+
+          <!-- email input control -->
+          <div class="form-group m-2">
+
+            <label for="emailInputId">Email</label>
+
+            <input type="email"
+              class="form-control"
+              id="emailInputId"
+              aria-describedby="emailError"
+              placeholder="Enter email"
+              ngModel
+              name="email"
+              required
+              #email="ngModel"
+              [readonly]="isReadOnly">
+
+            <small *ngIf="email.invalid&&email.touched;"
+              id="emailError"
+              class="text-danger">
+              Please fill out your email
+            </small>&nbsp;
+
+          </div>
+          <!-- password input control -->
+          <div class="form-group m-2">
+
+            <label for="passowrdId">Password</label>
+
+            <input type="password"
+              class="form-control"
+              id="passowrdId"
+              placeholder="Password"
+              aria-describedby="passwordError"
+              ngModel
+              name="password"
+              required
+              #password="ngModel"
+              [readonly]="isReadOnly">
+
+            <small *ngIf="password.invalid&&password.touched;"
+              id="passwordError"
+              class="text-danger">
+              Please fill out your password
+            </small>&nbsp;
+
+          </div>
+
+          <!-- password confirm control -->
+          <div class="form-group m-2">
+
+            <label for="passwordConfirmId">Password Confirm</label>
+
+            <input type="password"
+              class="form-control"
+              id="passwordConfirmId"
+              placeholder="Password Confirm"
+              aria-describedby="passwordConfirmError"
+              ngModel
+              name="passwordConfirm"
+              required
+              #passwordConfirm="ngModel"
+              [readonly]="isReadOnly">
+
+            <small *ngIf="passwordConfirm.invalid&&passwordConfirm.touched;"
+              id="passwordConfirmError"
+              class="text-danger">
+              Please confirm your password
+            </small>&nbsp;
+
+          </div>
+
+          <!-- Submit form/registerLink -->
+          <div class="row mr-3  ml-3">
+
+            <a class="mr-auto mt-1"
+              [routerLink]="['/auth/login']">
+              <span>Already Registered? Click HERE!</span>
+            </a>
+
+            <button type="submit"
+              class="btn btn-primary">
+              <span>SUBMIT</span>
+            </button>
+
+          </div>
+          <hr>
+          <br>
+        </form>
+        <!-- signupFormA end -->
+
+      </div>
+    </div>
+  </div>
+  <div class="col-4 padding-custom">
+    <div class="card mt-1 bg-light-blue">
+      <div class="card-body">
+
+        <!-- signupFormB start -->
+        <form class="bg-light p-2 border-custom"
+          #signupFormB="ngForm"
+          (ngSubmit)="onSubmit(signupFormB)">
+
+          <h6 class="ml-1">Hi {{ tempUserName }}, Just a few more details please.</h6>
+
+          <!-- city input control -->
+          <div class="form-group m-2">
+
+            <label for="cityInputId">city</label>
+
+            <input type="text"
+              class="form-control"
+              id="cityInputId"
+              aria-describedby="cityIdError"
+              placeholder="Enter your city name"
+              ngModel
+              name="city"
+              required
+              #city="ngModel"
+              [readonly]="isReadOnly">
+
+            <small *ngIf="city.invalid&&city.touched;"
+              id="cityError"
+              class="text-danger">
+              Please fill out your city
+            </small>&nbsp;
+
+          </div>
+
+          <!-- Street input control -->
+          <div class="form-group m-2">
+
+            <label for="StreetInputId">Street</label>
+
+            <input type="text"
+              class="form-control"
+              id="StreetInputId"
+              aria-describedby="StreetError"
+              placeholder="Which street do you live on?"
+              ngModel
+              name="street"
+              required
+              #street="ngModel"
+              [readonly]="isReadOnly">
+
+            <small *ngIf="street.invalid&&street.touched;"
+              id="streetError"
+              class="text-danger">
+              Please fill out your street name
+            </small>&nbsp;
+
+          </div>
+
+          <!-- firstname input control -->
+          <div class="form-group m-2">
+
+            <label for="firstName">firstname</label>
+
+            <input type="text"
+              class="form-control"
+              id="firstName"
+              placeholder="What is your first name?"
+              aria-describedby="firstNameIdError"
+              ngModel
+              name="firstName"
+              required
+              #firstName="ngModel"
+              [readonly]="isReadOnly">
+
+            <small *ngIf="firstName.invalid&&firstName.touched;"
+              id="firstNameError"
+              class="text-danger">
+              Please fill out your given name
+            </small>&nbsp;
+
+          </div>
+
+          <!-- lastname control -->
+          <div class="form-group m-2">
+
+            <label for="lastNameId">lastName</label>
+
+            <input type="text"
+              class="form-control"
+              id="lastName"
+              placeholder="What is your Surname?"
+              aria-describedby="lastNameError"
+              ngModel
+              name="lastName"
+              required
+              #lastName="ngModel"
+              [readonly]="isReadOnly">
+
+            <small *ngIf="lastName.invalid&&lastName.touched;"
+              id="lastNameError"
+              class="text-danger">
+              Please fill out your surname
+            </small>&nbsp;
+
+          </div>
+
+          <!-- Submit form/registerLink -->
+          <div class="row mr-3  ml-3">
+
+            <span class="mr-auto mt-1">&nbsp;</span>
+
+            <button type="submit"
+              class="btn btn-primary">
+              <span>SUBMIT</span>
+            </button>
+
+          </div>
+          <hr>
+          <br>
+        </form>
+        <!-- signupFormB end -->
+
+      </div>
+    </div>
+  </div>
+  <div class="col-4 padding-custom">
+    <div class="card mt-1 bg-light-blue">
+      <div class="card-body">
+      </div>
+    </div>
+  </div>
+</div>

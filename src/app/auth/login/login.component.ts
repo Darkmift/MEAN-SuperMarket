@@ -1,5 +1,5 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
-import { NgForm, FormGroup } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +11,6 @@ export class LoginComponent implements OnInit {
 
   @ViewChild('loginForm', { static: true }) loginForm: NgForm;
   isReadOnly = true;
-  submitted = false;
   submittedUserData = {
     email: null,
     password: null,
