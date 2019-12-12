@@ -10,12 +10,17 @@ import { NgForm } from '@angular/forms';
 export class LoginComponent {
 
   @ViewChild('loginForm', { static: true }) loginForm: NgForm;
+  isReadOnly = true;
   submitted = false;
   submittedUserData = {
     email: null,
     password: null,
   };
 
+
+  editOnFocus() {
+    this.isReadOnly = false;
+  }
 
   onSubmit() {
 

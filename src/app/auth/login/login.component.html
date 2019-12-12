@@ -1,62 +1,76 @@
 <div class="row sizing">
-    <div class="col-4 padding-custom">
-        <div class="card mt-1 bg-light-blue">
-            <div class="card-body">
+  <div class="col-4 padding-custom">
+    <div class="card mt-1 bg-light-blue">
+      <div class="card-body">
 
-                <!-- form start -->
-                <form class="bg-light p-2 border-custom" #loginForm="ngForm">
+        <!-- form start -->
+        <form class="bg-light p-2 border-custom"
+          #loginForm="ngForm">
 
-                    <h5><i>Welcome Guest! Please Login.</i></h5>
-                    <!-- email input control -->
-                    <div class="form-group">
+          <h5><i>Welcome Guest! Please Login.</i></h5>
+          <!-- email input control -->
+          <div class="form-group">
 
-                        <label for="emailInputId">Email</label>
+            <label for="emailInputId">Email</label>
 
-                        <input type="email" class="form-control" id="emailInputId" aria-describedby="emailHelp" placeholder="Enter email" ngModel name="email" required #email="ngModel" readonly onfocus="if (this.hasAttribute('readonly')) {
-                this.removeAttribute('readonly');
-                // fix for mobile safari to show virtual keyboard
-                this.blur();    this.focus();  }">
+            <input type="email"
+              class="form-control"
+              id="emailInputId"
+              aria-describedby="emailHelp"
+              placeholder="Enter email"
+              ngModel
+              name="email"
+              required
+              #email="ngModel"
+              [readonly]="isReadOnly"
+              (focus)="editOnFocus()">
 
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                    </div>
-                    <!-- password input control -->
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" appNoAutocomplete>
-                    </div>
+            <small id="emailHelp"
+              class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <!-- password input control -->
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password"
+              class="form-control"
+              id="exampleInputPassword1"
+              placeholder="Password"
+              [readonly]="isReadOnly"
+              (focus)="editOnFocus()">
+          </div>
 
-                    <!-- Submit form/registerLink -->
-                    <div class="
-              row
-              m-1">
+          <!-- Submit form/registerLink -->
+          <div class="row m-1">
 
-                        <a class="mr-auto" [routerLink]="['/auth/signup']">
-                            <span>Not Registered? Click here!</span>
-                        </a>
+            <a class="mr-auto"
+              [routerLink]="['/auth/signup']">
+              <span>Not Registered? Click here!</span>
+            </a>
 
-                        <button type="submit" class="btn btn-primary">
+            <button type="submit"
+              class="btn btn-primary">
               <span>Submit</span>
             </button>
 
-                    </div>
-                    <hr>
-                    <br>
-                </form>
-                <!-- form end -->
+          </div>
+          <hr>
+          <br>
+        </form>
+        <!-- form end -->
 
-            </div>
-        </div>
+      </div>
     </div>
-    <div class="col-4 padding-custom">
-        <div class="card mt-1 bg-light-blue">
-            <div class="card-body">
-            </div>
-        </div>
+  </div>
+  <div class="col-4 padding-custom">
+    <div class="card mt-1 bg-light-blue">
+      <div class="card-body">
+      </div>
     </div>
-    <div class="col-4 padding-custom">
-        <div class="card mt-1 bg-light-blue">
-            <div class="card-body">
-            </div>
-        </div>
+  </div>
+  <div class="col-4 padding-custom">
+    <div class="card mt-1 bg-light-blue">
+      <div class="card-body">
+      </div>
     </div>
+  </div>
 </div>
