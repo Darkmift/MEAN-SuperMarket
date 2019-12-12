@@ -5,18 +5,19 @@
 
         <!-- form start -->
         <form class="bg-light p-2 border-custom"
-          #loginForm="ngForm">
+          #loginForm="ngForm"
+          (ngSubmit)="onSubmit(loginForm)">
 
-          <h5><i>Welcome Guest! Please Login.</i></h5>
+          <h6 class="ml-1">Welcome GUEST, Please Login.</h6>
           <!-- email input control -->
-          <div class="form-group">
+          <div class="form-group m-2">
 
             <label for="emailInputId">Email</label>
 
             <input type="email"
               class="form-control"
               id="emailInputId"
-              aria-describedby="emailHelp"
+              aria-describedby="emailError"
               placeholder="Enter email"
               ngModel
               name="email"
@@ -24,30 +25,48 @@
               #email="ngModel"
               [readonly]="isReadOnly">
 
-            <small id="emailHelp"
-              class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <small *ngIf="email.invalid&&email.touched;"
+              id="emailError"
+              class="text-danger">
+              Please fill out your email
+            </small>&nbsp;
+
           </div>
           <!-- password input control -->
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
+          <div class="form-group m-2">
+
+            <label for="passowrdId">Password</label>
+
             <input type="password"
               class="form-control"
-              id="exampleInputPassword1"
+              id="passowrdId"
               placeholder="Password"
+              aria-describedby="passwordError"
+              ngModel
+              name="password"
+              required
+              #password="ngModel"
               [readonly]="isReadOnly">
+
+            <small *ngIf="password.invalid&&password.touched;"
+              id="passwordError"
+              class="text-danger">
+              Please fill out your password
+            </small>&nbsp;
+
           </div>
 
           <!-- Submit form/registerLink -->
           <div class="row m-1">
 
-            <a class="mr-auto"
+            <a class="mr-auto mt-1"
               [routerLink]="['/auth/signup']">
-              <span>Not Registered? Click here!</span>
+              <span>Not Registered? Click HERE!</span>
             </a>
 
             <button type="submit"
               class="btn btn-primary">
-              <span>Submit</span>
+              <span>SUBMIT</span>
             </button>
 
           </div>
