@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -7,7 +7,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   @ViewChild('loginForm', { static: true }) loginForm: NgForm;
   isReadOnly = true;
@@ -17,9 +17,11 @@ export class LoginComponent {
     password: null,
   };
 
-
-  editOnFocus() {
-    this.isReadOnly = false;
+  ngOnInit() {
+    //deal with pesky autocomplete
+    setTimeout(() => {
+      this.isReadOnly = false;
+    }, 2000);
   }
 
   onSubmit() {
