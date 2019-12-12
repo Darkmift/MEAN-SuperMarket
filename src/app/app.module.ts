@@ -4,11 +4,13 @@ import { AppComponent } from './app.component';
 import { BootstrapModuleGroup } from './bootstrapGroup/bootstrap-modules.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
+import { NoAutocompleteDirective } from './no-autocomplete.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    NoAutocompleteDirective,
   ],
   imports: [
     BrowserModule,

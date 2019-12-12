@@ -1,28 +1,62 @@
-<p>login works!</p>
+<div class="row sizing">
+    <div class="col-4 padding-custom">
+        <div class="card mt-1 bg-light-blue">
+            <div class="card-body">
 
-<div class="card"
-  style="width: 18rem;">
-  <img src="https://i.ytimg.com/vi/AfdR003knes/hqdefault.jpg"
-    class="card-img-top"
-    alt="meow">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
-    </p>
-    <div class="row">
-      <div class="col">
-        <div ngbDropdown
-          class="d-inline-block">
-          <button class="btn btn-outline-primary"
-            id="dropdownBasic1"
-            ngbDropdownToggle>Toggle dropdown</button>
-          <div ngbDropdownMenu
-            aria-labelledby="dropdownBasic1">
-            <button ngbDropdownItem>Action - 1</button>
-            <button ngbDropdownItem>Another Action</button>
-            <button ngbDropdownItem>Something else is here</button>
-          </div>
+                <!-- form start -->
+                <form class="bg-light p-2 border-custom" #loginForm="ngForm">
+
+                    <h5><i>Welcome Guest! Please Login.</i></h5>
+                    <!-- email input control -->
+                    <div class="form-group">
+
+                        <label for="emailInputId">Email</label>
+
+                        <input type="email" class="form-control" id="emailInputId" aria-describedby="emailHelp" placeholder="Enter email" ngModel name="email" required #email="ngModel" readonly onfocus="if (this.hasAttribute('readonly')) {
+                this.removeAttribute('readonly');
+                // fix for mobile safari to show virtual keyboard
+                this.blur();    this.focus();  }">
+
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <!-- password input control -->
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" appNoAutocomplete>
+                    </div>
+
+                    <!-- Submit form/registerLink -->
+                    <div class="
+              row
+              m-1">
+
+                        <a class="mr-auto" [routerLink]="['/auth/signup']">
+                            <span>Not Registered? Click here!</span>
+                        </a>
+
+                        <button type="submit" class="btn btn-primary">
+              <span>Submit</span>
+            </button>
+
+                    </div>
+                    <hr>
+                    <br>
+                </form>
+                <!-- form end -->
+
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+    <div class="col-4 padding-custom">
+        <div class="card mt-1 bg-light-blue">
+            <div class="card-body">
+            </div>
+        </div>
+    </div>
+    <div class="col-4 padding-custom">
+        <div class="card mt-1 bg-light-blue">
+            <div class="card-body">
+            </div>
+        </div>
+    </div>
+</div>
