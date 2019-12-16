@@ -1,5 +1,9 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
+
+import { AuthService } from '../auth.service';
+
 
 @Component({
   selector: 'app-login',
@@ -7,7 +11,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   @ViewChild('loginForm', { static: true }) loginForm: NgForm;
   isReadOnly = true;
@@ -15,8 +19,17 @@ export class LoginComponent implements OnInit {
     email: null,
     password: null,
   };
+  private authStatusSub: Subscription;
+
+  constructor(public authService: AuthService) { }
 
   ngOnInit() {
+
+    this.authStatusSub = this.authService.getAuthStatusListener().subscribe((authStatus) => {
+      console.log('TCL: LoginComponent -> ngOnInit -> authStatus', authStatus);
+    });
+
+
     // deal with pesky autocomplete
     setTimeout(() => {
       this.isReadOnly = false;
@@ -39,7 +52,12 @@ export class LoginComponent implements OnInit {
       password: password,
     };
 
+    this.authService.login(this.loginForm.value.email, this.loginForm.value.password);
     this.loginForm.reset();
+  }
+
+  ngOnDestroy() {
+    this.authStatusSub.unsubscribe();
   }
 
 }

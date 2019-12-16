@@ -19,6 +19,18 @@ app.options('*', cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use((req, res, next) => {
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH,PUT, DELETE');
+	res.setHeader(
+		'Access-Control-Allow-Headers',
+		'X-Requested-With, Access-Control-Allow-Headers, Content-Type, Authorization, Origin, Accept',
+	);
+	res.setHeader('Access-Control-Allow-Credentials', true);
+
+	next();
+});
+
 //all other code should be here
 app.use('/api/users', userRoutes);
 app.use('/api/carts', cartRoutes);

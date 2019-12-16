@@ -16,7 +16,7 @@ export class AuthService {
   private tokenTimer: NodeJS.Timer;
   private userId: string;
   private role: boolean;
-  private apiUrl = environment.apiUrl + '/user';
+  private apiUrl = environment.apiUrl + '/users';
   constructor(private http: HttpClient, private router: Router) { }
 
   getToken() {

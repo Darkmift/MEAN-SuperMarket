@@ -3,3 +3,14 @@ https://ng-bootstrap.github.io/#/components/dropdown/examples
 
 validation logic
 https://codepen.io/JacobLett/pen/VzBzmN
+
+testAdmin1:
+  {
+    "email": "Admin1@email.com@email.com",
+    "password": "MooCow1",
+    "city": "Holon",
+   "iic": "456564785",
+  "street": "StreetName",
+  "firstName": "TestFirstName",
+  "lastName": "TestLastName",
+  }
