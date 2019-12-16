@@ -1,0 +1,93 @@
+<form class="bg-light p-2 border-custom"
+  name="form"
+  (ngSubmit)="signupFormB.form.valid && onSubmitPartOne(signupFormB)"
+  #signupFormB="ngForm"
+  novalidate>
+
+  <!-- firstname -->
+  <div class="form-group">
+    <label for="firstname">First Name</label>
+    <input type="text"
+      [readonly]="isReadOnly"
+      class="form-control"
+      name="firstname"
+      [(ngModel)]="submittedUserData.firstname"
+      #firstname="ngModel"
+      [ngClass]="{ 'is-invalid': signupFormB.submitted && firstname.invalid }"
+      placeholder="Please enter your first name"
+      required
+      minlength="3" />
+
+    <div *ngIf="signupFormB.submitted && firstname.invalid"
+      class="invalid-feedback">
+      <div *ngIf="firstname.errors.required">Please add your first name</div>
+      <div *ngIf="firstname.errors.minlength">first name must be at least 3 charcters</div>
+
+    </div>
+  </div>
+
+  <!-- lastname -->
+  <div class="form-group">
+    <label for="lastname">Last Name</label>
+    <input type="text"
+      [readonly]="isReadOnly"
+      class="form-control"
+      name="lastname"
+      [(ngModel)]="submittedUserData.lastname"
+      #lastname="ngModel"
+      [ngClass]="{ 'is-invalid': signupFormB.submitted && lastname.invalid }"
+      placeholder="Please provide your lastname"
+      required
+      minlength="3" />
+    <div *ngIf="signupFormB.submitted && lastname.invalid"
+      class="invalid-feedback">
+      <div *ngIf="lastname.errors.required">Please add your last name</div>
+      <div *ngIf="lastname.errors.minlength">last name must be at least 3 charcters</div>
+    </div>
+  </div>
+
+  <!-- city select -->
+  <div class="form-group">
+    <label for="city">Select your city</label>
+    <select class="form-control"
+      #city="ngModel"
+      [ngClass]="{ 'is-invalid': signupFormB.submitted && street.invalid }"
+      [(ngModel)]="submittedUserData.city"
+      [readonly]="isReadOnly"
+      required>
+      <option *ngFor="let option of options"
+        [value]="option">{{option}}</option>
+    </select>
+
+    <div *ngIf="signupFormB.submitted && city.invalid"
+      class="invalid-feedback">
+      <div *ngIf="city.errors.required">Please select your city</div>
+    </div>
+  </div>
+
+  <!-- street -->
+  <div class="form-group">
+    <label for="street">street Name</label>
+    <input type="text"
+      [readonly]="isReadOnly"
+      class="form-control"
+      name="street"
+      [(ngModel)]="submittedUserData.street"
+      #street="ngModel"
+      [ngClass]="{ 'is-invalid': signupFormB.submitted && street.invalid }"
+      placeholder="Please provide your street"
+      required
+      minlength="3" />
+    <div *ngIf="signupFormB.submitted && street.invalid"
+      class="invalid-feedback">
+      <div *ngIf="street.errors.required">Please add your last name</div>
+      <div *ngIf="street.errors.minlength">last name must be at least 3 charcters</div>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <button class="btn btn-primary">Complete Registration</button>
+  </div>
+
+</form>

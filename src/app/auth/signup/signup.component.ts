@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy, AfterViewInit } from '@angular/core';
 import { NgForm, Validators, FormGroup } from '@angular/forms';
 import { User } from '../models/user.model';
 import { AuthService } from '../auth.service';
@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./signup.component.css']
 })
 
-export class SignupComponent implements OnInit, OnDestroy {
+export class SignupComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild('signupFormA', { static: true }) signupFormA: NgForm;
   @ViewChild('signupFormB', { static: true }) signupFormB: NgForm;
@@ -24,18 +24,19 @@ export class SignupComponent implements OnInit, OnDestroy {
   private validTzId: Subscription;
   cannotRegisterId = false;
 
+  cityList = ['Tel-Aviv', 'Holon', 'Arad', `Be'er Sheva`, 'Yokneam', 'Rehovot', 'Safed', 'Netivot', 'Eilat', 'Metula'];
+
   ngOnInit() {
 
+    // handle this.authservice.idExists() response
     this.validTzId = this.authService.getvalidIdListener().subscribe((canUseId) => {
-
-      console.log('TCL: SignupComponent -> ngOnInit -> canUseId', canUseId);
-
       this.partOneValid = canUseId;
       if (canUseId) {
         this.signupFormA.reset();
         this.partOneValid = true;
       } else {
         this.cannotRegisterId = true;
+        this.partOneValid = true;
         this.signupFormA.controls.tzId.setErrors({ invalidID: true });
       }
     });
@@ -56,6 +57,10 @@ export class SignupComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.isReadOnly = false;
     }, 1000);
+    this.submittedUserData.city = this.cityList[0];
+  }
+
+  ngAfterViewInit() {
 
   }
 
