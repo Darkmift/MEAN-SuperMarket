@@ -12,10 +12,14 @@
         aria-labelledby="dropdownBasic1"
         class="dropdown-menu-right">
         <button ngbDropdownItem
-          [routerLink]="['auth/login']">Login</button>
+          [routerLink]="['auth/login']"
+          *ngIf="!userIsAuthenticated">Login</button>
         <button ngbDropdownItem
-          [routerLink]="['auth/signup']">Signup</button>
-        <button ngbDropdownItem>Logout</button>
+          [routerLink]="['auth/signup']"
+          *ngIf="!userIsAuthenticated">Signup</button>
+        <button ngbDropdownItem
+          *ngIf="userIsAuthenticated"
+          (click)="onLogOut()">Logout</button>
       </div>
     </li>
   </ul>
