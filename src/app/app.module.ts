@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { BootstrapModuleGroup } from './bootstrapGroup/bootstrap-modules.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
+import { AuthInterceptor } from './auth/auth-interceptor';
 
 @NgModule({
   declarations: [
