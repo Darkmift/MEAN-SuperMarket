@@ -5,6 +5,7 @@ import { SignupComponent } from './signup/signup.component';
 import { FormsModule } from '@angular/forms';
 import { AuthRoutingModule } from './auth-routing.module';
 import { BootstrapModuleGroup } from '../bootstrapGroup/bootstrap-modules.module';
+import { MustMatchDirective } from './signup/matchPasswords/must-match.directive';
 
 
 
@@ -12,6 +13,7 @@ import { BootstrapModuleGroup } from '../bootstrapGroup/bootstrap-modules.module
   declarations: [
     LoginComponent,
     SignupComponent,
+    MustMatchDirective,
   ],
   imports: [
     CommonModule,

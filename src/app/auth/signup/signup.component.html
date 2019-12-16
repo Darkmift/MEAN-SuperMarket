@@ -47,6 +47,7 @@
               ngModel
               name="email"
               required
+              pattern=".+@.+\..+"
               #email="ngModel"
               [readonly]="isReadOnly">
 
@@ -155,7 +156,7 @@
         <form class="bg-light p-2 border-custom"
           #signupFormB="ngForm"
           *ngIf="partOneValid"
-          (ngSubmit)="onSubmit(signupFormB)">
+          (ngSubmit)="onSubmitB(signupFormB)">
 
           <h6 class="ml-1">Hi {{ tempUserName }}, Just a few more details please.</h6>
 

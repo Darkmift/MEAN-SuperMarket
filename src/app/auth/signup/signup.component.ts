@@ -19,7 +19,7 @@ export class SignupComponent implements OnInit {
   partOneValid = false;
   tempUserName = 'GUEST';
   submittedUserData: User;
-  passwordGroup
+  passwordGroup;
 
 
   ngOnInit() {
@@ -46,13 +46,14 @@ export class SignupComponent implements OnInit {
 
     if (password != passwordConfirm) {
       this.passwordMatch = false;
-      this.signupFormA.controls['passwordConfirm'].setErrors({ 'incorrect': true });
-      this.signupFormA.controls['password'].setErrors({ 'incorrect': true });
+      this.signupFormA.controls.passwordConfirm.setErrors({ incorrect: true });
+      this.signupFormA.controls.password.setErrors({ incorrect: true });
       console.log('TCL: SignupComponent -> onSubmitPartOne -> this.passwordMatch false', this.passwordMatch);
       return;
     } else {
-      this.signupFormA.controls['passwordConfirm'].setErrors({ 'incorrect': false });
-      this.signupFormA.controls['password'].setErrors({ 'incorrect': false });
+      this.signupFormA.controls.passwordConfirm.setErrors(null);
+      this.signupFormA.controls.password.setErrors(null);
+      this.signupFormA.controls.paswword.updateValueAndValidity();
       this.passwordMatch = true;
       console.log('TCL: SignupComponent -> onSubmitPartOne -> this.passwordMatch true', this.passwordMatch);
     }
@@ -66,10 +67,12 @@ export class SignupComponent implements OnInit {
     this.partOneValid = true;
   }
 
+  onSubmitB() { }
+
   private checkIfMatchingPasswords(passwordKey: string, passwordConfirmationKey: string) {
     return (group: FormGroup) => {
-      const passwordInput = group.controls[passwordKey],
-        passwordConfirmationInput = group.controls[passwordConfirmationKey];
+      const passwordInput = group.controls[passwordKey];
+      const passwordConfirmationInput = group.controls[passwordConfirmationKey];
       if (passwordInput.value !== passwordConfirmationInput.value) {
         return passwordConfirmationInput.setErrors({ notEquivalent: true });
       } else {
