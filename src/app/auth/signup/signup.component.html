@@ -6,7 +6,7 @@
         <!-- signupFormA start -->
         <form class="bg-light p-2 border-custom"
           #signupFormA="ngForm"
-          (ngSubmit)="onSubmit(signupFormA)">
+          (ngSubmit)="onSubmitPartOne(signupFormA)">
 
           <h6 class="ml-1">Welcome {{ tempUserName }}, Please Register.</h6>
 
@@ -57,53 +57,73 @@
             </small>&nbsp;
 
           </div>
-          <!-- password input control -->
-          <div class="form-group m-2">
 
-            <label for="passowrdId">Password</label>
+          <!-- password group -->
+          <div id="passwordGroup"
+            ngModelGroup="passwordGroup"
+            #passwordGroup="ngModelGroup">
 
-            <input type="password"
-              class="form-control"
-              id="passowrdId"
-              placeholder="Password"
-              aria-describedby="passwordError"
-              ngModel
-              name="password"
-              required
-              #password="ngModel"
-              [readonly]="isReadOnly">
+            <!-- password input control -->
+            <div class="form-group m-2">
 
-            <small *ngIf="password.invalid&&password.touched;"
-              id="passwordError"
-              class="text-danger">
-              Please fill out your password
-            </small>&nbsp;
+              <label for="passowrdId">Password</label>
+
+              <input type="password"
+                class="form-control"
+                id="passowrdId"
+                placeholder="Password"
+                aria-describedby="passwordError"
+                ngModel
+                name="password"
+                required
+                #password="ngModel"
+                [readonly]="isReadOnly">
+
+              <small *ngIf="password.invalid&&password.touched;"
+                id="passwordError"
+                class="text-danger">
+                Please fill out your password
+              </small>&nbsp;
+              <small *ngIf="!passwordMatch"
+                id="passwordConfirmError"
+                class="text-danger">
+                Passwords must match
+              </small>
+
+            </div>
+
+            <!-- password confirm control -->
+            <div class="form-group m-2">
+
+              <label for="passwordConfirmId">Password Confirm</label>
+
+              <input type="password"
+                class="form-control"
+                id="passwordConfirmId"
+                placeholder="Password Confirm"
+                aria-describedby="passwordConfirmError"
+                ngModel
+                name="passwordConfirm"
+                required
+                #passwordConfirm="ngModel"
+                [readonly]="isReadOnly">
+
+              <small *ngIf="passwordConfirm.invalid&&passwordConfirm.touched;"
+                id="passwordConfirmError"
+                class="text-danger">
+                Please confirm your password
+              </small>&nbsp;
+              <small *ngIf="!passwordMatch"
+                id="passwordConfirmError"
+                class="text-danger">
+                - Passwords must match
+              </small>
+
+            </div>
 
           </div>
 
-          <!-- password confirm control -->
-          <div class="form-group m-2">
 
-            <label for="passwordConfirmId">Password Confirm</label>
-
-            <input type="password"
-              class="form-control"
-              id="passwordConfirmId"
-              placeholder="Password Confirm"
-              aria-describedby="passwordConfirmError"
-              ngModel
-              name="passwordConfirm"
-              required
-              #passwordConfirm="ngModel"
-              [readonly]="isReadOnly">
-
-            <small *ngIf="passwordConfirm.invalid&&passwordConfirm.touched;"
-              id="passwordConfirmError"
-              class="text-danger">
-              Please confirm your password
-            </small>&nbsp;
-
-          </div>
 
           <!-- Submit form/registerLink -->
           <div class="row mr-3  ml-3">
@@ -134,6 +154,7 @@
         <!-- signupFormB start -->
         <form class="bg-light p-2 border-custom"
           #signupFormB="ngForm"
+          *ngIf="partOneValid"
           (ngSubmit)="onSubmit(signupFormB)">
 
           <h6 class="ml-1">Hi {{ tempUserName }}, Just a few more details please.</h6>
@@ -213,7 +234,7 @@
           <!-- lastname control -->
           <div class="form-group m-2">
 
-            <label for="lastNameId">lastName</label>
+            <label for="lastNameId">lastname</label>
 
             <input type="text"
               class="form-control"

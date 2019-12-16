@@ -11,7 +11,7 @@ import { BootstrapModuleGroup } from '../bootstrapGroup/bootstrap-modules.module
 @NgModule({
   declarations: [
     LoginComponent,
-    SignupComponent
+    SignupComponent,
   ],
   imports: [
     CommonModule,
