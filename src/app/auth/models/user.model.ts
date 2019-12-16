@@ -1,7 +1,8 @@
 export class User {
   email: string;
-  tzid: string;
+  tzId: string;
   password: string;
+  confirmPassword: string;
   city: string;
   street: string;
   firstname: string;

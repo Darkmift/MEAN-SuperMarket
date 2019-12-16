@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
-import { AuthData } from './auth-data.model';
 import { environment } from 'src/environments/environment';
+import { LoginCredentials } from './models/loginCredentials.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,7 @@ export class AuthService {
 
   private token = undefined;
   private authStatusListener = new Subject<boolean>();
+  private validIdListener = new Subject<boolean>();
   private isAuthenticated = false;
   private tokenTimer: NodeJS.Timer;
   private userId: string;
@@ -27,16 +28,18 @@ export class AuthService {
     return this.isAuthenticated;
   }
 
+  // listener to check if user is authorized
   getAuthStatusListener() {
     return this.authStatusListener.asObservable();
   }
 
+  // create user on signup
   createUser(email: string, password: string) {
 
     // tslint:disable-next-line: object-literal-shorthand
-    const authData: AuthData = { email: email, password: password };
+    const loginCredentials: LoginCredentials = { email: email, password: password };
 
-    this.http.post(this.apiUrl + '/signup', authData)
+    this.http.post(this.apiUrl + '/signup', loginCredentials)
       .subscribe((response) => {
         this.login(email, password);
       }, (error) => {
@@ -45,11 +48,34 @@ export class AuthService {
 
   }
 
+  // check if tzId provided on signup part 1 exists
+  idExists(tzId: string) {
+    console.log('TCL: AuthService -> idExists -> tzId', tzId);
+    this.http.get
+      <{ message: string, canUseTzId: boolean; }>
+      (this.apiUrl + '/idExists/' + tzId).subscribe((response) => {
+        if (response.canUseTzId) {
+          return this.validIdListener.next(response.canUseTzId);
+        }
+        return this.validIdListener.next(false);
+      }, err => {
+        console.log('TCL: AuthService -> idExists -> err', err);
+        return this.validIdListener.next(false);
+      });
+  }
+
+  // listener to check if user is authorized
+  getvalidIdListener() {
+    return this.validIdListener.asObservable();
+  }
+
   login(email: string, password: string) {
     // tslint:disable-next-line: object-literal-shorthand
-    const authData: AuthData = { email: email, password: password };
+    const loginCredentials: LoginCredentials = { email: email, password: password };
 
-    this.http.post<{ message: string, token: string, expiresIn: number, userId: string, role: boolean }>(this.apiUrl + '/login', authData)
+    this.http.post
+      <{ message: string, token: string, expiresIn: number, userId: string, role: boolean; }>
+      (this.apiUrl + '/login', loginCredentials)
       .subscribe(response => {
         // console.log('TCL: AuthService -> createUser -> response', response);
         const token = response.token;
@@ -63,7 +89,7 @@ export class AuthService {
           this.authStatusListener.next(true);
           const now = new Date();
           const expirationDate = new Date(now.getTime() + expiresIn * 1000);
-          this.saveAuthData(token, expirationDate, this.userId, this.role);
+          this.saveLoginCredentials(token, expirationDate, this.userId, this.role);
           this.router.navigate(['/']);
         }
 
@@ -75,7 +101,7 @@ export class AuthService {
 
   autoAuthUser() {
 
-    const authInformation = this.getAuthData();
+    const authInformation = this.getLoginCredentials();
     if (!authInformation) {
       return;
     }
@@ -101,7 +127,7 @@ export class AuthService {
     this.role = false;
     this.router.navigate(['/auth/login']);
     clearTimeout(this.tokenTimer);
-    this.clearAuthData();
+    this.clearLoginCredentials();
   }
 
   getUserId() {
@@ -112,7 +138,7 @@ export class AuthService {
     return this.role;
   }
 
-  private getAuthData() {
+  private getLoginCredentials() {
     const token = localStorage.getItem('token');
     const expirationDate = localStorage.getItem('expiration');
     const userId = localStorage.getItem('userId');
@@ -134,7 +160,7 @@ export class AuthService {
     };
   }
 
-  private saveAuthData(token: string, expirationDate: Date, userId: string, role: boolean) {
+  private saveLoginCredentials(token: string, expirationDate: Date, userId: string, role: boolean) {
     const setRole = role ? '1' : '0';
     localStorage.setItem('token', token);
     localStorage.setItem('expiration', expirationDate.toISOString());
@@ -142,7 +168,7 @@ export class AuthService {
     localStorage.setItem('role', setRole);
   }
 
-  private clearAuthData() {
+  private clearLoginCredentials() {
     localStorage.removeItem('token');
     localStorage.removeItem('expiration');
     localStorage.removeItem('userId');

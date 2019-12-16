@@ -10,6 +10,9 @@ import { ErrorInterceptor } from './error-interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorModalComponent } from './error-modal/error-modal.component';
 import { ShopComponent } from './shop/shop.component';
+import { TestBitComponent } from './test/test-bit/test-bit.component';
+import { MustMatchDirective } from './test/test-bit/must-match.directive';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,12 +20,15 @@ import { ShopComponent } from './shop/shop.component';
     HeaderComponent,
     ErrorModalComponent,
     ShopComponent,
+    TestBitComponent,
+    MustMatchDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BootstrapModuleGroup,
     HttpClientModule,
+    FormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
