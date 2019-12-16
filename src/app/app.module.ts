@@ -9,12 +9,14 @@ import { AuthInterceptor } from './auth/auth-interceptor';
 import { ErrorInterceptor } from './error-interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorModalComponent } from './error-modal/error-modal.component';
+import { ShopComponent } from './shop/shop.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ErrorModalComponent,
+    ShopComponent,
   ],
   imports: [
     BrowserModule,
