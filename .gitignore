@@ -49,4 +49,4 @@ Thumbs.db
 .env
 
 # public/images
-backend/public
+backend/app/public
