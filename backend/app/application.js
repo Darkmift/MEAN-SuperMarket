@@ -5,7 +5,7 @@ global.firstInitialize = false; // set true to set the mongodb for first use aft
 const express = require('express');
 const cors = require('cors');
 const { handleError } = require('./modules/error');
-// const path = require('path');
+const path = require('path');
 const bodyParser = require('body-parser');
 const mongooseConnection = require('./modules/mongoose-connection');
 
@@ -22,6 +22,9 @@ mongooseConnection;
 app.options('*', cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+const publicDir = path.join(__dirname, 'public');
+app.use('/public', express.static(publicDir));
 
 app.use((req, res, next) => {
 	res.setHeader('Access-Control-Allow-Origin', '*');
