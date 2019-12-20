@@ -18,6 +18,7 @@ export class AuthService {
   private tokenTimer: NodeJS.Timer;
   private userId: string;
   private role: boolean;
+  private currentUser: User;
   private apiUrl = environment.apiUrl + '/users';
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -37,25 +38,16 @@ export class AuthService {
   // create user on signup
   createUser(user: User) {
 
-    const newUser = {
-      firstName: user.firstname,
-      lastName: user.lastname,
-      password: user.password,
-      iic: user.tzId,
-      email: user.email,
-      city: user.city,
-      street: user.street
-    };
-
-    this.http.post(this.apiUrl + '/signup', newUser)
+    this.http.post(this.apiUrl + '/signup', user)
       .subscribe((response: any) => {
         /*
         * use repose email to ensure we got the correct response payload
-        * but newUser.password because response.password is hashed
+        * but user.password because response.password is hashed
         */
         const { email } = response.result;
-        this.login(email, newUser.password);
+        this.login(email, user.password);
       }, (error) => {
+        console.log('TCL: AuthService -> createUser -> error', error);
         this.authStatusListener.next(false);
       });
 
@@ -85,22 +77,26 @@ export class AuthService {
     const loginCredentials: LoginCredentials = { email: email, password: password };
 
     this.http.post
-      <{ message: string, token: string, expiresIn: number, user: any, role: boolean; }>
+      <{ message: string, token: string, expiresIn: number, user: User; }>
       (this.apiUrl + '/login', loginCredentials)
       .subscribe(response => {
         // console.log('TCL: AuthService -> createUser -> response', response);
         const token = response.token;
         this.token = token;
+
+        this.currentUser = response.user;
+
         if (token) {
           const expiresIn = response.expiresIn;
           this.setauthTimer(expiresIn);
           this.isAuthenticated = true;
-          this.userId = response.user._id;
-          this.role = response.role;
+          this.currentUser = response.user;
+          this.userId = this.currentUser.id;
+          this.role = this.currentUser.role;
           this.authStatusListener.next(true);
           const now = new Date();
           const expirationDate = new Date(now.getTime() + expiresIn * 1000);
-          this.saveLoginCredentials(token, expirationDate, this.userId, this.role);
+          this.saveLoginCredentials(token, expirationDate, this.currentUser);
           this.router.navigate(['/portal']);
         }
 
@@ -124,7 +120,8 @@ export class AuthService {
     if (expiresIn > 0) {
       this.token = authInformation.token;
       this.isAuthenticated = true;
-      this.userId = authInformation.userId;
+      this.currentUser = authInformation.user;
+      this.userId = this.currentUser.id;
       this.authStatusListener.next(true);
       this.setauthTimer(expiresIn / 1000);
     }
@@ -145,6 +142,10 @@ export class AuthService {
     return this.userId;
   }
 
+  getUser() {
+    return this.currentUser;
+  }
+
   getRole() {
     return this.role;
   }
@@ -152,11 +153,7 @@ export class AuthService {
   private getLoginCredentials() {
     const token = localStorage.getItem('token');
     const expirationDate = localStorage.getItem('expiration');
-    const userId = localStorage.getItem('userId');
-    let role = false;
-    if (localStorage.getItem('role') === '1') {
-      role = true;
-    }
+    const user = JSON.parse(localStorage.getItem('user'));
     if (!token || !expirationDate) {
       return;
     }
@@ -165,27 +162,20 @@ export class AuthService {
       token: token,
       expirationDate: new Date(expirationDate),
       // tslint:disable-next-line: object-literal-shorthand
-      userId: userId,
-      // tslint:disable-next-line: object-literal-shorthand
-      role: role
+      user: user
     };
   }
 
-  private saveLoginCredentials(token: string, expirationDate: Date, userId: string, role: boolean) {
-    const setRole = role ? '1' : '0';
+  private saveLoginCredentials(token: string, expirationDate: Date, currentUser: User) {
     localStorage.setItem('token', token);
     localStorage.setItem('expiration', expirationDate.toISOString());
-    localStorage.setItem('userId', userId);
-    localStorage.setItem('role', setRole);
+    localStorage.setItem('user', JSON.stringify(currentUser));
   }
 
   private clearLoginCredentials() {
     localStorage.removeItem('token');
     localStorage.removeItem('expiration');
-    localStorage.removeItem('userId');
-    localStorage.removeItem('role');
-    localStorage.removeItem('username');
-    localStorage.removeItem('id');
+    localStorage.removeItem('user');
   }
 
   private setauthTimer(duration: number) {

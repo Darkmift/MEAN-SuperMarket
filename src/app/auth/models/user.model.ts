@@ -1,10 +1,11 @@
 export class User {
   email: string;
-  tzId: string;
+  iic: string;
   password: string;
-  confirmPassword: string;
   city: string;
   street: string;
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
+  id: string;
+  role: boolean;
 }

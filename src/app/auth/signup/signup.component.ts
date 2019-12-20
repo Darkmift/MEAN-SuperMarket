@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewChild, OnDestroy, AfterViewInit } from '@angular/core';
-import { NgForm, Validators, FormGroup } from '@angular/forms';
-import { User } from '../models/user.model';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Subscription } from 'rxjs';
+
+import { Applicant } from '../models/applicant.model';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-signup',
@@ -12,15 +14,12 @@ import { Subscription } from 'rxjs';
 
 export class SignupComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  // @ViewChild('signupFormA', { static: true }) signupFormA: NgForm;
-  // @ViewChild('signupFormB', { static: true }) signupFormB: NgForm;
-
   constructor(public authService: AuthService, ) { }
 
   isLoading = true;
   isReadOnly = true;
   tempUserName = 'GUEST';
-  submittedUserData: User;
+  submittedUserData: Applicant;
   partOneValid = false;
   private validTzId: Subscription;
   cannotRegisterId = false;
@@ -31,6 +30,7 @@ export class SignupComponent implements OnInit, OnDestroy, AfterViewInit {
     this.isLoading = false;
     // init user data model for ngform use
     this.submittedUserData = {
+      // DEV VARS -- DELETE before production!
       email: 'test2@email.com',
       tzId: '789546322',
       password: 'MooCow1',
@@ -39,6 +39,7 @@ export class SignupComponent implements OnInit, OnDestroy, AfterViewInit {
       street: 'Moo St',
       firstname: 'Jerry',
       lastname: 'Seinfeld',
+      // PROD VARS -- ENABLE before production
       // email: '',
       // tzId: '',
       // password: '',
@@ -92,8 +93,21 @@ export class SignupComponent implements OnInit, OnDestroy, AfterViewInit {
       return;
     }
 
+    const applicant = this.submittedUserData;
+
+    const registerUserData: User = {
+      email: applicant.email,
+      iic: applicant.tzId,
+      password: applicant.password,
+      city: applicant.city,
+      street: applicant.street,
+      firstName: applicant.firstname,
+      lastName: applicant.lastname,
+      role: false,
+      id: '',
+    };
     this.isLoading = true;
-    this.authService.createUser(this.submittedUserData);
+    this.authService.createUser(registerUserData);
 
   }
 

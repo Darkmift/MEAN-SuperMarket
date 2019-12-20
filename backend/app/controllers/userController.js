@@ -70,11 +70,16 @@ class UserCtrl {
 					const token = jwt.sign({ email: email, userId: user._id }, process.env.SECRET_KEY, {
 						expiresIn: '1h',
 					});
+
+					const outputUser = user;
+					outputUser.id = outputUser._id;
+					delete outputUser._id;
+
 					const outPutResponse = {
 						message: 'User Found',
 						token: token,
 						expiresIn: 3600,
-						user: user,
+						user: outputUser,
 					};
 					res.status(200).json(outPutResponse);
 				}
