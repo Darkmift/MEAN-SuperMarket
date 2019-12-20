@@ -9,29 +9,34 @@ const jwt = require('jsonwebtoken');
 */
 
 class UserCtrl {
-	static async idExists(req, res, next) {
+	static async uniqueIdAndEmail(req, res, next) {
 		try {
-			const { tzId } = req.params;
+			const { tzId, email } = req.params;
 
-			const applicant = await User.findOne({ iic: tzId }).exec();
-			console.log('TCL: UserCtrl -> idExists -> applicant', applicant);
-			console.log('TCL: UserCtrl -> idExists -> isNaN(parseInt(tzId)', isNaN(parseInt(tzId)));
+			const applicantID = await User.findOne({ iic: tzId }).exec();
 
 			if (isNaN(Number(tzId))) {
 				throw new ErrorHandler(400, 'Invalid Id');
 			}
 
-			let outPutResponse;
-			if (applicant) {
-				outPutResponse = {
-					message: 'id already in use',
-					canUseTzId: false,
-				};
+			let outPutResponse = {
+				message: '',
+				canUseTzId: false,
+				canUseEmail: false,
+			};
+
+			if (applicantID) {
+				outPutResponse.message += 'id already in use';
 			} else {
-				outPutResponse = {
-					message: 'id not in use',
-					canUseTzId: true,
-				};
+				outPutResponse.canUseTzId = true;
+			}
+
+			const applicantEmail = await User.findOne({ email: email }).exec();
+
+			if (applicantEmail) {
+				outPutResponse.message += 'email already in use';
+			} else {
+				outPutResponse.canUseEmail = true;
 			}
 
 			return res.status(200).json(outPutResponse);

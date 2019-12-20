@@ -6,7 +6,7 @@ const isValidDate = value => {
 };
 
 const validationSets = {
-	idExists: [
+	uniqueIdAndEmail: [
 		param('tzId')
 			.isNumeric()
 			.withMessage('must be digits only')
@@ -14,6 +14,9 @@ const validationSets = {
 			.withMessage('must be at least 9 digits long')
 			.not()
 			.isEmpty(),
+		param('email')
+			.normalizeEmail()
+			.isEmail(),
 	],
 	login: [
 		// email must be an email

@@ -12,11 +12,12 @@ import { Subscription } from 'rxjs';
 
 export class SignupComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  @ViewChild('signupFormA', { static: true }) signupFormA: NgForm;
-  @ViewChild('signupFormB', { static: true }) signupFormB: NgForm;
+  // @ViewChild('signupFormA', { static: true }) signupFormA: NgForm;
+  // @ViewChild('signupFormB', { static: true }) signupFormB: NgForm;
 
   constructor(public authService: AuthService, ) { }
 
+  isLoading = true;
   isReadOnly = true;
   tempUserName = 'GUEST';
   submittedUserData: User;
@@ -24,33 +25,28 @@ export class SignupComponent implements OnInit, OnDestroy, AfterViewInit {
   private validTzId: Subscription;
   cannotRegisterId = false;
 
-  cityList = ['Tel-Aviv', 'Holon', 'Arad', `Be'er Sheva`, 'Yokneam', 'Rehovot', 'Safed', 'Netivot', 'Eilat', 'Metula'];
+  cityList = ['Select City', 'Tel-Aviv', 'Holon', 'Arad', `Be'er Sheva`, 'Yokneam', 'Rehovot', 'Safed', 'Netivot', 'Eilat', 'Metula'];
 
   ngOnInit() {
-
-    // handle this.authservice.idExists() response
-    this.validTzId = this.authService.getvalidIdListener().subscribe((canUseId) => {
-      this.partOneValid = canUseId;
-      if (canUseId) {
-        this.signupFormA.reset();
-        this.partOneValid = true;
-      } else {
-        this.cannotRegisterId = true;
-        this.partOneValid = true;
-        this.signupFormA.controls.tzId.setErrors({ invalidID: true });
-      }
-    });
-
+    this.isLoading = false;
     // init user data model for ngform use
     this.submittedUserData = {
-      email: '',
-      tzId: '',
-      password: '',
-      confirmPassword: '',
-      city: '',
-      street: '',
-      firstname: '',
-      lastname: '',
+      email: 'sysadmin@email.com',
+      tzId: '789546324',
+      password: 'MooCow1',
+      confirmPassword: 'MooCow1',
+      city: this.cityList[4],
+      street: 'Moo St',
+      firstname: 'Jerry',
+      lastname: 'Seinfeld',
+      // email: '',
+      // tzId: '',
+      // password: '',
+      // confirmPassword: '',
+      // city: '',
+      // street: '',
+      // firstname: '',
+      // lastname: '',
     };
 
     // deal with pesky autocomplete
@@ -64,17 +60,44 @@ export class SignupComponent implements OnInit, OnDestroy, AfterViewInit {
 
   }
 
-  onSubmitPartOne(signupFormA: NgForm) {
+  onSubmitPartOne(form: NgForm) {
 
-    if (signupFormA.invalid) {
+    if (form.invalid) {
       return;
     }
+    this.isLoading = true;
+    this.authService.uniqueIdAndEmail(this.submittedUserData.tzId, this.submittedUserData.email);
 
-    this.authService.idExists(this.submittedUserData.tzId);
+    // handle this.authservice.uniqueIdAndEmail() response
+    this.validTzId = this.authService.validEmailandTzId().subscribe((response) => {
+      console.log('TCL: SignupComponent -> onSubmitPartOne -> response', response);
+      this.isLoading = false;
+      this.partOneValid = response.canUseTzId && response.canUseEmail;
+      if (!response.canUseTzId) {
+        this.cannotRegisterId = true;
+        form.controls.tzId.setErrors({ invalidID: true });
+      }
+
+      if (!response.canUseEmail) {
+        this.cannotRegisterId = true;
+        form.controls.email.setErrors({ unique: true });
+      }
+
+    });
 
   }
 
-  onSubmitB() { }
+  onSubmitPartTwo(form: NgForm) {
+
+    if (form.invalid) {
+      return;
+    }
+    this.isLoading = true;
+    // this.submittedUserData
+    console.log('TCL: SignupComponent -> onSubmitB -> this.submittedUserData', this.submittedUserData);
+    // this.authService.idExists(this.submittedUserData.tzId);
+
+  }
 
   ngOnDestroy() {
     this.validTzId.unsubscribe();

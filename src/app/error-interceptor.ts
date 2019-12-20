@@ -12,18 +12,29 @@ export class ErrorInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler) {
 
     return next.handle(req).pipe(
-      catchError((error: HttpErrorResponse) => {
+      catchError((responseError: HttpErrorResponse) => {
 
-        console.log('TCL: ErrorInterceptor -> intercept -> result', error);
+        console.log('TCL: ErrorInterceptor -> intercept -> result', responseError);
+
         try {
         } catch (error) {
         } finally {
+          let output;
+          if (typeof responseError.error.message === 'string') {
+            output = responseError.error.message;
+          }
+          if (typeof responseError.error.message === 'object') {
+            output = JSON.stringify(responseError.error.message);
+          }
+          if (output === undefined || null) {
+            output = 'Sorry something went wrong :(';
+          }
           const modalRef = this.modalService.open(ErrorModalComponent,
             { ariaLabelledBy: 'modal-basic-title', centered: true, size: 'lg', windowClass: 'newUserModalClass' });
-          modalRef.componentInstance.content = error.error.message;
+          modalRef.componentInstance.content = output;
         }
 
-        return throwError(error);
+        return throwError(responseError);
       })
     );
   }

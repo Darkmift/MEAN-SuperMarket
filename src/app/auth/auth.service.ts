@@ -12,7 +12,7 @@ export class AuthService {
 
   private token = undefined;
   private authStatusListener = new Subject<boolean>();
-  private validIdListener = new Subject<boolean>();
+  private uniqueIICAndEmail = new Subject<{ canUseTzId: boolean, canUseEmail: boolean; }>();
   private isAuthenticated = false;
   private tokenTimer: NodeJS.Timer;
   private userId: string;
@@ -49,24 +49,22 @@ export class AuthService {
   }
 
   // check if tzId provided on signup part 1 exists
-  idExists(tzId: string) {
-    console.log('TCL: AuthService -> idExists -> tzId', tzId);
+  uniqueIdAndEmail(tzId: string, email: string) {
     this.http.get
-      <{ message: string, canUseTzId: boolean; }>
-      (this.apiUrl + '/idExists/' + tzId).subscribe((response) => {
-        if (response.canUseTzId) {
-          return this.validIdListener.next(response.canUseTzId);
-        }
-        return this.validIdListener.next(false);
+      <{ message: string, canUseTzId: boolean, canUseEmail: boolean; }>
+      (`${this.apiUrl}/uniqueIdAndEmail/${tzId}/${email}`).subscribe((response) => {
+
+        const { canUseEmail, canUseTzId } = response;
+        return this.uniqueIICAndEmail.next({ canUseTzId, canUseEmail });
+
       }, err => {
         console.log('TCL: AuthService -> idExists -> err', err);
-        return this.validIdListener.next(false);
       });
   }
 
   // listener to check if user is authorized
-  getvalidIdListener() {
-    return this.validIdListener.asObservable();
+  validEmailandTzId() {
+    return this.uniqueIICAndEmail.asObservable();
   }
 
   login(email: string, password: string) {
