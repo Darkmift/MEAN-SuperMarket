@@ -15,6 +15,8 @@ import { TestBitComponent } from './test/test-bit/test-bit.component';
 import { MustMatchDirective } from './test/test-bit/must-match.directive';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { CartComponent } from './shop/cart/cart.component';
+import { ProductSelectComponent } from './shop/product-select/product-select.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { ToastrModule } from 'ngx-toastr';
     ErrorModalComponent,
     ShopComponent,
     TestBitComponent,
-    MustMatchDirective
+    MustMatchDirective,
+    CartComponent,
+    ProductSelectComponent
   ],
   imports: [
     BrowserModule,

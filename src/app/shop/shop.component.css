@@ -2,7 +2,6 @@
   display: flex;
   /* flex-direction: row; */
   width: calc(98vw - 5px);
-  border: 1px solid grey;
 }
 
 .cartDiv {
