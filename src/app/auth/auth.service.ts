@@ -85,7 +85,7 @@ export class AuthService {
     const loginCredentials: LoginCredentials = { email: email, password: password };
 
     this.http.post
-      <{ message: string, token: string, expiresIn: number, userId: string, role: boolean; }>
+      <{ message: string, token: string, expiresIn: number, user: any, role: boolean; }>
       (this.apiUrl + '/login', loginCredentials)
       .subscribe(response => {
         // console.log('TCL: AuthService -> createUser -> response', response);
@@ -95,7 +95,7 @@ export class AuthService {
           const expiresIn = response.expiresIn;
           this.setauthTimer(expiresIn);
           this.isAuthenticated = true;
-          this.userId = response.userId;
+          this.userId = response.user._id;
           this.role = response.role;
           this.authStatusListener.next(true);
           const now = new Date();
@@ -184,6 +184,8 @@ export class AuthService {
     localStorage.removeItem('expiration');
     localStorage.removeItem('userId');
     localStorage.removeItem('role');
+    localStorage.removeItem('username');
+    localStorage.removeItem('id');
   }
 
   private setauthTimer(duration: number) {

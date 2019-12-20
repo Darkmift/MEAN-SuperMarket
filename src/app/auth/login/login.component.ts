@@ -49,7 +49,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password);
     this.authStatusSub = this.authService.getAuthStatusListener().subscribe((authStatus) => {
-      console.log('TCL: LoginComponent -> ngOnInit -> authStatus', authStatus);
       if (!authStatus) {
         this.toastService.error('Please try again', 'Not authorized', { progressBar: true });
         form.controls.email.setErrors({ invalidID: true });
@@ -60,7 +59,11 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.authStatusSub.unsubscribe();
+
+    if (this.authStatusSub !== undefined) {
+      this.authStatusSub.unsubscribe();
+    }
+
   }
 
 }
