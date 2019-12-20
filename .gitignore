@@ -47,3 +47,6 @@ Thumbs.db
 
 # enviromane variables file file
 .env
+
+# public/images
+backend/public
