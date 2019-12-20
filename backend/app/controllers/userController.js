@@ -1,5 +1,4 @@
 var User = require('../models/User.js');
-const bcrypt = require('bcryptjs');
 const { ErrorHandler } = require('../modules/error');
 const jwt = require('jsonwebtoken');
 /*
@@ -44,31 +43,37 @@ class UserCtrl {
 
 	static async login(req, res, next) {
 		try {
-			const email = req.body.email;
-			const password = req.body.password;
+			const { email, password } = req.body;
 
-			const user = await User.findOne({ email: email }).exec();
+			// fetch user and test password verification
+			const user = await User.findOne({ email: email }, function(err, user) {
+				if (err) {
+					throw new ErrorHandler(500, err.message);
+				}
+			}).exec();
 
 			if (!user) {
 				throw new ErrorHandler(401, 'Auth Failed:code unf');
 			}
 
-			const passworcCompareResult = await bcrypt.compare(password, user.password);
-			if (!passworcCompareResult) {
-				throw new ErrorHandler(401, 'Auth Failed:code pnm');
-			}
-			const token = jwt.sign({ email: email, userId: user._id }, process.env.SECRET_KEY, {
-				expiresIn: '1h',
+			//test password
+			return await user.comparePassword(password, function(err, isMatch) {
+				if (err) throw err;
+				if (!isMatch) {
+					res.status(400).json({ message: 'Auth Failed:code pnm' });
+				} else {
+					const token = jwt.sign({ email: email, userId: user._id }, process.env.SECRET_KEY, {
+						expiresIn: '1h',
+					});
+					const outPutResponse = {
+						message: 'User Found',
+						token: token,
+						expiresIn: 3600,
+						user: user,
+					};
+					res.status(200).json(outPutResponse);
+				}
 			});
-
-			const outPutResponse = {
-				message: 'User Found',
-				token: token,
-				expiresIn: 3600,
-				user: user,
-			};
-
-			res.status(200).json(outPutResponse);
 		} catch (error) {
 			error.statusCode = 500;
 			next(error);
@@ -79,12 +84,9 @@ class UserCtrl {
 		try {
 			let { password, email, city, iic, street, firstName, lastName } = req.body;
 
-			const salt = await bcrypt.genSalt(10);
-			const hashedPassword = await bcrypt.hash(password, salt);
-
 			const user = new User({
 				email: email,
-				password: hashedPassword,
+				password: password,
 				city: city,
 				street: street,
 				iic: iic,
