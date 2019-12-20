@@ -54,6 +54,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.toastService.error('Please try again', 'Not authorized', { progressBar: true });
         form.controls.email.setErrors({ invalidID: true });
         form.controls.password.setErrors({ invalidID: true });
+        this.submittedUserData.password = '';
       }
     });
   }
