@@ -1,6 +1,7 @@
 import { Component, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 import { AuthService } from '../auth.service';
 
@@ -21,21 +22,16 @@ export class LoginComponent implements OnInit, OnDestroy {
   };
   private authStatusSub: Subscription;
 
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService, private toastService: ToastrService) { }
 
   ngOnInit() {
-    this.authStatusSub = this.authService.getAuthStatusListener().subscribe((authStatus) => {
-      console.log('TCL: LoginComponent -> ngOnInit -> authStatus', authStatus);
-    });
-
-
     // deal with pesky autocomplete
     setTimeout(() => {
       this.isReadOnly = false;
     }, 1000);
   }
 
-  onSubmit() {
+  onSubmit(form: NgForm) {
 
     this.loginForm.form.markAllAsTouched();
     if (this.loginForm.invalid) {
@@ -52,7 +48,14 @@ export class LoginComponent implements OnInit, OnDestroy {
     };
 
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password);
-    this.loginForm.reset();
+    this.authStatusSub = this.authService.getAuthStatusListener().subscribe((authStatus) => {
+      console.log('TCL: LoginComponent -> ngOnInit -> authStatus', authStatus);
+      if (!authStatus) {
+        this.toastService.error('Please try again', 'Not authorized', { progressBar: true });
+        form.controls.email.setErrors({ invalidID: true });
+        form.controls.password.setErrors({ invalidID: true });
+      }
+    });
   }
 
   ngOnDestroy() {

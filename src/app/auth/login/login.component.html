@@ -10,8 +10,9 @@
           (ngSubmit)="onSubmit(loginForm)">
 
           <h6 class="ml-1">Welcome GUEST, Please Login.</h6>
+
           <!-- email input control -->
-          <div class="form-group">
+          <div class="form-group m-2">
             <label for="email">Email</label>
             <input type="text"
               [readonly]="isReadOnly"
@@ -27,8 +28,10 @@
               class="invalid-feedback">
               <div *ngIf="email.errors.required">Email is required</div>
               <div *ngIf="email.errors.email">Email must be a valid email address</div>
+              <div *ngIf="email.errors.invalidID">Credntials invalid - maybe a typo on email or password?</div>
             </div>
           </div>
+
           <!-- password input control -->
           <div class="form-group m-2">
 
@@ -39,17 +42,16 @@
               id="passowrdId"
               placeholder="Password"
               aria-describedby="passwordError"
-              ngModel
+              [(ngModel)]="submittedUserData.password"
               name="password"
               required
               #password="ngModel"
               [readonly]="isReadOnly">
 
-            <small *ngIf="password.invalid&&password.touched;"
-              id="passwordError"
-              class="text-danger">
-              Please fill out your password
-            </small>&nbsp;
+            <div *ngIf="loginForm.submitted && password.invalid"
+              class="invalid-feedback">
+              <div *ngIf="password.errors.required">Password is required</div>
+            </div>
 
           </div>
 
