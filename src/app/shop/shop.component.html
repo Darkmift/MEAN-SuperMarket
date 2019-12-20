@@ -1,15 +1,14 @@
-<div class="row sizing">
-  <div class="col-4 padding-custom">
-    <div class="card mt-1 bg-light-blue">
-      <div class="card-body">
-
-      </div>
-    </div>
+<div #parentContainer
+  class="parentContainer">
+  <!-- cartDiv -->
+  <div class="cartDiv"
+    [style.width.px]="cartDiv.width">
+    cart div
+    <div class="grabber"></div>
   </div>
-  <div class="col-8 padding-custom">
-    <div class="card mt-1 bg-light-blue">
-      <div class="card-body">
-      </div>
-    </div>
+  <!-- ShopDiv -->
+  <div class="shopDiv"
+    [style.width.px]="shopDiv.width">
+    Shop Div
   </div>
 </div>
