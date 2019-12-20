@@ -6,31 +6,28 @@
         <!-- form start -->
         <form class="bg-light p-2 border-custom"
           #loginForm="ngForm"
+          name="loginForm"
           (ngSubmit)="onSubmit(loginForm)">
 
           <h6 class="ml-1">Welcome GUEST, Please Login.</h6>
           <!-- email input control -->
-          <div class="form-group m-2">
-
-            <label for="emailInputId">Email</label>
-
-            <input type="email"
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text"
+              [readonly]="isReadOnly"
               class="form-control"
-              id="emailInputId"
-              aria-describedby="emailError"
-              placeholder="Enter email"
-              ngModel
               name="email"
-              required
+              [(ngModel)]="submittedUserData.email"
               #email="ngModel"
-              [readonly]="isReadOnly">
-
-            <small *ngIf="email.invalid&&email.touched;"
-              id="emailError"
-              class="text-danger">
-              Please fill out your email
-            </small>&nbsp;
-
+              [ngClass]="{ 'is-invalid': loginForm.submitted && email.invalid }"
+              placeholder="Please provide your email"
+              required
+              email />
+            <div *ngIf="loginForm.submitted && email.invalid"
+              class="invalid-feedback">
+              <div *ngIf="email.errors.required">Email is required</div>
+              <div *ngIf="email.errors.email">Email must be a valid email address</div>
+            </div>
           </div>
           <!-- password input control -->
           <div class="form-group m-2">

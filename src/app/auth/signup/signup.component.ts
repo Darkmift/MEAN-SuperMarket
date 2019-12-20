@@ -98,7 +98,9 @@ export class SignupComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnDestroy() {
-    this.validTzId.unsubscribe();
+    if (this.validTzId !== undefined) {
+      this.validTzId.unsubscribe();
+    }
   }
 
 }

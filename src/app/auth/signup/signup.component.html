@@ -33,7 +33,7 @@
               <div *ngIf="tzId.errors.required">Last Name is required</div>
               <div *ngIf="tzId.errors.minlength||tzId.errors.maxlength||tzId.errors.pattern">TzId must be 9 digits</div>
               <div *ngIf="tzId.errors.invalidID">
-                TzId is in use - please <a [routerLink]="['auth/login']">LOGIN</a>
+                TzId is in use - please <a [routerLink]="['/','auth','login']">LOGIN</a>
                 instead
               </div>
             </div>
@@ -57,7 +57,7 @@
               <div *ngIf="email.errors.required">Email is required</div>
               <div *ngIf="email.errors.email">Email must be a valid email address</div>
               <div *ngIf="email.errors.unique">This email is already registered please <a
-                  [routerLink]="['auth/login']">LOGIN</a>
+                  [routerLink]="['/','auth','login']">LOGIN</a>
                 instead</div>
             </div>
           </div>
