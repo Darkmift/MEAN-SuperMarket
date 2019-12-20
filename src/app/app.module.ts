@@ -13,6 +13,7 @@ import { ShopComponent } from './shop/shop.component';
 import { TestBitComponent } from './test/test-bit/test-bit.component';
 import { MustMatchDirective } from './test/test-bit/must-match.directive';
 import { FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     BootstrapModuleGroup,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ToastrModule.forRoot({ positionClass: 'toast-top-right' })
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

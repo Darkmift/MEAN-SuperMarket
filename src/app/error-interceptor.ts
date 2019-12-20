@@ -2,13 +2,11 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpErrorResponse } from '@a
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { Injectable, TemplateRef } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ErrorModalComponent } from './error-modal/error-modal.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  private modalRef: TemplateRef<any>;
-  constructor(private modalService: NgbModal) { }
+  constructor(private toastService: ToastrService) { }
   intercept(req: HttpRequest<any>, next: HttpHandler) {
 
     return next.handle(req).pipe(
@@ -29,9 +27,8 @@ export class ErrorInterceptor implements HttpInterceptor {
           if (output === undefined || null) {
             output = 'Sorry something went wrong :(';
           }
-          const modalRef = this.modalService.open(ErrorModalComponent,
-            { ariaLabelledBy: 'modal-basic-title', centered: true, size: 'lg', windowClass: 'newUserModalClass' });
-          modalRef.componentInstance.content = output;
+
+          this.toastService.error('Http Error Interceptor', output, { progressBar: true });
         }
 
         return throwError(responseError);
