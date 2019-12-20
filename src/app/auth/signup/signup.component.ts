@@ -31,8 +31,8 @@ export class SignupComponent implements OnInit, OnDestroy, AfterViewInit {
     this.isLoading = false;
     // init user data model for ngform use
     this.submittedUserData = {
-      email: 'sysadmin@email.com',
-      tzId: '789546324',
+      email: 'test2@email.com',
+      tzId: '789546322',
       password: 'MooCow1',
       confirmPassword: 'MooCow1',
       city: this.cityList[4],
@@ -70,7 +70,6 @@ export class SignupComponent implements OnInit, OnDestroy, AfterViewInit {
 
     // handle this.authservice.uniqueIdAndEmail() response
     this.validTzId = this.authService.validEmailandTzId().subscribe((response) => {
-      console.log('TCL: SignupComponent -> onSubmitPartOne -> response', response);
       this.isLoading = false;
       this.partOneValid = response.canUseTzId && response.canUseEmail;
       if (!response.canUseTzId) {
@@ -92,10 +91,9 @@ export class SignupComponent implements OnInit, OnDestroy, AfterViewInit {
     if (form.invalid) {
       return;
     }
+
     this.isLoading = true;
-    // this.submittedUserData
-    console.log('TCL: SignupComponent -> onSubmitB -> this.submittedUserData', this.submittedUserData);
-    // this.authService.idExists(this.submittedUserData.tzId);
+    this.authService.createUser(this.submittedUserData);
 
   }
 

@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { LoginCredentials } from './models/loginCredentials.model';
+import { User } from './models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -34,14 +35,26 @@ export class AuthService {
   }
 
   // create user on signup
-  createUser(email: string, password: string) {
+  createUser(user: User) {
 
-    // tslint:disable-next-line: object-literal-shorthand
-    const loginCredentials: LoginCredentials = { email: email, password: password };
+    const newUser = {
+      firstName: user.firstname,
+      lastName: user.lastname,
+      password: user.password,
+      iic: user.tzId,
+      email: user.email,
+      city: user.city,
+      street: user.street
+    };
 
-    this.http.post(this.apiUrl + '/signup', loginCredentials)
-      .subscribe((response) => {
-        this.login(email, password);
+    this.http.post(this.apiUrl + '/signup', newUser)
+      .subscribe((response: any) => {
+        /*
+        * use repose email to ensure we got the correct response payload
+        * but newUser.password because response.password is hashed
+        */
+        const { email } = response.result;
+        this.login(email, newUser.password);
       }, (error) => {
         this.authStatusListener.next(false);
       });
