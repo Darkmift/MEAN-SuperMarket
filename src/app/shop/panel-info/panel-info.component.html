@@ -14,8 +14,12 @@
   <div class="card-body">
     <h5 class="card-title">Some useful info</h5>
     <ol class="card-text">
-      <li>Available products in our store:&nbsp;{{totalProductCount}}</li>
-      <li>Number of orders submitted in our store:&nbsp; {{totalOrderCount}}</li>
+      <li>Available products in our store:&nbsp;
+        <span class="badge badge-success text-light"> {{totalProductCount}}</span>
+      </li>
+      <li>Number of orders submitted in our store:&nbsp;
+        <span class="badge badge-success text-light">{{totalOrderCount}}</span>
+      </li>
     </ol>
     <br>
     <span *ngIf="hasLastCart">

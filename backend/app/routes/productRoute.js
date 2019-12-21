@@ -8,5 +8,5 @@ router.post('/create', auth, validationRules('productCreate'), validate, product
 router.post('/edit', auth, validationRules('productEdit'), validate, productController.edit);
 router.get('/get', auth, productController.getAll);
 router.get('/get/:id', auth, validationRules('productId'), validate, productController.getOne);
-
+router.get('/getCount', auth, productController.getCount);
 module.exports = router;

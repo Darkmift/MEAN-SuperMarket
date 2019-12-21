@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// checks ref id is in the referenced collection
 module.exports = (value, respond, modelName) => {
 	return modelName
 		.countDocuments({ _id: value })

@@ -1,4 +1,7 @@
-var User = require('../models/User.js');
+const mongoose = require('mongoose');
+const User = require('../models/User.js');
+const Cart = require('../models/Cart.js');
+
 const { ErrorHandler } = require('../modules/error');
 const jwt = require('jsonwebtoken');
 /*
@@ -109,6 +112,78 @@ class UserCtrl {
 				message: 'User Added to db',
 				result: createdUser,
 			});
+		} catch (error) {
+			error.statusCode = 500;
+			next(error);
+		}
+	}
+
+	static async getLastActiveCart(req, res, next) {
+		try {
+			const { id } = req.params;
+			console.log('TCL: getLastActiveCart ->  req.params', req.params);
+
+			let documentsResult = '';
+			// const lastCart = await Cart.find({ customerRef: id }).exec(function(err, documents) {
+			// 	if (err) {
+			// 		console.log('TCL: getLastActiveCart -> err', err);
+			// 	} else {
+			// 		documentsResult = documents;
+			// 		console.log('TCL: getLastActiveCart -> models', documents);
+			// 	}
+			// });
+
+			// const lastCart = await Cart.find({}, function(err, pln) {
+			// 	if (err) return res.status(500).json(err);
+			// 	console.log('Found Users :', pln);
+			// 	res.status(200).json(pln);
+			// });
+
+			const lastCart = await Cart.find({ customerRef: mongoose.Types.ObjectId(id) }, function(err, docs) {
+				if (err) {
+					console.log('TCL: err', err);
+				}
+				console.log('TCL: docs', docs);
+			});
+
+			// console.log('TCL: getLastActiveCart -> documents', documents);
+			console.log('TCL: getLastActiveCart -> lastCart', lastCart);
+			return res.status(200).json({ message: lastCart || 'oopsie?', id: id });
+
+			return;
+			if (!lastCart) {
+				throw new ErrorHandler(500, 'Cannot retrieve carts for customer ref');
+			}
+
+			console.log('TCL: getLastActiveCart -> documents', documents);
+			console.log('TCL: getLastActiveCart -> lastCart', lastCart);
+			return res.status(200).json({ message: lastCart || 'oopsie?' });
+
+			if (isNaN(Number(tzId))) {
+				throw new ErrorHandler(400, 'Invalid Id');
+			}
+
+			let outPutResponse = {
+				message: '',
+				canUseTzId: false,
+				canUseEmail: false,
+			};
+
+			if (applicantID) {
+				outPutResponse.message += 'id already in use';
+			} else {
+				outPutResponse.canUseTzId = true;
+			}
+
+			const applicantEmail = await User.findOne({ email: email }).exec();
+
+			if (applicantEmail) {
+				outPutResponse.message += 'email already in use';
+			} else {
+				outPutResponse.canUseEmail = true;
+			}
+
+			return res.status(200).json(outPutResponse);
 		} catch (error) {
 			error.statusCode = 500;
 			next(error);

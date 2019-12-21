@@ -6,6 +6,11 @@ const isValidDate = value => {
 };
 
 const validationSets = {
+	getLastActiveCart: [
+		param('id')
+			.not()
+			.isEmpty(),
+	],
 	uniqueIdAndEmail: [
 		param('tzId')
 			.isNumeric()

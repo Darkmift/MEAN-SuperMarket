@@ -64,6 +64,25 @@ class OrderController {
 			};
 			next(error);
 		}
+  }
+  
+  static async getCount(req, res, next) {
+
+		try {
+      const orderCount = await Order.countDocuments();
+      
+      if (isNaN(orderCount)) {
+				throw new ErrorHandler(500, 'error fetching order count');
+			}
+
+			res.status(200).json({
+				message: 'Order count retrieved',
+				orderCount: orderCount,
+			});
+		} catch (error) {
+			error.statusCode = 500;
+			next(error);
+		}
 	}
 }
 

@@ -91,6 +91,24 @@ class ProductController {
 			next(error);
 		}
 	}
+
+	static async getCount(req, res, next) {
+		try {
+			const ProductCount = await Product.countDocuments();
+
+			if (isNaN(ProductCount)) {
+				throw new ErrorHandler(500, 'error fetching product count');
+			}
+
+			res.status(200).json({
+				message: 'Product count retrieved',
+				ProductCount: ProductCount,
+			});
+		} catch (error) {
+			error.statusCode = 500;
+			next(error);
+		}
+	}
 }
 
 module.exports = ProductController;

@@ -7,5 +7,5 @@ const auth = require('../middleware/check-auth');
 router.post('/create', auth, validationRules('orderCreate'), validate, orderController.create);
 router.get('/getAll', auth, validationRules('orders'), validate, orderController.getAll);
 router.get('/getOne', auth, validationRules('orderId'), validate, orderController.getOne);
-
+router.get('/getCount', auth, orderController.getCount);
 module.exports = router;

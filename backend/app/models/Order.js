@@ -6,7 +6,7 @@ const Cart = require('./Cart');
 const refIsValid = require('../middleware/refIsValid');
 
 const orderSchema = new Schema({
-	name: { type: String, default: Date.now, unique: true },
+	name: { type: String, default: Date.now(), unique: true },
 	customerRef: { type: Schema.Types.ObjectId, required: true },
 	cartRef: { type: Schema.Types.ObjectId, ref: 'Cart', required: true },
 	total: { type: Number, default: 0 },
