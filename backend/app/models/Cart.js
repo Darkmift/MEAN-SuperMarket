@@ -17,4 +17,4 @@ cartSchema.path('customerRef').validate((value, respond) => {
 
 cartSchema.plugin(uniqueValidator);
 
-module.exports = mongoose.model('cart', cartSchema , 'carts');
+module.exports = mongoose.model('cart', cartSchema);

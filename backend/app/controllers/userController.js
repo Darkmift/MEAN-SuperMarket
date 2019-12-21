@@ -139,7 +139,11 @@ class UserCtrl {
 			// 	res.status(200).json(pln);
 			// });
 
-			const lastCart = await Cart.find({ customerRef: mongoose.Types.ObjectId(id) }, function(err, docs) {
+			// var CartModel  = Cart.modelname;
+			// const converted_id = mongoose.Types.ObjectId(id);
+			// console.log('TCL: converted_id', converted_id);
+			let idx = 'shopperFname';
+			const lastCart = await User.findOne({ lastName: idx }, function(err, docs) {
 				if (err) {
 					console.log('TCL: err', err);
 				}
