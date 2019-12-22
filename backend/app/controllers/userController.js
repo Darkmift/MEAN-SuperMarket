@@ -142,13 +142,13 @@ class UserCtrl {
 			// var CartModel  = Cart.modelname;
 			// const converted_id = mongoose.Types.ObjectId(id);
 			// console.log('TCL: converted_id', converted_id);
-			let idx = 'shopperFname';
-			const lastCart = await User.findOne({ lastName: idx }, function(err, docs) {
+			// let idx = 'shopperFname';
+			const lastCart = await Cart.find({ customerRef: id }, function(err, docs) {
 				if (err) {
 					console.log('TCL: err', err);
 				}
 				console.log('TCL: docs', docs);
-			});
+			}).lean();
 
 			// console.log('TCL: getLastActiveCart -> documents', documents);
 			console.log('TCL: getLastActiveCart -> lastCart', lastCart);
