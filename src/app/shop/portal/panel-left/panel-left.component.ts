@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from 'src/app/auth/models/user.model';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-panel-left',
@@ -11,8 +12,10 @@ export class PanelLeftComponent implements OnInit {
   @Input() isLoading: boolean;
   @Input() hasPreviousCart: boolean;
   @Input() user: User;
+  @Input() lastActiveCartId: string;
 
-  constructor() { }
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
@@ -22,6 +25,15 @@ export class PanelLeftComponent implements OnInit {
       return '';
     }
     return s.charAt(0).toUpperCase() + s.slice(1);
+  }
+
+  checkRole() { }
+
+  resumeShopping() {
+    const id = this.lastActiveCartId;
+    if (id) {
+      // has cart use id...
+    }
   }
 
 }

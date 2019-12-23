@@ -3,7 +3,8 @@
     <div class="card mt-1 bg-light-blue">
       <app-panel-left [isLoading]="isLoading"
         [user]="user"
-        [hasPreviousCart]="hasPreviousCart"></app-panel-left>
+        [hasPreviousCart]="hasPreviousCart"
+        [lastActiveCartId]="lastActiveCart?._id"></app-panel-left>
     </div>
   </div>
   <div class="col-4 padding-custom">
@@ -14,7 +15,8 @@
   </div>
   <div class="col-4 padding-custom">
     <div class="card mt-1 bg-light-blue">
-      <app-panel-right [isLoading]="isLoading"
+      <app-panel-right [userRole]="user.role"
+        [isLoading]="isLoading"
         [imagePath]="imagePath"
         [totalProductCount]="totalProductCount"
         [totalOrderCount]="totalOrderCount"

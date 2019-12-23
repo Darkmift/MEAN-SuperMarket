@@ -1,15 +1,41 @@
-<div *ngIf="isLoading" class="d-flex justify-content-center m-5">
-    <div class="spinner-border" role="status">
-        <span class="sr-only">Loading...</span>
-    </div>
+<div *ngIf="isLoading"
+  class="d-flex justify-content-center m-5">
+  <div class="spinner-border"
+    role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
 </div>
-<div *ngIf="!isLoading" class="card-body">
-    <h5 class="card-title">Welcome&nbsp;{{capitalize(user.firstName)}}!</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
-    </p>
+<div *ngIf="!isLoading"
+  class="card-body">
 
-    <a *ngIf="hasPreviousCart" class="btn btn-success text-light">Resume Shopping</a>
+  <ng-container *ngIf="user.role; else elseTemplate">
 
-    <a *ngIf="!hasPreviousCart" class="btn btn-success text-light">Start Shopping</a>
+    <h5>Welcome Administrator, {{user.firstName}}</h5>
+    <p class="card-text">Please click below to open your management</p>
 
+    <hr>
+    <a class="btn btn-warning text-light"
+      (click)="checkRole()">Manage Shop</a>
+    <hr>
+  </ng-container>
+  <ng-template #elseTemplate>
+
+    <div *ngIf="hasPreviousCart">
+      <h5 class="card-title">Welcome Back, {{user.firstName}}</h5>
+      <p class="card-text">Please click below to pick up from where you left off: </p>
+      <hr>
+      <a class="btn btn-success text-light"
+        (click)="resumeShopping()">Resume Shopping</a>
+      <hr>
+    </div>
+
+    <div *ngIf="!hasPreviousCart">
+      <h5 class="card-title">Welcome, {{user.firstName}}</h5>
+      <p class="card-text">Click below to start a new cart: </p>
+      <hr>
+      <a class="btn btn-success text-light"
+        (click)="resumeShopping()">Start Shopping</a>
+      <hr>
+    </div>
+  </ng-template>
 </div>

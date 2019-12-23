@@ -83,6 +83,7 @@ export class AuthService {
       (this.apiUrl + '/login', loginCredentials)
       .pipe(map((response) => {
         response.user.id = response.user._id;
+        response.user.role = response.user.isAdmin;
         return response;
       }))
       .subscribe(response => {

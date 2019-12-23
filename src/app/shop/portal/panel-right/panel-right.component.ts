@@ -6,20 +6,19 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./panel-right.component.css']
 })
 export class PanelRightComponent implements OnInit {
-  @Input() isLoading;
-  @Input() imagePath;
-  @Input() totalProductCount;
-  @Input() totalOrderCount;
-  @Input() hasPreviousCart;
-  @Input() lastCartDate;
+  @Input() isLoading: boolean;
+  @Input() imagePath: string;
+  @Input() totalProductCount: number;
+  @Input() totalOrderCount: number;
+  @Input() hasPreviousCart: boolean;
+  @Input() lastCartDate: Date;
+  @Input() userRole: string;
   constructor() { }
 
   ngOnInit() { }
 
-  private formatDate(dateString: string) {
-    console.log('TCL: PortalComponent -> formatDate -> dateString', dateString);
+  private formatDate(dateString: Date) {
     const parsedDate = new Date(dateString);
-    console.log('TCL: PortalComponent -> formatDate -> date', parsedDate);
     const monthNames = [
       'January', 'February', 'March',
       'April', 'May', 'June', 'July',

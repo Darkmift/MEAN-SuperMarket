@@ -10,7 +10,7 @@ const userSchema = mongoose.Schema({
 	firstName: { type: String, required: true },
 	lastName: { type: String, required: true },
 	city: { type: String, required: true },
-	iic: { type: String, required: true },
+	iic: { type: String, required: true, unique: true },
 	street: { type: String, required: true },
 });
 

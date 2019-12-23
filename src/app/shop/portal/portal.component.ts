@@ -59,6 +59,7 @@ export class PortalComponent implements OnInit, OnDestroy {
 
     this.imagePath = 'http://localhost:3000/public/images/grumpy.jpg';
     this.user = this.authService.getUser();
+    this.role = this.user.role;
 
     this.hasPreviousCart = false;
     this.totalProductCount = 0;

@@ -22,7 +22,8 @@
       </li>
     </ol>
     <br>
-    <span *ngIf="hasPreviousCart">
+
+    <span *ngIf="hasPreviousCart && !userRole">
       <h5 class="card-title">Notification:</h5>
       <p class="card-text">
         You have an open cart from: <span class="badge badge-success text-light">{{formatDate(lastCartDate)}}</span>
