@@ -7,9 +7,9 @@ import { PanelMiddleComponent } from './panel-middle/panel-middle.component';
 
 const routes: Routes = [
   { path: '', component: PortalComponent },
-  { path: 'panel-left', component: PanelLeftComponent },
-  { path: 'panel-right', component: PanelRightComponent },
-  { path: 'panel-middle', component: PanelMiddleComponent },
+  // { path: 'panel-left', component: PanelLeftComponent },
+  // { path: 'panel-right', component: PanelRightComponent },
+  // { path: 'panel-middle', component: PanelMiddleComponent },
 ];
 
 @NgModule({

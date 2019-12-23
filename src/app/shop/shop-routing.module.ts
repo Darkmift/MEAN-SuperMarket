@@ -5,8 +5,9 @@ import { PortalComponent } from './portal/portal.component';
 import { AuthGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
+  { path: '', loadChildren: './portal/portalGroup.module#PortalGroupModule', canActivate: [AuthGuard] },
   { path: 'shop', component: ShopComponent },
-  { path: 'portal', loadChildren: './portal/portalGroup.module#PortalGroupModule', canActivate: [AuthGuard] },
+
 ];
 
 @NgModule({

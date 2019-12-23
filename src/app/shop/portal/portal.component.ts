@@ -17,11 +17,6 @@ export class PortalComponent implements OnInit, OnDestroy {
 
 
   isLoading = true;
-  private authStatusSub: Subscription;
-  private getProductCountSubjectListener: Subscription;
-  private getOrderCountSubjectListener: Subscription;
-  userIsAuthenticated = false;
-  userId: string;
   role: boolean;
   user: User;
   imagePath: string;
@@ -31,6 +26,12 @@ export class PortalComponent implements OnInit, OnDestroy {
   totalProductCount: number;
   totalOrderCount: number;
   lastCartDate: string;
+
+  private authStatusSub: Subscription;
+  private getProductCountSubjectListener: Subscription;
+  private getOrderCountSubjectListener: Subscription;
+  private gethasActiveCartSubject: Subscription;
+  private getlastCartDataSubjectLisetner: Subscription;
 
   constructor(
     private authService: AuthService,
@@ -80,51 +81,28 @@ export class PortalComponent implements OnInit, OnDestroy {
       });
 
     if (this.hasPreviousCart) {
-      this.lastCartDate = this.formatDate(this.lastActiveCart.dateEdited);
+      this.lastCartDate = this.lastActiveCart.dateEdited;
     }
 
     // fetch lastActiveCart chunk - undefined or Cart object
     this.cartService.getLastActiveCart(this.user.id);
-    this.cartService.gethasActiveCartSubject().subscribe((hasLastCart) => {
+    this.gethasActiveCartSubject = this.cartService.gethasActiveCartSubject().subscribe((hasLastCart) => {
       this.hasPreviousCart = hasLastCart;
     });
-    this.cartService.getlastCartDataSubject().subscribe((cartData) => {
+    this.getlastCartDataSubjectLisetner = this.cartService.getlastCartDataSubject().subscribe((cartData) => {
       if (cartData.active) {
         this.lastActiveCart = cartData;
-        this.lastCartDate = this.formatDate(this.lastActiveCart.dateEdited);
+        this.lastCartDate = this.lastActiveCart.dateEdited;
       }
     });
-  }
-
-  capitalize(s) {
-    if (typeof s !== 'string') {
-      return '';
-    }
-    return s.charAt(0).toUpperCase() + s.slice(1);
-  }
-
-  private formatDate(dateString: string) {
-    console.log('TCL: PortalComponent -> formatDate -> dateString', dateString);
-    const parsedDate = new Date(dateString);
-    console.log('TCL: PortalComponent -> formatDate -> date', parsedDate);
-    const monthNames = [
-      'January', 'February', 'March',
-      'April', 'May', 'June', 'July',
-      'August', 'September', 'October',
-      'November', 'December'
-    ];
-
-    const day = parsedDate.getDate();
-    const monthIndex = parsedDate.getMonth();
-    const year = parsedDate.getFullYear();
-
-    return day + ' ' + monthNames[monthIndex] + ' ' + year;
   }
 
   ngOnDestroy(): void {
     this.authStatusSub.unsubscribe();
     this.getProductCountSubjectListener.unsubscribe();
     this.getOrderCountSubjectListener.unsubscribe();
+    this.gethasActiveCartSubject.unsubscribe();
+    this.getlastCartDataSubjectLisetner.unsubscribe();
   }
 
 }

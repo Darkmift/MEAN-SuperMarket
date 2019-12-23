@@ -1,88 +1,25 @@
 <div class="row sizing">
   <div class="col-4 padding-custom">
     <div class="card mt-1 bg-light-blue">
-      <div *ngIf="isLoading"
-        class="d-flex justify-content-center m-5">
-        <div class="spinner-border"
-          role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
-      </div>
-      <div *ngIf="!isLoading"
-        class="card-body">
-        <h5 class="card-title">Welcome&nbsp;{{capitalize(user.firstName)}}!</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.</p>
-
-        <a *ngIf="hasPreviousCart"
-          class="btn btn-success text-light">Resume Shopping</a>
-
-        <a *ngIf="!hasPreviousCart"
-          class="btn btn-success text-light">Start Shopping</a>
-
-      </div>
+      <app-panel-left [isLoading]="isLoading"
+        [user]="user"
+        [hasPreviousCart]="hasPreviousCart"></app-panel-left>
     </div>
   </div>
   <div class="col-4 padding-custom">
     <div class="card mt-1 bg-light-blue">
-      <!--  -->
-      <div *ngIf="!isLoading"
-        class="m-5">
-        <img src="{{imagePath}}"
-          class="card-img-top"
-          alt="{{imagePath}} is a picture of cat">
-        <div class="card-body">
-          <h5 class="card-title">You should buy here</h5>
-          <p class="card-text">Meow</p>
-          <br>
-        </div>
-      </div>
-      <!--  -->
+      <app-panel-middle [imagePath]="imagePath"
+        [isLoading]="isLoading"></app-panel-middle>
     </div>
   </div>
-  <!-- <div class="col-4 padding-custom">
-    <div class="card mt-1 bg-light-blue">
-      <app-panel-info [hasPreviousCart]="hasPreviousCart"
-        [lastActiveCart]="lastActiveCart"></app-panel-info>
-    </div>
-  </div> -->
   <div class="col-4 padding-custom">
     <div class="card mt-1 bg-light-blue">
-      <!-- panel info -->
-      <div *ngIf="isLoading"
-        class="d-flex justify-content-center m-5">
-        <div class="spinner-border"
-          role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
-      </div>
-
-      <div *ngIf="!isLoading"
-        class="m-3">
-        <img src="{{imagePath}}"
-          class="card-img-top"
-          alt="{{imagePath}} is a picture of cat">
-        <div class="card-body">
-          <h5 class="card-title">Some useful info</h5>
-          <ol class="card-text">
-            <li>Available products in our store:&nbsp;
-              <span class="badge badge-success text-light"> {{totalProductCount}}</span>
-            </li>
-            <li>Number of orders submitted in our store:&nbsp;
-              <span class="badge badge-success text-light">{{totalOrderCount}}</span>
-            </li>
-          </ol>
-          <br>
-          <span *ngIf="hasPreviousCart">
-            <h5 class="card-title">Notification:</h5>
-            <p class="card-text">
-              You have an open cart from: <span class="badge badge-success text-light">{{lastCartDate}}</span>
-            </p>
-          </span>
-
-        </div>
-      </div>
-      <!-- panel info -->
+      <app-panel-right [isLoading]="isLoading"
+        [imagePath]="imagePath"
+        [totalProductCount]="totalProductCount"
+        [totalOrderCount]="totalOrderCount"
+        [hasPreviousCart]="hasPreviousCart"
+        [lastCartDate]="lastCartDate"></app-panel-right>
     </div>
   </div>
 </div>
