@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { LoginCredentials } from './models/loginCredentials.model';
 import { User } from './models/user.model';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,7 @@ export class AuthService {
   }
 
   getIsAuth() {
+    this.authStatusListener.next(this.isAuthenticated);
     return this.isAuthenticated;
   }
 
@@ -77,15 +79,16 @@ export class AuthService {
     const loginCredentials: LoginCredentials = { email: email, password: password };
 
     this.http.post
-      <{ message: string, token: string, expiresIn: number, user: User; }>
+      <{ message: string, token: string, expiresIn: number, user: any; }>
       (this.apiUrl + '/login', loginCredentials)
+      .pipe(map((response) => {
+        response.user.id = response.user._id;
+        return response;
+      }))
       .subscribe(response => {
-        // console.log('TCL: AuthService -> createUser -> response', response);
         const token = response.token;
         this.token = token;
-
         this.currentUser = response.user;
-
         if (token) {
           const expiresIn = response.expiresIn;
           this.setauthTimer(expiresIn);

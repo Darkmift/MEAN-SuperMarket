@@ -31,7 +31,7 @@ export class ProductsService {
         if (!isNaN(count)) {
           this.countSubject.next(count);
         }
-        console.log('TCL: ProductsService -> productCount -> response', response);
+        // console.log('TCL: ProductsService -> productCount -> response', response);
       });
   }
 }

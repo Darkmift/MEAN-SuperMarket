@@ -13,9 +13,10 @@
         <h5 class="card-title">Welcome&nbsp;{{capitalize(user.firstName)}}!</h5>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
           content.</p>
+
         <a *ngIf="hasPreviousCart"
           class="btn btn-success text-light">Resume Shopping</a>
-        <br>
+
         <a *ngIf="!hasPreviousCart"
           class="btn btn-success text-light">Start Shopping</a>
 
@@ -39,9 +40,49 @@
       <!--  -->
     </div>
   </div>
+  <!-- <div class="col-4 padding-custom">
+    <div class="card mt-1 bg-light-blue">
+      <app-panel-info [hasPreviousCart]="hasPreviousCart"
+        [lastActiveCart]="lastActiveCart"></app-panel-info>
+    </div>
+  </div> -->
   <div class="col-4 padding-custom">
     <div class="card mt-1 bg-light-blue">
-      <app-panel-info></app-panel-info>
+      <!-- panel info -->
+      <div *ngIf="isLoading"
+        class="d-flex justify-content-center m-5">
+        <div class="spinner-border"
+          role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+
+      <div *ngIf="!isLoading"
+        class="m-3">
+        <img src="{{imagePath}}"
+          class="card-img-top"
+          alt="{{imagePath}} is a picture of cat">
+        <div class="card-body">
+          <h5 class="card-title">Some useful info</h5>
+          <ol class="card-text">
+            <li>Available products in our store:&nbsp;
+              <span class="badge badge-success text-light"> {{totalProductCount}}</span>
+            </li>
+            <li>Number of orders submitted in our store:&nbsp;
+              <span class="badge badge-success text-light">{{totalOrderCount}}</span>
+            </li>
+          </ol>
+          <br>
+          <span *ngIf="hasPreviousCart">
+            <h5 class="card-title">Notification:</h5>
+            <p class="card-text">
+              You have an open cart from: <span class="badge badge-success text-light">{{lastCartDate}}</span>
+            </p>
+          </span>
+
+        </div>
+      </div>
+      <!-- panel info -->
     </div>
   </div>
 </div>

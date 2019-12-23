@@ -7,7 +7,8 @@ const routes: Routes = [
   // { path: '', component: ShopComponent, canActivate: [AuthGuard] },
   { path: '', loadChildren: './shop/shopGroup.module#ShopGroupModule', canActivate: [AuthGuard] },
   { path: 'auth', loadChildren: './auth/authGroup.module#AuthGroupModule' },
-  // { path: 'edit/:postId', component: PostCreateComponent, canActivate: [AuthGuard] }
+  // { path: 'edit/:postId', component: PostCreateComponent, canActivate: [AuthGuard] },
+  //   { path: '', redirectTo: '/portal'/*, pathMatch: 'full'*/ }
 ];
 
 @NgModule({

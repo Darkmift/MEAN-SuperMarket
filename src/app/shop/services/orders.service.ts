@@ -31,7 +31,6 @@ export class OrdersService {
         if (!isNaN(count)) {
           this.countSubject.next(count);
         }
-        console.log('TCL: OrdersService -> OrderCount -> response', response);
       });
   }
 }

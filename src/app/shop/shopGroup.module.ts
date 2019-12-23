@@ -7,7 +7,6 @@ import { CartComponent } from './cart/cart.component';
 import { ProductSelectComponent } from './product-select/product-select.component';
 import { ShopRoutingModule } from './shop-routing.module';
 import { PortalComponent } from './portal/portal.component';
-import { PanelInfoComponent } from './panel-info/panel-info.component';
 
 
 
@@ -17,8 +16,7 @@ import { PanelInfoComponent } from './panel-info/panel-info.component';
     ShopComponent,
     CartComponent,
     ProductSelectComponent,
-    PortalComponent,
-    PanelInfoComponent
+    PortalComponent
   ],
   imports: [
     CommonModule,

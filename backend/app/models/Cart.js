@@ -9,6 +9,7 @@ const cartSchema = new Schema({
 	customerRef: { type: Schema.Types.ObjectId, ref: 'User', required: true },
 	dateCreated: { type: Date, default: Date.now() },
 	dateEdited: { type: Date, default: Date.now() },
+	active: { type: Boolean, default: true },
 });
 
 cartSchema.path('customerRef').validate((value, respond) => {
