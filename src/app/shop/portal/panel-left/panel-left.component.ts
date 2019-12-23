@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from 'src/app/auth/models/user.model';
 import { AuthService } from 'src/app/auth/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-panel-left',
@@ -16,7 +16,9 @@ export class PanelLeftComponent implements OnInit {
   @Input() lastActiveCartId: string;
 
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -36,7 +38,7 @@ export class PanelLeftComponent implements OnInit {
       id = this.lastActiveCartId;
     }
 
-    this.router.navigate(['shop']);
+    this.router.navigate(['shop', id]);
   }
 
 }

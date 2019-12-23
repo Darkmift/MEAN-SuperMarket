@@ -1,6 +1,7 @@
 // credit: https://www.freakyjolly.com/angular-8-re-sizable-elements-and-layouts-in-angular-8-application/
 
 import { Component, OnInit, HostListener, ElementRef, ViewChild } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-shop',
@@ -9,7 +10,8 @@ import { Component, OnInit, HostListener, ElementRef, ViewChild } from '@angular
 })
 export class ShopComponent implements OnInit {
   @ViewChild('parentContainer', { static: true }) parentDiv: ElementRef;
-
+  cartId: any;
+  // resize config
   cartDiv = {
     width: 0,
     x: 100,
@@ -20,14 +22,21 @@ export class ShopComponent implements OnInit {
   shopDiv = {
     width: 0,
   };
+  /////
 
-
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
+    // resize code
     const totalWidth = this.parentDiv.nativeElement.offsetWidth;
-
     this.cartDiv.width = Math.floor((totalWidth / 100) * 25);
     this.shopDiv.width = Math.floor((totalWidth / 100) * 75);
+
+    this.cartId = this.route.snapshot.params;
+    console.log('TCL: ShopComponent -> ngOnInit -> this.cartId', this.cartId);
+
   }
 
   @HostListener('document:mousemove', ['$event'])

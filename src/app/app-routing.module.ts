@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: 'shop', loadChildren: './shop/shopGroup.module#ShopGroupModule', canActivate: [AuthGuard] },
   { path: 'portal', loadChildren: './shop/portal/portalGroup.module#PortalGroupModule', canActivate: [AuthGuard] },
   { path: 'auth', loadChildren: './auth/authGroup.module#AuthGroupModule' },
-  { path: '**', component: PageNotFoundComponent }
+  // { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
