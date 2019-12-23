@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ProductsService } from '../products.service';
+import { ProductsService } from '../services/products.service';
 import { Subject, Subscription } from 'rxjs';
-import { OrdersService } from '../orders.service';
+import { OrdersService } from '../services/orders.service';
 
 @Component({
   selector: 'app-panel-info',

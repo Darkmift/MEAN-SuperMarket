@@ -6,6 +6,7 @@ import { PortalComponent } from './portal/portal.component';
 const routes: Routes = [
   { path: 'shop', component: ShopComponent },
   { path: 'portal', component: PortalComponent },
+  { path: '', redirectTo: '/portal'/*, pathMatch: 'full'*/ }
 ];
 
 @NgModule({

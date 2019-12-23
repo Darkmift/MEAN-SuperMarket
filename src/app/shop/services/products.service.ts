@@ -3,13 +3,13 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '../../auth/auth.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class OrdersService {
+export class ProductsService {
   private apiUrl = environment.apiUrl;
   private countSubject = new Subject<number>();
   constructor(
@@ -23,15 +23,15 @@ export class OrdersService {
     return this.countSubject.asObservable();
   }
 
-  getOrderCount() {
+  getProductCount() {
     this.http.get
-      <{ message: string, orderCount: number; }>
-      (`${this.apiUrl}/Orders/getCount`).subscribe((response) => {
-        const count = response.orderCount;
+      <{ message: string, ProductCount: number; }>
+      (`${this.apiUrl}/products/getCount`).subscribe((response) => {
+        const count = response.ProductCount;
         if (!isNaN(count)) {
           this.countSubject.next(count);
         }
-        console.log('TCL: OrdersService -> OrderCount -> response', response);
+        console.log('TCL: ProductsService -> productCount -> response', response);
       });
   }
 }
