@@ -1,0 +1,17 @@
+.inlineChildren {
+  display: flex;
+  flex-direction: row;
+}
+
+.page-link {
+  width: 11vw;
+  height: 3vw;
+  font-size: 1vw;
+  line-height: 1.5vw;
+  text-align: center;
+}
+
+ngb-pagination ::ng-deep .page-link {
+  height: 3vw;
+  line-height: 1.5vw;
+}
