@@ -18,7 +18,10 @@ export class CategoriesComponent implements OnInit {
   previousPage = 0;
   categoryPortion: ProductCategory[] = [];
 
-  constructor(private categoryService: CategoriesService) { }
+  isActive = {};
+
+  constructor(
+    private categoryService: CategoriesService) { }
 
   ngOnInit() {
     this.categoryService.getCategories();
@@ -45,6 +48,20 @@ export class CategoriesComponent implements OnInit {
 
   loadData() {
     this.categoryPortion = this.categories.slice(this.page, (this.itemsPerPage + 1));
+    // css stuff
+    this.isActive = [];
+    // tslint:disable-next-line: prefer-for-of
+    for (let index = 0; index < this.categoryPortion.length; index++) {
+      this.isActive[index] = false;
+    }
+  }
+
+  classToggle(num: number) {
+
+    for (let index = 0; index < this.categoryPortion.length; index++) {
+      this.isActive[index] = false;
+    }
+    this.isActive[num] = true;
   }
 
 }

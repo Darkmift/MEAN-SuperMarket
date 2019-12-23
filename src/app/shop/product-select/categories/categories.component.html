@@ -7,9 +7,13 @@
       [maxSize]="itemsPerPage"
       [rotate]="true"
       (pageChange)="loadPage($event)"></ngb-pagination>
+    <!--  -->
     <span style="margin:auto">&nbsp;</span>
+    <!--  -->
     <ul class="pagination">
       <li class="page-item"
+        [ngClass]="[isActive[i]?'active':'']"
+        (click)="classToggle(i)"
         *ngFor="let category of categoryPortion; let i=index;">
         <a class="page-link"
           (click)="onCategoryClick(category._id)">{{category.name}}</a>
