@@ -1,9 +1,0 @@
-<div class="form-group">
-    <label for="INPUTID">Last Name</label>
-    <input type="text" [readonly]="isReadOnly" class="form-control" name="INPUTID" [(ngModel)]="submittedUserData.INPUTID" #INPUTID="ngModel" [ngClass]="{ 'is-invalid': signupFormB.submitted && INPUTID.invalid }" placeholder="Please provide your INPUTID"
-        required minlength="3" />
-    <div *ngIf="signupFormB.submitted && INPUTID.invalid" class="invalid-feedback">
-        <div *ngIf="INPUTID.errors.required">Please add your last name</div>
-        <div *ngIf="INPUTID.errors.minlength">last name must be at least 3 charcters</div>
-    </div>
-</div>

@@ -1,13 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, Router, RouterModule } from '@angular/router';
 import { ShopComponent } from './shop.component';
-import { PortalComponent } from './portal/portal.component';
 import { AuthGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
-  { path: '', loadChildren: './portal/portalGroup.module#PortalGroupModule', canActivate: [AuthGuard] },
-  { path: 'shop', component: ShopComponent },
-
+  { path: '', component: ShopComponent },
 ];
 
 @NgModule({
@@ -16,6 +13,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class ShopRoutingModule {
-
-}
+export class ShopRoutingModule { }

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from 'src/app/auth/models/user.model';
 import { AuthService } from 'src/app/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-panel-left',
@@ -15,7 +16,7 @@ export class PanelLeftComponent implements OnInit {
   @Input() lastActiveCartId: string;
 
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -30,10 +31,12 @@ export class PanelLeftComponent implements OnInit {
   checkRole() { }
 
   resumeShopping() {
-    const id = this.lastActiveCartId;
-    if (id) {
-      // has cart use id...
+    let id = '';
+    if (this.lastActiveCartId) {
+      id = this.lastActiveCartId;
     }
+
+    this.router.navigate(['shop']);
   }
 
 }

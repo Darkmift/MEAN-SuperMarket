@@ -101,7 +101,7 @@ export class AuthService {
           const now = new Date();
           const expirationDate = new Date(now.getTime() + expiresIn * 1000);
           this.saveLoginCredentials(token, expirationDate, this.currentUser);
-          this.router.navigate(['/']);
+          this.router.navigate(['/portal']);
         }
 
       }, (error) => {

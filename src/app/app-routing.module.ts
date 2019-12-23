@@ -1,18 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
-// import { ShopComponent } from './shop/shop.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  // { path: '', component: ShopComponent, canActivate: [AuthGuard] },
-  { path: '', loadChildren: './shop/shopGroup.module#ShopGroupModule', canActivate: [AuthGuard] },
+  { path: 'shop', loadChildren: './shop/shopGroup.module#ShopGroupModule', canActivate: [AuthGuard] },
+  { path: 'portal', loadChildren: './portal/portalGroup.module#PortalGroupModule', canActivate: [AuthGuard] },
   { path: 'auth', loadChildren: './auth/authGroup.module#AuthGroupModule' },
-  // { path: 'edit/:postId', component: PostCreateComponent, canActivate: [AuthGuard] },
-  //   { path: '', redirectTo: '/portal'/*, pathMatch: 'full'*/ }
+  // { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { enableTracing: false })],
   exports: [RouterModule],
   providers: [AuthGuard]
 })
