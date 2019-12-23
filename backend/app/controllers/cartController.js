@@ -59,6 +59,32 @@ class CartController {
 			next(error);
 		}
 	}
+
+	static async getLastActiveCart(req, res, next) {
+		try {
+			const { id } = req.params;
+
+			const lastCart = await Cart.find({ customerRef: id })
+				.sort({ dateEdited: -1 })
+				.limit(1)
+				.lean();
+
+			if (lastCart[0] != undefined) {
+				return res.status(200).json({
+					message: 'fetched last cart',
+					lastCart: lastCart,
+				});
+			} else {
+				return res.status(200).json({
+					message: 'no carts found for customerRef',
+					lastCart: 0,
+				});
+			}
+		} catch (error) {
+			error.statusCode = 500;
+			next(error);
+		}
+	}
 }
 
 module.exports = CartController;
