@@ -114,6 +114,7 @@ export class AuthService {
 
     const authInformation = this.getLoginCredentials();
     if (!authInformation) {
+      this.clearLoginCredentials();
       return;
     }
 
@@ -128,7 +129,9 @@ export class AuthService {
       this.userId = this.currentUser.id;
       this.authStatusListener.next(true);
       this.setauthTimer(expiresIn / 1000);
+      return;
     }
+    this.clearLoginCredentials();
   }
 
   logOut() {
