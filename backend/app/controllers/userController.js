@@ -116,6 +116,25 @@ class UserCtrl {
 			next(error);
 		}
 	}
+
+	static async isAdmin(req, res, next) {
+		try {
+			const { id } = req.params;
+			console.log('TCL: isAdmin -> id', id);
+
+			// fetch user and test password verification
+			const responseUser = await User.findById(id)
+				.lean()
+				.exec();
+
+			const isAdmin = responseUser.isAdmin;
+
+			return res.status(200).json({ isAdmin: isAdmin || false });
+		} catch (error) {
+			error.statusCode = 500;
+			next(error);
+		}
+	}
 }
 
 module.exports = UserCtrl;

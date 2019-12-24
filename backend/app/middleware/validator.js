@@ -6,6 +6,12 @@ const isValidDate = value => {
 };
 
 const validationSets = {
+	isAdmin: [
+		param('id')
+			.not()
+			.isEmpty()
+			.withMessage('id not provided'),
+	],
 	getLastActiveCart: [
 		param('id')
 			.not()
