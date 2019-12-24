@@ -36,7 +36,7 @@ export class CategoriesComponent implements OnInit {
     this.productService.getProductsByCategory(categoryId);
   }
 
-  // pagination functions - start 
+  // pagination functions - start
   loadPage(page: number) {
     if (page !== this.previousPage) {
       this.previousPage = page;
@@ -64,5 +64,5 @@ export class CategoriesComponent implements OnInit {
     }
     this.isActive[num] = true;
   }
-  // pagination functions - end 
+  // pagination functions - end
 }

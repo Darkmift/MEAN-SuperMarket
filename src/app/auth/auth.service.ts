@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { LoginCredentials } from './models/loginCredentials.model';
 import { User } from './models/user.model';
 import { map } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,9 @@ export class AuthService {
   private role: boolean;
   private currentUser: User;
   private apiUrl = environment.apiUrl + '/users';
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(
+    private http: HttpClient, private router: Router,
+    private toastrService: ToastrService) { }
 
   getToken() {
     return this.token;
@@ -186,9 +189,13 @@ export class AuthService {
   }
 
   private setauthTimer(duration: number) {
-    // console.log('TCL: AuthService -> setauthTimer -> duration', duration);
     this.tokenTimer = setTimeout(() => {
       this.logOut();
+      return this.toastrService.warning(
+        `We're sorry`,
+        `Your session has expired,please re-log`,
+        { progressBar: true }
+      );
     }, duration * 1000);
   }
 }
