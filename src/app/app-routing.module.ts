@@ -4,9 +4,11 @@ import { AuthGuard } from './auth/auth.guard';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
+
   { path: 'shop', loadChildren: './shop/shopGroup.module#ShopGroupModule', canActivate: [AuthGuard] },
   { path: 'portal', loadChildren: './shop/portal/portalGroup.module#PortalGroupModule', canActivate: [AuthGuard] },
   { path: 'auth', loadChildren: './auth/authGroup.module#AuthGroupModule' },
+  { path: '', redirectTo: 'portal', pathMatch: 'full' },
   // { path: '**', component: PageNotFoundComponent }
 ];
 

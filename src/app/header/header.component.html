@@ -11,15 +11,20 @@
       <div ngbDropdownMenu
         aria-labelledby="dropdownBasic1"
         class="dropdown-menu-right">
-        <button ngbDropdownItem
-          [routerLink]="['auth/login']"
-          *ngIf="!userIsAuthenticated">Login</button>
-        <button ngbDropdownItem
-          [routerLink]="['auth/signup']"
-          *ngIf="!userIsAuthenticated">Signup</button>
-        <button ngbDropdownItem
-          *ngIf="userIsAuthenticated"
-          (click)="onLogOut()">Logout</button>
+
+        <ng-container *ngIf="userIsAuthenticated; else elseTemplate">
+          <button ngbDropdownItem
+            (click)="onLogOut()">Logout</button>
+          <button ngbDropdownItem
+            [routerLink]="['portal']">Portal</button>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <button ngbDropdownItem
+            [routerLink]="['auth/login']">Login</button>
+          <button ngbDropdownItem
+            [routerLink]="['auth/signup']">Signup</button>
+        </ng-template>
+
       </div>
     </li>
   </ul>
