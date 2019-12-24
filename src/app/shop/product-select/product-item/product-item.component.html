@@ -1,4 +1,4 @@
-<div class="card m-1">
+<div class="card m-1 bg-light-blue">
   <div class="card-body m-1">
 
     <img src="{{productObj.imgUrl}}"
@@ -7,32 +7,32 @@
     <hr>
     <h5 class="card-title">{{capitalize(productObj.name).substr(0, 15)}}</h5>
 
-    <p class="card-text">$:&nbsp;{{productObj.price}}</p>
+    <p class="card-text">
+      <span class="badge badge-success text-light">
+        ${{productObj.price.toFixed(2)}}
+      </span>
+    </p>
 
-    <div class="d-flex p-2 bd-highlight justify-content-between">
+    <!-- buttons -->
+    <div class="card-text btn-group"
+      role="group"
+      aria-label="Basic example">
 
-      <!-- buttons -->
-      <div class="card-text btn-group"
-        role="group"
-        aria-label="Basic example">
+      <!-- add btn -->
+      <button class="btn btn-success"
+        (click)="upDateCartItem(true)">+</button>
 
-        <!-- add btn -->
-        <button class="btn btn-success"
-          (click)="upDateCartItem(true)">+</button>
+      <!-- amount display input -->
+      <input type="number"
+        min="0"
+        max="{{productObj.amount}}"
+        [(ngModel)]="cartItem.amount"
+        (change)="setCartItemAmount()"
+        style="width:3vw;">
 
-        <!-- amount display input -->
-        <input type="number"
-          min="0"
-          max="{{productObj.amount}}"
-          [(ngModel)]="cartItem.amount"
-          (change)="setCartItemAmount()"
-          style="width:3vw;">
-
-        <!-- reduce btn -->
-        <button class="btn btn-danger"
-          (click)="upDateCartItem(false)">-</button>
-      </div>
-
+      <!-- reduce btn -->
+      <button class="btn btn-danger"
+        (click)="upDateCartItem(false)">-</button>
     </div>
 
   </div>
