@@ -29,6 +29,8 @@ export class CategoriesComponent implements OnInit {
     this.categoryService.getCategoryListSubject().subscribe((categoryArray) => {
       this.categories = categoryArray;
       this.loadPage(0);
+      this.onCategoryClick(this.categories[0]._id);
+      this.classToggle(0);
     });
   }
 

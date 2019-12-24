@@ -71,9 +71,13 @@ export class ShopComponent implements OnInit {
 
 
   @HostListener('document:mousedown', ['$event'])
-  onMouseDown(event: MouseEvent) {
-    this.cartDiv.grabber = true;
-    this.cartDiv.oldX = event.clientX;
+  onMouseDown(event: any) {
+
+    if (event.target.id === 'resizeDiv') {
+      this.cartDiv.grabber = true;
+      this.cartDiv.oldX = event.clientX;
+    }
+
   }
 
 }

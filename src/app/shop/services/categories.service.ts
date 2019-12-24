@@ -41,7 +41,6 @@ export class CategoriesService {
         if (categories instanceof Array) {
           this.categoryListSubject.next(categories);
         }
-        console.log('TCL: CategoriesService -> CategoryCount -> response', response);
       });
   }
 }

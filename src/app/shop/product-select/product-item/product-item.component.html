@@ -1,17 +1,39 @@
 <div class="card m-1">
-  <img src="https://i.ytimg.com/vi/AfdR003knes/hqdefault.jpg"
-    class="card-img-top"
-    alt="meow">
   <div class="card-body m-1">
-    <h5 class="card-title">Product name</h5>
-    <p class="card-text">$:&nbsp;$00.00</p>
-    <div class="btn-group"
-      role="group"
-      aria-label="Basic example">
-      <button type="button"
-        class="btn btn-success">+</button>
-      <button type="button"
-        class="btn btn-danger">-</button>
+
+    <img src="{{productObj.imgUrl}}"
+      class="card-img-top"
+      alt="image of {{productObj.name}}">
+    <hr>
+    <h5 class="card-title">{{capitalize(productObj.name).substr(0, 15)}}</h5>
+
+    <p class="card-text">$:&nbsp;{{productObj.price}}</p>
+
+    <div class="d-flex p-2 bd-highlight justify-content-between">
+
+      <!-- buttons -->
+      <div class="card-text btn-group"
+        role="group"
+        aria-label="Basic example">
+
+        <!-- add btn -->
+        <button class="btn btn-success"
+          (click)="upDateCartItem(true)">+</button>
+
+        <!-- amount display input -->
+        <input type="number"
+          min="0"
+          max="{{productObj.amount}}"
+          [(ngModel)]="cartItem.amount"
+          (change)="setCartItemAmount()"
+          style="width:3vw;">
+
+        <!-- reduce btn -->
+        <button class="btn btn-danger"
+          (click)="upDateCartItem(false)">-</button>
+      </div>
+
     </div>
+
   </div>
 </div>
