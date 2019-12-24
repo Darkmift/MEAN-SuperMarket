@@ -1,6 +1,6 @@
 <div class="card card-size">
   <div class="card-body overflow-auto row">
-    {{selectedCategoryId}}
+    <span *ngFor="let product of productArray">{{product.name}}</span>
     <!-- <app-product-item class="col-lg-3 col-md-4 col-sm-6 p-0 my-1 h-75"
       *ngFor="let item of itemList"></app-product-item> -->
   </div>

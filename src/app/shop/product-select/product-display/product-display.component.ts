@@ -1,22 +1,31 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ProductCategory } from '../../models/Category';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { ProductsService } from '../../services/products.service';
+import { Subscription } from 'rxjs';
+import { Product } from '../../models/Product';
 
 @Component({
   selector: 'app-product-display',
   templateUrl: './product-display.component.html',
   styleUrls: ['./product-display.component.css']
 })
-export class ProductDisplayComponent implements OnInit {
+export class ProductDisplayComponent implements OnInit, OnDestroy {
 
   @Input() selectedCategoryId: string;
-  itemList: any = [];
+  productsByCategoryListener: Subscription;
+  productArray: Product[] = [];
 
-  constructor() { }
+  constructor(private productService: ProductsService) { }
 
   ngOnInit() {
-    for (let i = 0; i < 100; i++) {
-      this.itemList.push(i);
-    }
+
+    this.productsByCategoryListener = this.productService.getproductsByCategoryDataSubject().subscribe((productArray: Product[]) => {
+      this.productArray = productArray;
+    });
+
+  }
+
+  ngOnDestroy(): void {
+    this.productsByCategoryListener.unsubscribe();
   }
 
 }

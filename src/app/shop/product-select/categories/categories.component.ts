@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CategoriesService } from '../../services/categories.service';
 import { ProductCategory } from '../../models/Category';
+import { ProductsService } from '../../services/products.service';
 
 @Component({
   selector: 'app-categories',
@@ -10,8 +11,6 @@ import { ProductCategory } from '../../models/Category';
 export class CategoriesComponent implements OnInit {
 
   categories: ProductCategory[] = [];
-  categoriesTest: string;
-  @Output() emitSelectedCategoryId = new EventEmitter<string>();
 
   // pagination controls
   page = 0;
@@ -22,21 +21,19 @@ export class CategoriesComponent implements OnInit {
   isActive = {};
 
   constructor(
-    private categoryService: CategoriesService) { }
+    private categoryService: CategoriesService,
+    private productService: ProductsService) { }
 
   ngOnInit() {
     this.categoryService.getCategories();
     this.categoryService.getCategoryListSubject().subscribe((categoryArray) => {
-
       this.categories = categoryArray;
-      this.categoriesTest = JSON.stringify(categoryArray);
       this.loadPage(0);
     });
   }
 
   onCategoryClick(categoryId: string) {
-    console.log('TCL: CategoriesComponent -> click -> categoryId', categoryId);
-    this.emitSelectedCategoryId.emit(categoryId);
+    this.productService.getProductsByCategory(categoryId);
   }
 
   // pagination functions - start 

@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../../auth/auth.service';
+import { Product } from '../models/Product';
 
 
 @Injectable({
@@ -12,6 +13,7 @@ import { AuthService } from '../../auth/auth.service';
 export class ProductsService {
   private apiUrl = environment.apiUrl;
   private countSubject = new Subject<number>();
+  private productsByCategoryDataSubject = new Subject<Product[]>();
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -23,6 +25,10 @@ export class ProductsService {
     return this.countSubject.asObservable();
   }
 
+  getproductsByCategoryDataSubject() {
+    return this.productsByCategoryDataSubject.asObservable();
+  }
+
   getProductCount() {
     this.http.get
       <{ message: string, ProductCount: number; }>
@@ -32,6 +38,18 @@ export class ProductsService {
           this.countSubject.next(count);
         }
         // console.log('TCL: ProductsService -> productCount -> response', response);
+      });
+  }
+
+  getProductsByCategory(categoryId: string) {
+    this.http.get
+      <{ message: string, Product: Product[]; }>
+      (`${this.apiUrl}/products/getByCategory/${categoryId}`).subscribe((response) => {
+        const productsArray = response.Product;
+        console.log('TCL: getProductsByCategory -> productsArray', productsArray);
+        if (productsArray) {
+          this.productsByCategoryDataSubject.next(productsArray);
+        }
       });
   }
 }
