@@ -1,0 +1,60 @@
+{ 
+    "_id" : ObjectId("5dffd0cead0bac0370b51228"), 
+    "isAdmin" : true, 
+    "email" : "sysadmin@email.com", 
+    "password" : "$2a$10$u2iYTZTy6GhKk8cz3BYi0Obryebkyo34XVSYPQyOtz6s2pJgeIAFS", 
+    "firstName" : "AdminFname", 
+    "lastName" : "AdminLname", 
+    "city" : "TLV", 
+    "iic" : "215701093", 
+    "street" : "main st", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5dffd0cead0bac0370b51229"), 
+    "isAdmin" : false, 
+    "email" : "shopper1@email.com", 
+    "password" : "$2a$10$7NT9NqsWwBfQIV/kctqI6uWkNgJh.24aqmtDPAXUXKTXRjz5ZMPJe", 
+    "firstName" : "shopperFname", 
+    "lastName" : "shopperLname", 
+    "city" : "Haifa", 
+    "iic" : "814009523", 
+    "street" : "first st", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5e008d94bce8214c30443b4d"), 
+    "isAdmin" : false, 
+    "email" : "test1@email.com", 
+    "password" : "$2a$10$6OXRWENoXFaPubNP9pyfau.NXMHaNTSCO67GrIji2yuMEmKMBwdGO", 
+    "city" : "Holon", 
+    "street" : "StreetName", 
+    "iic" : "456564785", 
+    "firstName" : "TestFirstName", 
+    "lastName" : "TestLastName", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5e00d467b1c3cf294c70a0ba"), 
+    "isAdmin" : false, 
+    "email" : "nocart@email.com", 
+    "password" : "$2a$10$nAed1jPA0bkmC6SFeJSnCO8pJGZRQTqI3DJp9uTAk0c7IXQNXLVXW", 
+    "city" : "Holon", 
+    "street" : "StreetName", 
+    "iic" : "224439074", 
+    "firstName" : "TestFirstName", 
+    "lastName" : "TestLastName", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5e00d4a1b1c3cf294c70a0bc"), 
+    "isAdmin" : false, 
+    "email" : "nocart2@email.com", 
+    "password" : "$2a$10$Kqm6x2C2f1c3L0gpdikHuOReGkcPy7Fs6WZ10aN3S9qS6b.spPKIe", 
+    "city" : "Holon", 
+    "street" : "StreetName", 
+    "iic" : "973983311", 
+    "firstName" : "TestFirstName", 
+    "lastName" : "TestLastName", 
+    "__v" : NumberInt(0)
+}

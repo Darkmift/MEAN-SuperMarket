@@ -1,0 +1,1184 @@
+{ 
+    "_id" : ObjectId("5e0218cee6703ce3e104fd40"), 
+    "name" : "hubbard squash", 
+    "price" : 43.15, 
+    "amount" : 90.0, 
+    "category" : ObjectId("5e00fb4dcff61a4f1ccfdd3e"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd41"), 
+    "name" : "artichoke", 
+    "price" : 26.74, 
+    "amount" : 32.0, 
+    "category" : ObjectId("5e00fb8fcff61a4f1ccfdd43"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd42"), 
+    "name" : "aubergine", 
+    "price" : 55.48, 
+    "amount" : 85.0, 
+    "category" : ObjectId("5e00fb83cff61a4f1ccfdd42"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd43"), 
+    "name" : "eggplant", 
+    "price" : 71.26, 
+    "amount" : 140.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122c"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd44"), 
+    "name" : "asparagus", 
+    "price" : 9.33, 
+    "amount" : 185.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122a"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd45"), 
+    "name" : "legumes", 
+    "price" : 17.31, 
+    "amount" : 176.0, 
+    "category" : ObjectId("5e00fb83cff61a4f1ccfdd42"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd46"), 
+    "name" : "alfalfa sprouts", 
+    "price" : 60.81, 
+    "amount" : 96.0, 
+    "category" : ObjectId("5e00fb7ccff61a4f1ccfdd41"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd47"), 
+    "name" : "azuki beans ", 
+    "price" : 9.18, 
+    "amount" : 202.0, 
+    "category" : ObjectId("5e00fb4dcff61a4f1ccfdd3e"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd48"), 
+    "name" : "adzuki", 
+    "price" : 13.89, 
+    "amount" : 98.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122b"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd49"), 
+    "name" : "bean sprouts", 
+    "price" : 64.88, 
+    "amount" : 222.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122b"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd4a"), 
+    "name" : "black beans", 
+    "price" : 30.7, 
+    "amount" : 220.0, 
+    "category" : ObjectId("5e00fb4dcff61a4f1ccfdd3e"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd4b"), 
+    "name" : "black-eyed peas", 
+    "price" : 24.22, 
+    "amount" : 56.0, 
+    "category" : ObjectId("5e00fb8fcff61a4f1ccfdd43"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd4c"), 
+    "name" : "borlotti bean", 
+    "price" : 39.88, 
+    "amount" : 232.0, 
+    "category" : ObjectId("5e00fb83cff61a4f1ccfdd42"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd4d"), 
+    "name" : "broad beans", 
+    "price" : 33.4, 
+    "amount" : 114.0, 
+    "category" : ObjectId("5e00fb7ccff61a4f1ccfdd41"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd4e"), 
+    "name" : "chickpeas", 
+    "price" : 58.97, 
+    "amount" : 35.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122a"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd4f"), 
+    "name" : "garbanzos", 
+    "price" : 44.73, 
+    "amount" : 95.0, 
+    "category" : ObjectId("5e00fb8fcff61a4f1ccfdd43"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd50"), 
+    "name" : "ceci beans", 
+    "price" : 45.89, 
+    "amount" : 76.0, 
+    "category" : ObjectId("5e00fb83cff61a4f1ccfdd42"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd51"), 
+    "name" : "green beans", 
+    "price" : 40.92, 
+    "amount" : 53.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122b"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd52"), 
+    "name" : "kidney beans", 
+    "price" : 1.87, 
+    "amount" : 108.0, 
+    "category" : ObjectId("5e00fb7ccff61a4f1ccfdd41"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd53"), 
+    "name" : "lentils", 
+    "price" : 10.85, 
+    "amount" : 82.0, 
+    "category" : ObjectId("5e00fb7ccff61a4f1ccfdd41"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd54"), 
+    "name" : "lima beans", 
+    "price" : 7.78, 
+    "amount" : 72.0, 
+    "category" : ObjectId("5e00fb5acff61a4f1ccfdd40"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd55"), 
+    "name" : "Butter bean", 
+    "price" : 18.44, 
+    "amount" : 45.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122c"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd56"), 
+    "name" : "mung beans", 
+    "price" : 15.74, 
+    "amount" : 202.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122c"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd57"), 
+    "name" : "navy beans", 
+    "price" : 12.7, 
+    "amount" : 243.0, 
+    "category" : ObjectId("5e00fb83cff61a4f1ccfdd42"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd58"), 
+    "name" : "peanuts", 
+    "price" : 8.41, 
+    "amount" : 98.0, 
+    "category" : ObjectId("5e00fb5acff61a4f1ccfdd40"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd59"), 
+    "name" : "pinto beans", 
+    "price" : 9.81, 
+    "amount" : 39.0, 
+    "category" : ObjectId("5e00fb4dcff61a4f1ccfdd3e"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd5a"), 
+    "name" : "runner beans", 
+    "price" : 50.83, 
+    "amount" : 236.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122a"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd5b"), 
+    "name" : "split peas", 
+    "price" : 52.8, 
+    "amount" : 83.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122d"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd5c"), 
+    "name" : "soy beans", 
+    "price" : 14.69, 
+    "amount" : 153.0, 
+    "category" : ObjectId("5e00fb4dcff61a4f1ccfdd3e"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd5d"), 
+    "name" : "peas", 
+    "price" : 48.29, 
+    "amount" : 68.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122a"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd5e"), 
+    "name" : "mangetout", 
+    "price" : 50.65, 
+    "amount" : 231.0, 
+    "category" : ObjectId("5e00fb8fcff61a4f1ccfdd43"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd5f"), 
+    "name" : "snap peas", 
+    "price" : 18.71, 
+    "amount" : 182.0, 
+    "category" : ObjectId("5e00fb83cff61a4f1ccfdd42"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd60"), 
+    "name" : "broccoflower", 
+    "price" : 66.14, 
+    "amount" : 124.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122a"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd61"), 
+    "name" : "broccoli", 
+    "price" : 20.64, 
+    "amount" : 183.0, 
+    "category" : ObjectId("5e00fb4dcff61a4f1ccfdd3e"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd62"), 
+    "name" : "calabrese", 
+    "price" : 59.56, 
+    "amount" : 87.0, 
+    "category" : ObjectId("5e00fb83cff61a4f1ccfdd42"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd63"), 
+    "name" : "brussels sprouts", 
+    "price" : 56.85, 
+    "amount" : 112.0, 
+    "category" : ObjectId("5e00fb7ccff61a4f1ccfdd41"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd64"), 
+    "name" : "cabbage", 
+    "price" : 48.59, 
+    "amount" : 140.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122b"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd65"), 
+    "name" : "kohlrabi", 
+    "price" : 57.8, 
+    "amount" : 243.0, 
+    "category" : ObjectId("5e00fb8fcff61a4f1ccfdd43"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd66"), 
+    "name" : "Savoy Cabbage", 
+    "price" : 31.66, 
+    "amount" : 54.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122d"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd67"), 
+    "name" : "Red Cabbage", 
+    "price" : 8.69, 
+    "amount" : 246.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122a"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd68"), 
+    "name" : "Pointed", 
+    "price" : 39.64, 
+    "amount" : 224.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122d"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd69"), 
+    "name" : "Sweetheart", 
+    "price" : 53.72, 
+    "amount" : 150.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122d"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd6a"), 
+    "name" : "Cabbage", 
+    "price" : 57.84, 
+    "amount" : 223.0, 
+    "category" : ObjectId("5e00fb8fcff61a4f1ccfdd43"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd6b"), 
+    "name" : "cauliflower", 
+    "price" : 48.36, 
+    "amount" : 99.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122d"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd6c"), 
+    "name" : "celery", 
+    "price" : 22.48, 
+    "amount" : 166.0, 
+    "category" : ObjectId("5e00fb8fcff61a4f1ccfdd43"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd6d"), 
+    "name" : "endive", 
+    "price" : 9.55, 
+    "amount" : 207.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122d"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd6e"), 
+    "name" : "fiddleheads", 
+    "price" : 19.96, 
+    "amount" : 97.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122a"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd6f"), 
+    "name" : "frisee", 
+    "price" : 23.96, 
+    "amount" : 24.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122a"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd70"), 
+    "name" : "fennel", 
+    "price" : 67.62, 
+    "amount" : 89.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122c"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd71"), 
+    "name" : "greens", 
+    "price" : 21.8, 
+    "amount" : 96.0, 
+    "category" : ObjectId("5e00fb83cff61a4f1ccfdd42"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd72"), 
+    "name" : "bok choy", 
+    "price" : 65.51, 
+    "amount" : 191.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122c"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd73"), 
+    "name" : "chard", 
+    "price" : 62.82, 
+    "amount" : 167.0, 
+    "category" : ObjectId("5e00fb83cff61a4f1ccfdd42"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd74"), 
+    "name" : "beet greens", 
+    "price" : 36.73, 
+    "amount" : 86.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122a"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd75"), 
+    "name" : "collard greens", 
+    "price" : 66.71, 
+    "amount" : 238.0, 
+    "category" : ObjectId("5e00fb5acff61a4f1ccfdd40"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd76"), 
+    "name" : "kale", 
+    "price" : 33.23, 
+    "amount" : 68.0, 
+    "category" : ObjectId("5e00fb83cff61a4f1ccfdd42"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd77"), 
+    "name" : "mustard greens", 
+    "price" : 39.73, 
+    "amount" : 128.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122a"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd78"), 
+    "name" : "spinach", 
+    "price" : 29.51, 
+    "amount" : 119.0, 
+    "category" : ObjectId("5e00fb5acff61a4f1ccfdd40"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd79"), 
+    "name" : "herbs and spices", 
+    "price" : 15.27, 
+    "amount" : 124.0, 
+    "category" : ObjectId("5e00fb83cff61a4f1ccfdd42"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd7a"), 
+    "name" : "anise", 
+    "price" : 62.78, 
+    "amount" : 225.0, 
+    "category" : ObjectId("5e00fb7ccff61a4f1ccfdd41"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd7b"), 
+    "name" : "basil", 
+    "price" : 35.65, 
+    "amount" : 136.0, 
+    "category" : ObjectId("5e00fb83cff61a4f1ccfdd42"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd7c"), 
+    "name" : "caraway", 
+    "price" : 31.39, 
+    "amount" : 228.0, 
+    "category" : ObjectId("5e00fb4dcff61a4f1ccfdd3e"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd7d"), 
+    "name" : "coriander", 
+    "price" : 21.34, 
+    "amount" : 151.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122c"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd7e"), 
+    "name" : "also known as cilantro", 
+    "price" : 55.98, 
+    "amount" : 53.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122d"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd7f"), 
+    "name" : "chamomile", 
+    "price" : 39.8, 
+    "amount" : 20.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122c"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd80"), 
+    "name" : "dill", 
+    "price" : 24.89, 
+    "amount" : 229.0, 
+    "category" : ObjectId("5e00fb4dcff61a4f1ccfdd3e"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd81"), 
+    "name" : "fennel", 
+    "price" : 13.49, 
+    "amount" : 136.0, 
+    "category" : ObjectId("5e00fb83cff61a4f1ccfdd42"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd82"), 
+    "name" : "lavender", 
+    "price" : 47.13, 
+    "amount" : 243.0, 
+    "category" : ObjectId("5e00fb5acff61a4f1ccfdd40"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd83"), 
+    "name" : "Cymbopogon", 
+    "price" : 72.3, 
+    "amount" : 223.0, 
+    "category" : ObjectId("5e00fb7ccff61a4f1ccfdd41"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd84"), 
+    "name" : "also known", 
+    "price" : 67.78, 
+    "amount" : 106.0, 
+    "category" : ObjectId("5e00fb4dcff61a4f1ccfdd3e"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd85"), 
+    "name" : "lemongrass", 
+    "price" : 73.35, 
+    "amount" : 26.0, 
+    "category" : ObjectId("5e00fb8fcff61a4f1ccfdd43"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd86"), 
+    "name" : "marjoram", 
+    "price" : 62.27, 
+    "amount" : 170.0, 
+    "category" : ObjectId("5e00fb83cff61a4f1ccfdd42"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd87"), 
+    "name" : "oregano", 
+    "price" : 75.76, 
+    "amount" : 176.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122d"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd88"), 
+    "name" : "parsley", 
+    "price" : 68.17, 
+    "amount" : 39.0, 
+    "category" : ObjectId("5e00fb5acff61a4f1ccfdd40"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd89"), 
+    "name" : "rosemary", 
+    "price" : 66.49, 
+    "amount" : 103.0, 
+    "category" : ObjectId("5e00fb5acff61a4f1ccfdd40"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd8a"), 
+    "name" : "sage", 
+    "price" : 47.25, 
+    "amount" : 58.0, 
+    "category" : ObjectId("5e00fb7ccff61a4f1ccfdd41"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd8b"), 
+    "name" : "thyme", 
+    "price" : 48.79, 
+    "amount" : 129.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122b"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd8c"), 
+    "name" : "lettuce", 
+    "price" : 3.32, 
+    "amount" : 195.0, 
+    "category" : ObjectId("5e00fb83cff61a4f1ccfdd42"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd8d"), 
+    "name" : "arugula", 
+    "price" : 11.22, 
+    "amount" : 26.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122a"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd8e"), 
+    "name" : "mushrooms", 
+    "price" : 56.46, 
+    "amount" : 166.0, 
+    "category" : ObjectId("5e00fb8fcff61a4f1ccfdd43"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd8f"), 
+    "name" : "nettles", 
+    "price" : 49.63, 
+    "amount" : 49.0, 
+    "category" : ObjectId("5e00fb5acff61a4f1ccfdd40"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd90"), 
+    "name" : "New Zealand spinach", 
+    "price" : 18.26, 
+    "amount" : 172.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122d"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd91"), 
+    "name" : "okra", 
+    "price" : 60.42, 
+    "amount" : 63.0, 
+    "category" : ObjectId("5e00fb4dcff61a4f1ccfdd3e"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd92"), 
+    "name" : "onions", 
+    "price" : 30.63, 
+    "amount" : 214.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122d"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd93"), 
+    "name" : "Chives", 
+    "price" : 72.41, 
+    "amount" : 23.0, 
+    "category" : ObjectId("5e00fb7ccff61a4f1ccfdd41"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd94"), 
+    "name" : "Garlic", 
+    "price" : 16.69, 
+    "amount" : 109.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122c"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd95"), 
+    "name" : "Leek", 
+    "price" : 59.58, 
+    "amount" : 111.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122b"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd96"), 
+    "name" : "onion", 
+    "price" : 63.6, 
+    "amount" : 33.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122a"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd97"), 
+    "name" : "shallot", 
+    "price" : 55.16, 
+    "amount" : 78.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122b"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd98"), 
+    "name" : "scallion", 
+    "price" : 38.76, 
+    "amount" : 55.0, 
+    "category" : ObjectId("5e00fb5acff61a4f1ccfdd40"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd99"), 
+    "name" : "spring onion UK", 
+    "price" : 18.45, 
+    "amount" : 234.0, 
+    "category" : ObjectId("5e00fb5acff61a4f1ccfdd40"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd9a"), 
+    "name" : "green onion US", 
+    "price" : 54.22, 
+    "amount" : 55.0, 
+    "category" : ObjectId("5e00fb83cff61a4f1ccfdd42"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd9b"), 
+    "name" : "peppers", 
+    "price" : 6.4, 
+    "amount" : 117.0, 
+    "category" : ObjectId("5e00fb4dcff61a4f1ccfdd3e"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd9c"), 
+    "name" : "bell pepper", 
+    "price" : 23.96, 
+    "amount" : 39.0, 
+    "category" : ObjectId("5e00fb83cff61a4f1ccfdd42"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd9d"), 
+    "name" : "chili pepper", 
+    "price" : 48.18, 
+    "amount" : 197.0, 
+    "category" : ObjectId("5e00fb4dcff61a4f1ccfdd3e"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd9e"), 
+    "name" : "Jalapeño", 
+    "price" : 53.8, 
+    "amount" : 140.0, 
+    "category" : ObjectId("5e00fb83cff61a4f1ccfdd42"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fd9f"), 
+    "name" : "Habanero", 
+    "price" : 42.5, 
+    "amount" : 213.0, 
+    "category" : ObjectId("5e00fb7ccff61a4f1ccfdd41"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fda0"), 
+    "name" : "Paprika", 
+    "price" : 72.65, 
+    "amount" : 204.0, 
+    "category" : ObjectId("5e00fb7ccff61a4f1ccfdd41"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fda1"), 
+    "name" : "Tabasco pepper", 
+    "price" : 14.68, 
+    "amount" : 60.0, 
+    "category" : ObjectId("5e00fb83cff61a4f1ccfdd42"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fda2"), 
+    "name" : "Cayenne pepper", 
+    "price" : 60.21, 
+    "amount" : 189.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122c"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fda3"), 
+    "name" : "radicchio", 
+    "price" : 46.68, 
+    "amount" : 24.0, 
+    "category" : ObjectId("5e00fb7ccff61a4f1ccfdd41"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fda4"), 
+    "name" : "rhubarb", 
+    "price" : 43.73, 
+    "amount" : 134.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122b"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fda5"), 
+    "name" : "root vegetables", 
+    "price" : 17.53, 
+    "amount" : 235.0, 
+    "category" : ObjectId("5e00fb83cff61a4f1ccfdd42"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fda6"), 
+    "name" : "beetroot", 
+    "price" : 61.15, 
+    "amount" : 208.0, 
+    "category" : ObjectId("5e00fb83cff61a4f1ccfdd42"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fda7"), 
+    "name" : "Beet", 
+    "price" : 51.42, 
+    "amount" : 123.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122c"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fda8"), 
+    "name" : "mangel wurzel", 
+    "price" : 35.37, 
+    "amount" : 36.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122d"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fda9"), 
+    "name" : "carrot", 
+    "price" : 25.38, 
+    "amount" : 121.0, 
+    "category" : ObjectId("5e00fb83cff61a4f1ccfdd42"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdaa"), 
+    "name" : "celeriac", 
+    "price" : 37.1, 
+    "amount" : 56.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122a"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdab"), 
+    "name" : "corms", 
+    "price" : 65.92, 
+    "amount" : 27.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122d"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdac"), 
+    "name" : "eddoe", 
+    "price" : 20.63, 
+    "amount" : 114.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122c"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdad"), 
+    "name" : "konjac", 
+    "price" : 2.99, 
+    "amount" : 80.0, 
+    "category" : ObjectId("5e00fb5acff61a4f1ccfdd40"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdae"), 
+    "name" : "taro", 
+    "price" : 20.85, 
+    "amount" : 175.0, 
+    "category" : ObjectId("5e00fb5acff61a4f1ccfdd40"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdaf"), 
+    "name" : "water chestnut", 
+    "price" : 63.36, 
+    "amount" : 62.0, 
+    "category" : ObjectId("5e00fb8fcff61a4f1ccfdd43"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdb0"), 
+    "name" : "ginger", 
+    "price" : 19.64, 
+    "amount" : 124.0, 
+    "category" : ObjectId("5e00fb83cff61a4f1ccfdd42"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdb1"), 
+    "name" : "parsnip", 
+    "price" : 28.17, 
+    "amount" : 75.0, 
+    "category" : ObjectId("5e00fb7ccff61a4f1ccfdd41"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdb2"), 
+    "name" : "rutabaga", 
+    "price" : 38.11, 
+    "amount" : 194.0, 
+    "category" : ObjectId("5e00fb4dcff61a4f1ccfdd3e"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdb3"), 
+    "name" : "radish", 
+    "price" : 38.1, 
+    "amount" : 58.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122b"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdb4"), 
+    "name" : "wasabi", 
+    "price" : 18.29, 
+    "amount" : 168.0, 
+    "category" : ObjectId("5e00fb4dcff61a4f1ccfdd3e"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdb5"), 
+    "name" : "horseradish", 
+    "price" : 29.44, 
+    "amount" : 123.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122d"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdb6"), 
+    "name" : "white radish", 
+    "price" : 28.79, 
+    "amount" : 152.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122d"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdb7"), 
+    "name" : "daikon", 
+    "price" : 25.65, 
+    "amount" : 74.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122b"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdb8"), 
+    "name" : "tubers", 
+    "price" : 16.1, 
+    "amount" : 23.0, 
+    "category" : ObjectId("5e00fb83cff61a4f1ccfdd42"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdb9"), 
+    "name" : "jicama", 
+    "price" : 61.96, 
+    "amount" : 118.0, 
+    "category" : ObjectId("5e00fb5acff61a4f1ccfdd40"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdba"), 
+    "name" : "jerusalem artichoke", 
+    "price" : 70.8, 
+    "amount" : 42.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122a"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdbb"), 
+    "name" : "potato", 
+    "price" : 54.3, 
+    "amount" : 43.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122b"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdbc"), 
+    "name" : "sweet potato", 
+    "price" : 67.32, 
+    "amount" : 140.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122b"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdbd"), 
+    "name" : "yam", 
+    "price" : 6.31, 
+    "amount" : 57.0, 
+    "category" : ObjectId("5e00fb4dcff61a4f1ccfdd3e"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdbe"), 
+    "name" : "turnip", 
+    "price" : 48.96, 
+    "amount" : 237.0, 
+    "category" : ObjectId("5e00fb5acff61a4f1ccfdd40"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdbf"), 
+    "name" : "salsify", 
+    "price" : 42.55, 
+    "amount" : 152.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122c"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdc0"), 
+    "name" : "skirret", 
+    "price" : 22.85, 
+    "amount" : 65.0, 
+    "category" : ObjectId("5e00fb5acff61a4f1ccfdd40"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdc1"), 
+    "name" : "sweetcorn", 
+    "price" : 27.61, 
+    "amount" : 175.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122d"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdc2"), 
+    "name" : "topinambur", 
+    "price" : 16.5, 
+    "amount" : 91.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122a"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdc3"), 
+    "name" : "squashes", 
+    "price" : 12.74, 
+    "amount" : 118.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122c"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdc4"), 
+    "name" : "acorn squash", 
+    "price" : 59.68, 
+    "amount" : 238.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122b"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdc5"), 
+    "name" : "bitter melon", 
+    "price" : 58.86, 
+    "amount" : 240.0, 
+    "category" : ObjectId("5e00fb7ccff61a4f1ccfdd41"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdc6"), 
+    "name" : "butternut squash", 
+    "price" : 36.14, 
+    "amount" : 132.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122d"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdc7"), 
+    "name" : "banana squash", 
+    "price" : 2.16, 
+    "amount" : 135.0, 
+    "category" : ObjectId("5e00fb8fcff61a4f1ccfdd43"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdc8"), 
+    "name" : "courgette ", 
+    "price" : 21.24, 
+    "amount" : 37.0, 
+    "category" : ObjectId("5e00fb5acff61a4f1ccfdd40"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdc9"), 
+    "name" : "Zucchini", 
+    "price" : 42.51, 
+    "amount" : 220.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122d"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdca"), 
+    "name" : "cucumber", 
+    "price" : 62.62, 
+    "amount" : 139.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122b"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdcb"), 
+    "name" : "delicata", 
+    "price" : 34.6, 
+    "amount" : 21.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122c"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdcc"), 
+    "name" : "gem squash", 
+    "price" : 70.85, 
+    "amount" : 93.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122d"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdcd"), 
+    "name" : "hubbard squash", 
+    "price" : 43.15, 
+    "amount" : 90.0, 
+    "category" : ObjectId("5e00fb4dcff61a4f1ccfdd3e"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdce"), 
+    "name" : "marrow ", 
+    "price" : 6.83, 
+    "amount" : 115.0, 
+    "category" : ObjectId("5e00fb83cff61a4f1ccfdd42"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdcf"), 
+    "name" : "Squash", 
+    "price" : 57.74, 
+    "amount" : 58.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122c"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdd0"), 
+    "name" : "spaghetti squash", 
+    "price" : 33.32, 
+    "amount" : 113.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122c"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdd1"), 
+    "name" : "tat soi", 
+    "price" : 68.87, 
+    "amount" : 189.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122c"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdd2"), 
+    "name" : "tomato", 
+    "price" : 23.42, 
+    "amount" : 138.0, 
+    "category" : ObjectId("5dffd0cead0bac0370b5122a"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}
+{ 
+    "_id" : ObjectId("5e0218fde6703ce3e104fdd3"), 
+    "name" : "watercress", 
+    "price" : 58.45, 
+    "amount" : 165.0, 
+    "category" : ObjectId("5e00fb83cff61a4f1ccfdd42"), 
+    "imgUrl" : "http://localhost:3000/public/images/pickleRick.png"
+}

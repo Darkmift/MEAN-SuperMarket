@@ -1,0 +1,54 @@
+{ 
+    "_id" : ObjectId("5dffd125ad0bac0370b5122e"), 
+    "name" : "myCart1", 
+    "dateCreated" : ISODate("2019-12-22T20:23:38.539+0000"), 
+    "dateEdited" : ISODate("2019-12-22T20:23:38.539+0000"), 
+    "customerRef" : ObjectId("5dffd0cead0bac0370b51229"), 
+    "active" : true, 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5dffd129ad0bac0370b5122f"), 
+    "name" : "myCart2", 
+    "dateCreated" : ISODate("2019-12-22T20:23:38.539+0000"), 
+    "dateEdited" : ISODate("2019-12-22T20:23:38.539+0000"), 
+    "customerRef" : ObjectId("5dffd0cead0bac0370b51229"), 
+    "active" : true, 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5dffd132ad0bac0370b51230"), 
+    "name" : "myCart3", 
+    "dateCreated" : ISODate("2019-12-22T20:23:38.539+0000"), 
+    "dateEdited" : ISODate("2019-12-22T20:23:38.539+0000"), 
+    "customerRef" : ObjectId("5dffd0cead0bac0370b51228"), 
+    "active" : true, 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5dffd4d212c69b1d1c3b063e"), 
+    "name" : "myCart11", 
+    "dateCreated" : ISODate("2019-12-22T20:28:57.973+0000"), 
+    "dateEdited" : ISODate("2019-12-22T20:28:57.973+0000"), 
+    "customerRef" : ObjectId("5dffd0cead0bac0370b51228"), 
+    "active" : true, 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5dffd4d812c69b1d1c3b063f"), 
+    "name" : "myCart12", 
+    "dateCreated" : ISODate("2019-12-22T20:28:57.973+0000"), 
+    "dateEdited" : ISODate("2019-12-22T20:28:57.973+0000"), 
+    "customerRef" : ObjectId("5dffd0cead0bac0370b51228"), 
+    "active" : true, 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5dffd71e327248156803d5a7"), 
+    "name" : "myCart134", 
+    "dateCreated" : ISODate("2019-12-22T20:49:14.373+0000"), 
+    "dateEdited" : ISODate("2019-12-22T20:49:14.373+0000"), 
+    "customerRef" : ObjectId("5dffd0cead0bac0370b51228"), 
+    "active" : true, 
+    "__v" : NumberInt(0)
+}

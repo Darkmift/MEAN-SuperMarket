@@ -3,6 +3,7 @@
 */
 const Product = require('../models/Product');
 const { ErrorHandler } = require('../modules/error');
+var ObjectId = require('mongoose').Types.ObjectId;
 
 class ProductController {
 	static async create(req, res, next) {
@@ -106,6 +107,33 @@ class ProductController {
 			});
 		} catch (error) {
 			error.statusCode = 500;
+			next(error);
+		}
+	}
+
+	static async getByCategory(req, res, next) {
+		const { id } = req.params;
+		console.log('TCL: ProductController -> getByCategory -> id', id);
+
+		try {
+			const productsByCategory = await Product.find(
+				{
+					category: new ObjectId(id),
+				},
+				function(err, documents) {
+					if (err) {
+						throw new ErrorHandler(500, err.message);
+					}
+					console.log('TCL: ProductController -> getByCategory -> documents', documents);
+				},
+			).exec();
+			res.status(200).send({
+				message: 'Product for category fetch succesful',
+				Product: productsByCategory,
+			});
+		} catch (error) {
+			error.statusCode = 500;
+			error.message = { 1: 'Failed to retrieve Product with provided id', 2: error.message };
 			next(error);
 		}
 	}

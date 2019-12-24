@@ -1,0 +1,45 @@
+{ 
+    "_id" : ObjectId("5dffd0cead0bac0370b5122c"), 
+    "name" : "Meat & Fish", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5dffd0cead0bac0370b5122d"), 
+    "name" : "Wine & Drinks", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5dffd0cead0bac0370b5122a"), 
+    "name" : "Milk & Eggs", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5dffd0cead0bac0370b5122b"), 
+    "name" : "Vegetable & Fruits", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5e00fb4dcff61a4f1ccfdd3e"), 
+    "name" : "Grains & Nuts", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5e00fb5acff61a4f1ccfdd40"), 
+    "name" : "Fish & Seafood", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5e00fb7ccff61a4f1ccfdd41"), 
+    "name" : "vegan", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5e00fb83cff61a4f1ccfdd42"), 
+    "name" : "canned", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5e00fb8fcff61a4f1ccfdd43"), 
+    "name" : "nuts", 
+    "__v" : NumberInt(0)
+}
