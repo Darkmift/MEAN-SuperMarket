@@ -29,8 +29,6 @@ export class CategoriesComponent implements OnInit {
     this.categoryService.getCategoryListSubject().subscribe((categoryArray) => {
       this.categories = categoryArray;
       this.loadPage(0);
-      this.onCategoryClick(this.categories[0]._id);
-      this.classToggle(0);
     });
   }
 
@@ -43,6 +41,9 @@ export class CategoriesComponent implements OnInit {
     if (page !== this.previousPage) {
       this.previousPage = page;
       this.loadData();
+
+      this.onCategoryClick(this.categoryPortion[0]._id);
+      this.classToggle(0);
     }
   }
 

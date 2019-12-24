@@ -10,3 +10,16 @@ input[type=number] {
   -moz-appearance:textfield;
   text-align: center;
 }
+
+button{
+  display: flex;
+  font-weight: 900;
+  line-height: 2vw;
+  font-size: 2vw;
+  text-align: center;
+  padding: 4px 8px;
+}
+
+.plus-minus{
+  margin-bottom: 5px;
+}

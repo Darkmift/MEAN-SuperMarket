@@ -20,7 +20,9 @@
 
       <!-- add btn -->
       <button class="btn btn-success"
-        (click)="upDateCartItem(true)">+</button>
+        (click)="upDateCartItem(true)">
+        <span class="plus-minus">+</span>
+      </button>
 
       <!-- amount display input -->
       <input type="number"
@@ -32,7 +34,9 @@
 
       <!-- reduce btn -->
       <button class="btn btn-danger"
-        (click)="upDateCartItem(false)">-</button>
+        (click)="upDateCartItem(false)">
+        <span class="plus-minus">-</span>
+      </button>
     </div>
 
   </div>
