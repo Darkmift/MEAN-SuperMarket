@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CategoriesService } from '../../services/categories.service';
 import { ProductCategory } from '../../models/Category';
 
@@ -11,6 +11,7 @@ export class CategoriesComponent implements OnInit {
 
   categories: ProductCategory[] = [];
   categoriesTest: string;
+  @Output() emitSelectedCategoryId = new EventEmitter<string>();
 
   // pagination controls
   page = 0;
@@ -35,16 +36,16 @@ export class CategoriesComponent implements OnInit {
 
   onCategoryClick(categoryId: string) {
     console.log('TCL: CategoriesComponent -> click -> categoryId', categoryId);
+    this.emitSelectedCategoryId.emit(categoryId);
   }
 
-
+  // pagination functions - start 
   loadPage(page: number) {
     if (page !== this.previousPage) {
       this.previousPage = page;
       this.loadData();
     }
   }
-
 
   loadData() {
     this.categoryPortion = this.categories.slice(this.page, (this.itemsPerPage + 1));
@@ -63,5 +64,5 @@ export class CategoriesComponent implements OnInit {
     }
     this.isActive[num] = true;
   }
-
+  // pagination functions - end 
 }

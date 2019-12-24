@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-select.component.css']
 })
 export class ProductSelectComponent implements OnInit {
-
+  selectedCategoryId: string;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  registerCategoryId(categoryId) {
+    this.selectedCategoryId = categoryId;
   }
 
 }

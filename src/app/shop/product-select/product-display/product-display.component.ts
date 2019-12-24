@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ProductCategory } from '../../models/Category';
 
 @Component({
   selector: 'app-product-display',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductDisplayComponent implements OnInit {
 
+  @Input() selectedCategoryId: string;
+  itemList: any = [];
+
   constructor() { }
 
   ngOnInit() {
+    for (let i = 0; i < 100; i++) {
+      this.itemList.push(i);
+    }
   }
 
 }

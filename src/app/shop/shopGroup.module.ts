@@ -9,6 +9,7 @@ import { ShopRoutingModule } from './shop-routing.module';
 import { CategoriesComponent } from './product-select/categories/categories.component';
 import { ProductDisplayComponent } from './product-select/product-display/product-display.component';
 import { SearchComponent } from './search/search.component';
+import { ProductItemComponent } from './product-select/product-item/product-item.component';
 
 
 
@@ -21,6 +22,7 @@ import { SearchComponent } from './search/search.component';
     CategoriesComponent,
     ProductDisplayComponent,
     SearchComponent,
+    ProductItemComponent
   ],
   imports: [
     CommonModule,
