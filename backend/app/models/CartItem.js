@@ -5,7 +5,7 @@ const Cart = require('./Cart');
 const refIsValid = require('../middleware/refIsValid');
 
 const cartItemSchema = mongoose.Schema({
-	name: { type: String, required: true, unique: true },
+	name: { type: String, required: true },
 	productRef: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
 	cartRef: { type: mongoose.Schema.Types.ObjectId, ref: 'Cart', required: true },
 	price: { type: Number, required: true },
@@ -32,6 +32,22 @@ cartItemSchema.pre('save', function(next) {
 	this.total = this.price * this.amount;
 	this.total = this.total.toFixed(2);
 	next();
+});
+
+cartItemSchema.pre('save', function(next) {
+	var self = this;
+
+	model.findById(self.productRef, function(err, results) {
+		if (err) {
+			next(err);
+		} else if (results) {
+			console.warn('results', results);
+			self.invalidate('await final script');
+			next(new Error('await final script error'));
+		} else {
+			next();
+		}
+	});
 });
 
 cartItemSchema.plugin(uniqueValidator);
