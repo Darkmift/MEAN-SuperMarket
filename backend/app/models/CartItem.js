@@ -8,7 +8,7 @@ const cartItemSchema = mongoose.Schema({
 	name: { type: String },
 	productRef: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
 	cartRef: { type: mongoose.Schema.Types.ObjectId, ref: 'Cart', required: true },
-	price: { type: Number },
+	price: { type: Number, default: 0 },
 	imgUrl: { type: String },
 	amount: { type: Number, required: true },
 	total: { type: Number, default: 0 },
@@ -29,28 +29,35 @@ cartItemSchema.path('price').get(function(num) {
 });
 
 cartItemSchema.pre('save', async function(next) {
-	var self = this;
-
-	const refCart = await Cart.findById(self.cartRef).lean().exec();
-	const refProduct = await Product.findById(self.productRef).lean().exec();
+	const refCart = await Cart.findById(this.cartRef).lean().exec();
+	const refProduct = await Product.findById(this.productRef).lean().exec();
 	const uniqueName = `${refProduct._id}_${refCart._id}`;
 
-	self.name = refProduct.name;
-	self.price = refProduct.price;
-	self.imgUrl = refProduct.imgUrl;
-	self.total = (self.price * self.amount).toFixed(2);
-	console.log('TCL: 	self.total ', self.total);
-	self.uniqueName = uniqueName;
+	this.name = refProduct.name;
+	this.price = refProduct.price;
+	this.imgUrl = refProduct.imgUrl;
+	this.total = (this.price * this.amount).toFixed(2);
+	this.uniqueName = uniqueName;
 	next();
 });
 
-cartItemSchema.pre('findOneAndUpdate', async function() {
-	const docToUpdate = await this.model.findOne(this.getQuery());
-	const refProduct = await Product.findById(docToUpdate.productRef).lean().exec();
-	docToUpdate.total = (refProduct.price * docToUpdate.amount).toFixed(2);
-	console.log('TCL: docToUpdate.total', docToUpdate.total);
-	await docToUpdate.save();
-  console.log('TCL: docToUpdate', docToUpdate);
+cartItemSchema.post('findOneAndUpdate', function(result) {
+	var self = this;
+	try {
+		const resultobj = result.save(function(err, doc) {
+			if (err) {
+				console.error('ERROR!');
+			}
+			// self.options.result = doc._doc;
+			// console.log('TCL: 	self.options.result', self.options.result);
+
+			// console.log('TCL: docToUpdate', result);
+			// self.options.res.json({ message: result._doc });
+			// self.options.res.end();
+		});
+	} catch (error) {
+		console.error('ERROR:', error);
+	}
 });
 
 cartItemSchema.plugin(uniqueValidator);

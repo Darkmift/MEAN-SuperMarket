@@ -4,36 +4,54 @@ class CartItemController {
 	static async updateOrCreate(req, res, next) {
 		try {
 			let { cartRef, productRef, amount } = req.body;
-			let options = { upsert: true, new: true, setDefaultsOnInsert: true, setDefaultsOnInsert: true };
-			// const uniqueName = `${productRef._id}_${cartRef._id}`;
 
-			const itemExists = await CartItem.findOneAndUpdate(
-				{ cartRef: cartRef, productRef: productRef },
-				{ amount: amount },
-				options,
-			);
-			console.log('TCL: CartItemController -> updateOrCreate -> itemExists', itemExists);
-			if (itemExists) {
-				res.status(200).json({
-					isNew: false,
-					message: 'item updated',
-					productItem: itemExists,
-				});
-				return;
-			}
+			var query = { cartRef: cartRef, productRef: productRef },
+				update = { amount: amount },
+				options = { upsert: true, new: true, setDefaultsOnInsert: false, res: res, result: null };
 
-			const newProductItem = await new CartItem({
-				cartRef,
-				productRef,
-				amount,
-			}).save();
+			const updateOrCreate = await CartItem.findOneAndUpdate(query, update, options, function(error, result) {
+				if (error) return;
+				// console.log('TCL: CartItemController -> updateOrCreate -> result', result);
+				// do something with the document
+			}).exec();
 
-			console.log('TCL: CartItemController -> updateOrCreate -> newProductItem', newProductItem);
+			const newOrUpdatedDocument = updateOrCreate;
+			console.log('TCL: CartItemController -> updateOrCreate -> newOrUpdatedDocument', newOrUpdatedDocument);
+
 			res.status(200).json({
-				isNew: true,
-				message: 'new item created',
-				productItem: newProductItem,
+				isNew: false,
+				message: 'item updated',
+				productItem: newOrUpdatedDocument,
 			});
+
+			// var query = { cartRef: cartRef, productRef: productRef },
+			// 	update = { amount: amount },
+			// 	options = { upsert: true, new: true, setDefaultsOnInsert: false, res: res, result: null };
+
+			// Find the document
+			// const updateOrCreate = await CartItem.findOneAndUpdate(query, update, options, function(error, result) {
+			// 	if (error) return;
+			// 	console.log('TCL: CartItemController -> updateOrCreate -> result', result);
+			// 	// do something with the document
+			// }).exec();
+
+			// if (updateOrCreate) {
+			// 	// const result = await CartItem.findById(updateOrCreate._id);
+			// 	console.log('TCL: CartItemController -> updateOrCreate -> result', options.result);
+
+			// 	res.status(200).json({
+			// 		isNew: false,
+			// 		message: 'item updated',
+			// 		productItem: options.result,
+			// 	});
+			// 	return;
+			// }
+
+			// res.status(200).json({
+			// 	isNew: false,
+			// 	message: 'item updated',
+			// 	productItem: updateOrCreate,
+			// });
 		} catch (error) {
 			error.statusCode = 500;
 			next(error);
