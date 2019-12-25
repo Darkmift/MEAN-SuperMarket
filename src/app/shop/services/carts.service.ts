@@ -47,12 +47,13 @@ export class CartsService {
           this.lastCartDataSubject.next(lastCart);
           this.lastOrNewDataSubject.next(lastCart);
           this.hasPreviousCart.next(true);
+        } else {
+          if (makeNew) {
+            this.hasPreviousCart.next(false);
+            this.createNewCart(id);
+          }
         }
 
-        if (makeNew) {
-          this.hasPreviousCart.next(false);
-          this.createNewCart(id);
-        }
       });
   }
 
