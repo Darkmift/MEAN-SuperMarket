@@ -4,36 +4,45 @@ class CartItemController {
 	static async updateOrCreate(req, res, next) {
 		try {
 			let { cartRef, productRef, amount } = req.body;
-			let options = { upsert: true, new: true, setDefaultsOnInsert: true, setDefaultsOnInsert: true };
-			// const uniqueName = `${productRef._id}_${cartRef._id}`;
+			console.log('TCL: CartItemController -> updateOrCreate -> req.body', req.body);
+			const uniqueName = `${productRef}_${cartRef}`;
 
-			const itemExists = await CartItem.findOneAndUpdate(
-				{ cartRef: cartRef, productRef: productRef },
+			let options = { upsert: true, new: true, setDefaultsOnInsert: true };
+			// Find the document
+			const cartItemExists = await CartItem.findOneAndUpdate(
+				{ uniqueName: uniqueName },
 				{ amount: amount },
 				options,
-			);
-			console.log('TCL: CartItemController -> updateOrCreate -> itemExists', itemExists);
-			if (itemExists) {
-				res.status(200).json({
-					isNew: false,
-					message: 'item updated',
-					productItem: itemExists,
-				});
-				return;
-			}
+				function(error, result) {
+					console.log('TCL: CartItemController -> updateOrCreate -> result', result);
+					if (error) {
+						console.log('TCL: CartItemController -> updateOrCreate -> errorA', error.message);
+						throw error;
+					}
 
-			const newProductItem = await new CartItem({
-				cartRef,
-				productRef,
-				amount,
-			}).save();
-
-			console.log('TCL: CartItemController -> updateOrCreate -> newProductItem', newProductItem);
-			res.status(200).json({
-				isNew: true,
-				message: 'new item created',
-				productItem: newProductItem,
-			});
+					// If the document doesn't exist
+					if (!result) {
+						// Create it
+						result = new CartItem({
+							cartRef: cartRef,
+							productRef: productRef,
+							amount: amount,
+						});
+					}
+					// Save the document
+					// result.save(function(error) {
+					// 	if (!error) {
+					// 		res.status(201).json({
+					// 			message: 'CartItem fetched from db',
+					// 			cartItem: result,
+					// 		});
+					// 	} else {
+					// 		console.log('TCL: CartItemController -> updateOrCreate -> errorB', error.message);
+					// 		throw error;
+					// 	}
+					// });
+				},
+			).exec();
 		} catch (error) {
 			error.statusCode = 500;
 			next(error);

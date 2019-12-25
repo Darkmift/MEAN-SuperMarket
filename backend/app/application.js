@@ -12,6 +12,7 @@ const mongooseConnection = require('./modules/mongoose-connection');
 const userRoutes = require('./routes/usersRoute');
 const categoryRoutes = require('./routes/categoryRoute');
 const cartRoutes = require('./routes/cartRoute');
+const cartItemRoutes = require('./routes/cartItemRoute');
 const productRoutes = require('./routes/productRoute');
 const orderRoutes = require('./routes/orderRoute');
 const app = express();
@@ -41,6 +42,7 @@ app.use((req, res, next) => {
 //all other code should be here
 app.use('/api/users', userRoutes);
 app.use('/api/carts', cartRoutes);
+app.use('/api/cartItems', cartItemRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
