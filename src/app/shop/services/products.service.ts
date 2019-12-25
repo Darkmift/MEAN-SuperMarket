@@ -37,7 +37,6 @@ export class ProductsService {
         if (!isNaN(count)) {
           this.countSubject.next(count);
         }
-        // console.log('TCL: ProductsService -> productCount -> response', response);
       });
   }
 
@@ -46,7 +45,6 @@ export class ProductsService {
       <{ message: string, Product: Product[]; }>
       (`${this.apiUrl}/products/getByCategory/${categoryId}`).subscribe((response) => {
         const productsArray = response.Product;
-        console.log('TCL: getProductsByCategory -> productsArray', productsArray);
         if (productsArray) {
           this.productsByCategoryDataSubject.next(productsArray);
         }

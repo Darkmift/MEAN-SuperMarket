@@ -13,7 +13,7 @@ export class CategoriesComponent implements OnInit {
   categories: ProductCategory[] = [];
 
   // pagination controls
-  page = 0;
+  page = 1;
   itemsPerPage = 5;
   previousPage = 0;
   categoryPortion: ProductCategory[] = [];
@@ -28,7 +28,7 @@ export class CategoriesComponent implements OnInit {
     this.categoryService.getCategories();
     this.categoryService.getCategoryListSubject().subscribe((categoryArray) => {
       this.categories = categoryArray;
-      this.loadPage(0);
+      this.loadPage(1);
     });
   }
 
@@ -38,10 +38,10 @@ export class CategoriesComponent implements OnInit {
 
   // pagination functions - start
   loadPage(page: number) {
+    console.log('TCL: CategoriesComponent -> loadPage -> page', page);
     if (page !== this.previousPage) {
       this.previousPage = page;
       this.loadData();
-
       this.onCategoryClick(this.categoryPortion[0]._id);
       this.classToggle(0);
     }
