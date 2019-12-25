@@ -3,10 +3,9 @@ var Cart = require('../models/Cart');
 class CartController {
 	static async create(req, res, next) {
 		try {
-			let { name, customerRef } = req.body;
-
+			let { customerRef } = req.body;
 			const newCart = new Cart({
-				name: name,
+				name: `${customerRef}_${Date.now()}`,
 				customerRef: customerRef,
 			});
 
@@ -64,10 +63,7 @@ class CartController {
 		try {
 			const { id } = req.params;
 
-			const lastCart = await Cart.find({ customerRef: id })
-				.sort({ dateEdited: -1 })
-				.limit(1)
-				.lean();
+			const lastCart = await Cart.find({ customerRef: id }).sort({ dateEdited: -1 }).limit(1).lean();
 
 			if (lastCart[0] != undefined) {
 				return res.status(200).json({

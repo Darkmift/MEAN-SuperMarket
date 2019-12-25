@@ -120,9 +120,6 @@ const validationSets = {
 			.isEmpty(),
 	],
 	cartCreate: [
-		body('name')
-			.not()
-			.isEmpty(),
 		body('customerRef')
 			.not()
 			.isEmpty(),
