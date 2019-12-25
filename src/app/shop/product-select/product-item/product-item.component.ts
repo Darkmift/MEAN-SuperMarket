@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Product } from '../../models/Product';
 import { CartItem } from '../../models/CartItem';
 import { ToastrService } from 'ngx-toastr';
+import { Capitalize } from '../../../helpers/helpers';
 
 @Component({
   selector: 'app-product-item',
@@ -11,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ProductItemComponent implements OnInit {
   @Input() productObj: Product;
   cartItem: CartItem;
+  private capitalize = Capitalize;
 
   constructor(private toastService: ToastrService) { }
 
@@ -22,13 +24,6 @@ export class ProductItemComponent implements OnInit {
       price: this.productObj.price,
       imgUrl: this.productObj.imgUrl,
     };
-  }
-
-  private capitalize(s) {
-    if (typeof s !== 'string') {
-      return '';
-    }
-    return s.charAt(0).toUpperCase() + s.slice(1);
   }
 
   upDateCartItem(addOrReduce: boolean) {

@@ -6,4 +6,5 @@ export class Cart {
   dateEdited: string;
   customerRef: string;
   active: boolean;
+  total: number;
 }

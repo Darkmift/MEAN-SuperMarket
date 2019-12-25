@@ -10,6 +10,7 @@ const cartSchema = new Schema({
 	dateCreated: { type: Date, default: Date.now() },
 	dateEdited: { type: Date, default: Date.now() },
 	active: { type: Boolean, default: true },
+	total: { type: Number, default: 0 },
 });
 
 cartSchema.path('customerRef').validate((value, respond) => {

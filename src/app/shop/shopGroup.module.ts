@@ -10,6 +10,7 @@ import { CategoriesComponent } from './product-select/categories/categories.comp
 import { ProductDisplayComponent } from './product-select/product-display/product-display.component';
 import { SearchComponent } from './search/search.component';
 import { ProductItemComponent } from './product-select/product-item/product-item.component';
+import { CartItemComponent } from './cart/cart-item/cart-item.component';
 
 
 
@@ -22,7 +23,8 @@ import { ProductItemComponent } from './product-select/product-item/product-item
     CategoriesComponent,
     ProductDisplayComponent,
     SearchComponent,
-    ProductItemComponent
+    ProductItemComponent,
+    CartItemComponent
   ],
   imports: [
     CommonModule,

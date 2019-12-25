@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from 'src/app/auth/models/user.model';
 import { AuthService } from 'src/app/auth/auth.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { Capitalize } from '../../../helpers/helpers';
 
 @Component({
   selector: 'app-panel-left',
@@ -14,6 +15,7 @@ export class PanelLeftComponent implements OnInit {
   @Input() hasPreviousCart: boolean;
   @Input() user: User;
   @Input() lastActiveCartId: string;
+  private capitalize = Capitalize;
 
 
   constructor(
@@ -21,13 +23,6 @@ export class PanelLeftComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-  }
-
-  private capitalize(s) {
-    if (typeof s !== 'string') {
-      return '';
-    }
-    return s.charAt(0).toUpperCase() + s.slice(1);
   }
 
   checkRole() { }
