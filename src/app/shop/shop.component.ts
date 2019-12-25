@@ -56,7 +56,9 @@ export class ShopComponent implements OnInit {
     const totalWidth = this.parentDiv.nativeElement.offsetWidth;
     const cartWidth = this.cartDiv.oldX;
 
-    if (cartWidth < Math.floor((totalWidth / 100) * 20)) {
+    if (cartWidth < Math.floor((totalWidth / 100) * 22)) {
+      this.shopDiv.width = Math.floor((totalWidth / 100) * 77);
+      this.cartDiv.width = Math.floor((totalWidth / 100) * 22);
       return;
     }
 

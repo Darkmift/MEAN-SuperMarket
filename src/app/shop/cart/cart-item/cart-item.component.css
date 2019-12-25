@@ -1,9 +1,8 @@
-/* .cartItem{
-  height: 10vw;
-} */
+.card {
+  height: 22vh;
+}
 
-/* .bottom-right{
-  position: relative;
-  bottom: 3px;
-  right: 3px;
-} */
+.gridList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
