@@ -30,7 +30,7 @@ export class PortalComponent implements OnInit, OnDestroy {
   private authStatusSub: Subscription;
   private getProductCountSubjectListener: Subscription;
   private getOrderCountSubjectListener: Subscription;
-  private gethasActiveCartSubject: Subscription;
+  private getHasPreviousCart: Subscription;
   private getlastCartDataSubjectLisetner: Subscription;
 
   constructor(
@@ -41,11 +41,6 @@ export class PortalComponent implements OnInit, OnDestroy {
     private cartService: CartsService) { }
 
   ngOnInit() {
-    const authorized = this.authService.getIsAuth();
-    if (!authorized) {
-      // tslint:disable-next-line: no-unused-expression
-      this.router.navigate['/auth/login'];
-    }
 
     this.authStatusSub = this.authService.getAuthStatusListener()
       .subscribe((isAuthenticated: boolean) => {
@@ -86,8 +81,8 @@ export class PortalComponent implements OnInit, OnDestroy {
     }
 
     // fetch lastActiveCart chunk - undefined or Cart object
-    this.cartService.getLastActiveCart(this.user.id);
-    this.gethasActiveCartSubject = this.cartService.gethasActiveCartSubject().subscribe((hasLastCart) => {
+    this.cartService.getLastActiveCart(this.user.id, false);
+    this.getHasPreviousCart = this.cartService.gethasPreviousCart().subscribe((hasLastCart) => {
       this.hasPreviousCart = hasLastCart;
     });
     this.getlastCartDataSubjectLisetner = this.cartService.getlastCartDataSubject().subscribe((cartData) => {
@@ -102,7 +97,7 @@ export class PortalComponent implements OnInit, OnDestroy {
     this.authStatusSub.unsubscribe();
     this.getProductCountSubjectListener.unsubscribe();
     this.getOrderCountSubjectListener.unsubscribe();
-    this.gethasActiveCartSubject.unsubscribe();
+    this.getHasPreviousCart.unsubscribe();
     this.getlastCartDataSubjectLisetner.unsubscribe();
   }
 

@@ -38,7 +38,6 @@ export class CategoriesComponent implements OnInit {
 
   // pagination functions - start
   loadPage(page: number) {
-    console.log('TCL: CategoriesComponent -> loadPage -> page', page);
     if (page !== this.previousPage) {
       this.previousPage = page;
       this.loadData();

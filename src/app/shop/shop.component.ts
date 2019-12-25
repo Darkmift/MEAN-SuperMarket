@@ -10,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ShopComponent implements OnInit {
   @ViewChild('parentContainer', { static: true }) parentDiv: ElementRef;
-  cartId: any;
+  cartId: string;
   // resize config
   cartDiv = {
     width: 0,
@@ -34,9 +34,7 @@ export class ShopComponent implements OnInit {
     this.cartDiv.width = Math.floor((totalWidth / 100) * 25);
     this.shopDiv.width = Math.floor((totalWidth / 100) * 75);
 
-    this.cartId = this.route.snapshot.params;
-    console.log('TCL: ShopComponent -> ngOnInit -> this.cartId', this.cartId);
-
+    this.cartId = this.route.snapshot.params.id;
   }
 
   @HostListener('document:mousemove', ['$event'])

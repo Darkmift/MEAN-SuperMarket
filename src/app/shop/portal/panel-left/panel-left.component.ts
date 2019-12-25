@@ -33,12 +33,7 @@ export class PanelLeftComponent implements OnInit {
   checkRole() { }
 
   resumeShopping() {
-    let id = '';
-    if (this.lastActiveCartId) {
-      id = this.lastActiveCartId;
-    }
-
-    this.router.navigate(['shop', id]);
+    this.router.navigate(['shop']);
   }
 
 }
