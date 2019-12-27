@@ -7,11 +7,11 @@ input::-webkit-inner-spin-button {
 
 /* Firefox */
 input[type=number] {
-  -moz-appearance:textfield;
+  -moz-appearance: textfield;
   text-align: center;
 }
 
-button{
+button {
   display: flex;
   font-weight: 900;
   line-height: 2vw;
@@ -20,6 +20,11 @@ button{
   padding: 4px 8px;
 }
 
-.plus-minus{
+.plus-minus {
   margin-bottom: 5px;
+}
+
+img {
+  width: 14vw;
+  height: 14vw;
 }

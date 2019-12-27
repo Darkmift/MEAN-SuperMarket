@@ -6,3 +6,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+
+img {
+  width: 4vw;
+  height: 4vw;
+}
