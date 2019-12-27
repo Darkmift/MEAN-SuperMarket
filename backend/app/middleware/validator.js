@@ -73,8 +73,8 @@ const validationSets = {
     productId: [param('id').not().isEmpty()],
     // cart validators
     cartCreate: [body('customerRef').not().isEmpty()],
-    carts: [body('customerRef').not().isEmpty()],
-    cartId: [body('customerRef').not().isEmpty(), body('_id').not().isEmpty()],
+    carts: [param('customerRef').not().isEmpty()],
+    cartId: [param('customerRef').not().isEmpty(), param('_id').not().isEmpty()],
     getLastActiveCart: [param('id').not().isEmpty()],
     // order validators
     orderCreate: [
