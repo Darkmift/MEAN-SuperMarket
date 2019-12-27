@@ -1,0 +1,779 @@
+{
+	"info": {
+		"_postman_id": "e684367f-ff91-4bd1-9b70-d5529224c940",
+		"name": "Mean SuperMarket",
+		"description": "API for my school supermarket MEAN app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user routes",
+			"item": [
+				{
+					"name": "user login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "shopper1@email.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "MooCow1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"login"
+							]
+						},
+						"description": "login route"
+					},
+					"response": []
+				},
+				{
+					"name": "user signup",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "newUser2@email.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "MooCow1",
+									"type": "text"
+								},
+								{
+									"key": "firstName",
+									"value": "nuFname",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "nuLname",
+									"type": "text"
+								},
+								{
+									"key": "iic",
+									"value": "987654123",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "NYC",
+									"type": "text"
+								},
+								{
+									"key": "street",
+									"value": "main",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"signup"
+							]
+						},
+						"description": "signup route"
+					},
+					"response": []
+				},
+				{
+					"name": "isAdmn",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users/isAdmin/5e060b7cae41cc1b0c6b550a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"isAdmin",
+								"5e060b7cae41cc1b0c6b550a"
+							]
+						},
+						"description": "check if user is amdin"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "category routes",
+			"item": [
+				{
+					"name": "category create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Oriental Cuisine",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{apiUrl}}categories/create",
+							"host": [
+								"{{apiUrl}}categories"
+							],
+							"path": [
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "category getAll",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}categories/get",
+							"host": [
+								"{{apiUrl}}categories"
+							],
+							"path": [
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "category get by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}categories/get/5e00fb83cff61a4f1ccfdd42",
+							"host": [
+								"{{apiUrl}}categories"
+							],
+							"path": [
+								"get",
+								"5e00fb83cff61a4f1ccfdd42"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "products",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "baked beans",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "categoryId",
+									"value": "5e00fb83cff61a4f1ccfdd42",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "25",
+									"type": "text"
+								},
+								{
+									"key": "imgUrl",
+									"value": "{{imgUrl}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{apiUrl}}products/create",
+							"host": [
+								"{{apiUrl}}products"
+							],
+							"path": [
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "product edit",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "baked corn",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "categoryId",
+									"value": "5e00fb83cff61a4f1ccfdd42",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "_id",
+									"value": "5e0611e0ef343b36b87d186b",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{apiUrl}}products/edit",
+							"host": [
+								"{{apiUrl}}products"
+							],
+							"path": [
+								"edit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "products getAll",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}products/getAll",
+							"host": [
+								"{{apiUrl}}products"
+							],
+							"path": [
+								"getAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "products getCount",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}products/getCount",
+							"host": [
+								"{{apiUrl}}products"
+							],
+							"path": [
+								"getCount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "products get By Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{apiUrl}}products/getByCategory/5dffd0cead0bac0370b5122a",
+							"host": [
+								"{{apiUrl}}products"
+							],
+							"path": [
+								"getByCategory",
+								"5dffd0cead0bac0370b5122a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "products get by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}products/get/5e0218fde6703ce3e104fd42",
+							"host": [
+								"{{apiUrl}}products"
+							],
+							"path": [
+								"get",
+								"5e0218fde6703ce3e104fd42"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "carts",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "customerRef",
+									"value": "5dffd0cead0bac0370b51229",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{apiUrl}}carts/create",
+							"host": [
+								"{{apiUrl}}carts"
+							],
+							"path": [
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all carts for customerRef",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}carts/getAll/5dffd0cead0bac0370b51229",
+							"host": [
+								"{{apiUrl}}carts"
+							],
+							"path": [
+								"getAll",
+								"5dffd0cead0bac0370b51229"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "carts get Count",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}carts/getCount",
+							"host": [
+								"{{apiUrl}}carts"
+							],
+							"path": [
+								"getCount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get cart by id for customerRef",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}carts/getOne/5dffd0cead0bac0370b51229/5e039fb112c5522094db585e",
+							"host": [
+								"{{apiUrl}}carts"
+							],
+							"path": [
+								"getOne",
+								"5dffd0cead0bac0370b51229",
+								"5e039fb112c5522094db585e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "carts get last active cart for cutomerRef",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}carts/getLastActiveCart/5dffd0cead0bac0370b51229",
+							"host": [
+								"{{apiUrl}}carts"
+							],
+							"path": [
+								"getLastActiveCart",
+								"5dffd0cead0bac0370b51229"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "cartItems",
+			"item": [
+				{
+					"name": "return new or updated cartItem",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "cartRef",
+									"value": "5e039fb112c5522094db585e",
+									"type": "text"
+								},
+								{
+									"key": "productRef",
+									"value": "5e0218fde6703ce3e104fd67",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "24",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{apiUrl}}cartItems/",
+							"host": [
+								"{{apiUrl}}cartItems"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all cartItems for cartRef",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}cartItems/cart/5e06140bef343b36b87d186c",
+							"host": [
+								"{{apiUrl}}cartItems"
+							],
+							"path": [
+								"cart",
+								"5e06140bef343b36b87d186c"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
