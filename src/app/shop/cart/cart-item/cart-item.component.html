@@ -1,4 +1,5 @@
-<div class="card mb-3 p-2">
+<div class="card mb-3 p-2"
+  *ngIf="isShown">
   <div class="row no-gutters">
     <div class="col-md-4">
       <img src="http://localhost:3000/public/images/pickleRick.png"
@@ -11,7 +12,8 @@
         <!-- delete -->
         <button type="button"
           class="close"
-          aria-label="Close">
+          aria-label="Close"
+          (click)="removeItem()">
           <span aria-hidden="true">&times;</span>
         </button>
         <!-- product name -->

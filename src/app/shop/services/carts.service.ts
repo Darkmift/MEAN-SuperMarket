@@ -100,6 +100,7 @@ export class CartsService {
       <{ message: string, isNew: boolean, productItem: CartItem; }>(`${this.apiUrl}cartItems/`, { cartRef, productRef, amount })
       .subscribe((response) => {
         console.log('TCL: sendToCart -> response', response);
+        this.cartItem.next(response.productItem);
         this.getCartItems(cartRef);
       });
   }

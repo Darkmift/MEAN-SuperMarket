@@ -53,7 +53,7 @@ export class ProductItemComponent implements OnInit, OnDestroy {
 
   upDateCartItem(addOrReduce: boolean) {
 
-    clearTimeout(this.waitForClicksend);
+    clearTimeout(this.waitForClicksEnd);
 
     // if amount is too high
     if (this.cartItem.amount >= this.productObj.amount) {
