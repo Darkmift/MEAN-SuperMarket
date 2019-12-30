@@ -16,6 +16,7 @@ export class CartComponent implements OnInit, OnDestroy {
   private getlastOrNewDataSubjectLisetner: Subscription;
   private getHasPreviousCartSubjectLisetner: Subscription;
   private getCartItemsSubjectListener: Subscription;
+  private getCartTotalSubjectListener: Subscription;
   user: User;
   cart: Cart;
   cartItemArray: CartItem[];
@@ -52,12 +53,19 @@ export class CartComponent implements OnInit, OnDestroy {
       this.activeItems = cartItems.filter((item) => item.amount).length;
     });
 
+    // cart total sum
+    this.getCartTotalSubjectListener = this.cartService.getCartTotalSubject().subscribe((total) => {
+      console.log('TCL: CartComponent -> ngOnInit -> total', total);
+      this.cart.total = total;
+    });
+
   }
 
   ngOnDestroy(): void {
     this.getlastOrNewDataSubjectLisetner.unsubscribe();
     this.getHasPreviousCartSubjectLisetner.unsubscribe();
     this.getCartItemsSubjectListener.unsubscribe();
+    this.getCartTotalSubjectListener.unsubscribe();
   }
 
 }

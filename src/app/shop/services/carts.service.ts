@@ -22,6 +22,7 @@ export class CartsService {
   private lastCartDataSubject = new Subject<Cart>();
   private lastOrNewDataSubject = new Subject<Cart>();
   private cartItemsDataSubject = new Subject<CartItem[]>();
+  private cartTotalSubject = new Subject<number>();
   private cartItem = new Subject<CartItem>();
   constructor(
     private http: HttpClient,
@@ -52,6 +53,10 @@ export class CartsService {
     return this.cartItem.asObservable();
   }
 
+  getCartTotalSubject() {
+    return this.cartTotalSubject.asObservable();
+  }
+
   ////
 
   getActiveCart() {
@@ -68,6 +73,7 @@ export class CartsService {
           this.lastCartDataSubject.next(lastCart);
           this.lastOrNewDataSubject.next(lastCart);
           this.hasPreviousCart.next(true);
+          this.setCartTotal(lastCart._id);
         } else {
           if (makeNew) {
             this.hasPreviousCart.next(false);
@@ -101,6 +107,7 @@ export class CartsService {
       .subscribe((response) => {
         this.cartItem.next(response.productItem);
         this.getCartItems(cartRef);
+        this.setCartTotal(cartRef);
       });
   }
 
@@ -117,6 +124,15 @@ export class CartsService {
         console.log('TCL: getCartItems -> response', response);
         if (response.CartItem) {
           this.cartItem.next(response.CartItem);
+        }
+      });
+  }
+
+  setCartTotal(cartRef: string) {
+    this.http.get
+      <{ message: string, cartTotal: number; }>(`${this.apiUrl}carts/setCartTotal/${cartRef}`).subscribe((response) => {
+        if (response.cartTotal) {
+          this.cartTotalSubject.next(response.cartTotal);
         }
       });
   }
