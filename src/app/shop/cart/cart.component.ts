@@ -19,6 +19,7 @@ export class CartComponent implements OnInit, OnDestroy {
   user: User;
   cart: Cart;
   cartItemArray: CartItem[];
+  activeItems: number;
   hasPreviousCart: boolean;
 
   constructor(
@@ -45,8 +46,10 @@ export class CartComponent implements OnInit, OnDestroy {
       }
     });
 
+    // cart items
     this.getCartItemsSubjectListener = this.cartService.getItemsCartDataSubject().subscribe((cartItems: CartItem[]) => {
       this.cartItemArray = cartItems;
+      this.activeItems = cartItems.filter((item) => item.amount).length;
     });
 
   }
