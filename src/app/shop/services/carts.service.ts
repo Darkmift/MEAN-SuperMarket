@@ -131,7 +131,9 @@ export class CartsService {
   setCartTotal(cartRef: string) {
     this.http.get
       <{ message: string, cartTotal: number; }>(`${this.apiUrl}carts/setCartTotal/${cartRef}`).subscribe((response) => {
-        if (response.cartTotal) {
+        console.log('TCL: setCartTotal -> response', response);
+        if (!isNaN(response.cartTotal)) {
+          console.log('TCL: setCartTotal -> response.cartTotal', response.cartTotal);
           this.cartTotalSubject.next(response.cartTotal);
         }
       });

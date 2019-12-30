@@ -9,7 +9,6 @@ class CartItemController {
 
 			const uniqueName = `${productRef}_${cartRef}`;
 			const itemExist = await CartItem.findOne({ uniqueName }).lean();
-			console.log('TCL: CartItemController -> createOrUpdate -> itemExist', itemExist);
 
 			if (itemExist) {
 				const updatedItem = await CartItem.updateOne(

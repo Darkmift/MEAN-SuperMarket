@@ -123,6 +123,7 @@ class CartController {
 					}, 0);
 					sum = sum.toFixed(2);
 					const updateTotal = await Cart.findByIdAndUpdate(cartRef, { total: sum }, { new: true });
+					console.log('TCL: CartController -> setCartTotal -> updateTotal', updateTotal.total);
 
 					return res.status(200).json({
 						message: 'cart total updated',
