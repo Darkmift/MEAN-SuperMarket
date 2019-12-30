@@ -1,11 +1,9 @@
 <div class="card-body m-0 p-0">
-  <p class="card-title font-weight-bold">
+  <span class="card-title font-weight-bold">
     Welcome<span *ngIf="hasPreviousCart">&nbsp;back</span>&nbsp;{{user?.firstName}},
-  </p>
-  <small>Items in cart:
-    <span class="badge badge-success text-light">{{activeItems}}
-    </span>
-  </small>
+    <br>
+    <small>Items in cart: <span class="badge badge-success text-light">{{activeItems}} </span></small>
+  </span>
   <hr>
   <!-- itemList -->
   <div class="card itemList">
