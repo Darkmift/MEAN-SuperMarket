@@ -4,6 +4,7 @@ import { CartsService } from '../services/carts.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'src/app/auth/models/user.model';
 import { Subscription } from 'rxjs';
+import { CartItem } from '../models/CartItem';
 
 @Component({
   selector: 'app-cart',
@@ -14,9 +15,10 @@ export class CartComponent implements OnInit, OnDestroy {
 
   private getlastOrNewDataSubjectLisetner: Subscription;
   private getHasPreviousCartSubjectLisetner: Subscription;
+  private getCartItemsSubjectListener: Subscription;
   user: User;
   cart: Cart;
-  cartJsonTest: string;
+  cartItemArray: CartItem[];
   hasPreviousCart: boolean;
 
   constructor(
@@ -24,24 +26,35 @@ export class CartComponent implements OnInit, OnDestroy {
     private cartService: CartsService) { }
 
   ngOnInit() {
+    // fetch user data
     this.user = this.authService.getUser();
+    // fetch cart
     this.cartService.getLastActiveCart(this.user.id, true);
 
+    // hasPreviousCart boolean
     this.getHasPreviousCartSubjectLisetner = this.cartService.gethasPreviousCart().subscribe((response: boolean) => {
       this.hasPreviousCart = response;
     });
 
+    // cart data
     this.getlastOrNewDataSubjectLisetner = this.cartService.getlastOrNewDataSubject().subscribe((cart: Cart) => {
       if (cart) {
         this.cart = cart;
-        this.cartJsonTest = JSON.stringify(this.cart);
+        // fetch cartItems
+        this.cartService.getCartItems(this.cart._id);
       }
+    });
+
+    this.getCartItemsSubjectListener = this.cartService.getItemsCartDataSubject().subscribe((cartItems: CartItem[]) => {
+      this.cartItemArray = cartItems;
     });
 
   }
 
   ngOnDestroy(): void {
     this.getlastOrNewDataSubjectLisetner.unsubscribe();
+    this.getHasPreviousCartSubjectLisetner.unsubscribe();
+    this.getCartItemsSubjectListener.unsubscribe();
   }
 
 }

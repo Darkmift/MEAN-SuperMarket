@@ -1,8 +1,9 @@
 <div class="card card-size">
   <div class="card-body overflow-auto row">
-    <!-- <span *ngFor="let product of productArray">{{product.name}}</span> -->
+    <span id="resetView565656"></span>
     <app-product-item class="col-lg-3 col-md-4 col-sm-6 p-0 my-1"
       *ngFor="let product of productArray"
-      [productObj]="product"></app-product-item>
+      [productObj]="product"
+      [initialAmount]="initialAmount[product._id] || 0"></app-product-item>
   </div>
 </div>

@@ -15,16 +15,16 @@
           <span aria-hidden="true">&times;</span>
         </button>
         <!-- product name -->
-        <h5 class="card-title m-1">Butternut squas</h5>
+        <h5 class="card-title m-1">{{capitalize(cartItemObj.name)}}</h5>
         <!-- price -->
 
         <div class="card-text gridList p-0">
           <span>&nbsp;Price:&nbsp;</span>
-          <span class="badge badge-success text-light m-1"> $52.80 </span>
+          <span class="badge badge-success text-light m-1"> ${{cartItemObj.price}} </span>
           <span>&nbsp;Amount:&nbsp;</span>
-          <span class="badge badge-success text-light m-1"> 150 </span>
+          <span class="badge badge-success text-light m-1"> {{cartItemObj.amount}} </span>
           <span>&nbsp;Total:&nbsp;</span>
-          <span class="badge badge-success text-light m-1"> $7,920.15 </span>
+          <span class="badge badge-success text-light m-1"> ${{cartItemObj.total}} </span>
         </div>
 
         <!-- buttons -->

@@ -5,4 +5,7 @@ export class CartItem {
   name: string;
   price: number;
   imgUrl: string;
+  total: number;
+  productRef: string;
+  cartRef: string;
 }

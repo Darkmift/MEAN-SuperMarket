@@ -5,9 +5,10 @@
   <hr>
   <!-- itemList -->
   <div class="card itemList">
-    <div class="card-body">
+    <div class="card-body overflow-auto">
       <!-- itemList -->
-      <app-cart-item></app-cart-item>
+      <app-cart-item *ngFor="let item of cartItemArray"
+        [cartItemObj]="item"></app-cart-item>
     </div>
   </div>
   <hr>
@@ -17,5 +18,4 @@
     </p>
     <div class="card-link btn btn-primary col-5 mb-2">Check Out</div>
   </div>
-  <!-- {{cartJsonTest?'yes':'no cart'}} -->
 </div>
