@@ -70,6 +70,7 @@ const validationSets = {
 	carts: [ param('customerRef').not().isEmpty() ],
 	cartId: [ param('customerRef').not().isEmpty(), param('_id').not().isEmpty() ],
 	getLastActiveCart: [ param('id').not().isEmpty() ],
+	searchValue: [ param('searchValue').not().isEmpty() ],
 	// order validators
 	orderCreate: [
 		body('customerRef').not().isEmpty(),

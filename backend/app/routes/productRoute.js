@@ -10,5 +10,6 @@ router.get('/getAll', auth, productController.getAll);
 router.get('/get/:id', auth, validationRules('productId'), validate, productController.getOne);
 router.get('/getCount', auth, productController.getCount);
 router.get('/getByCategory/:id', auth, validationRules('productId'), validate, productController.getByCategory);
+router.get('/search/:searchValue', auth, validationRules('searchValue'), validate, productController.matchSearch);
 
 module.exports = router;

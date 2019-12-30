@@ -113,20 +113,11 @@ class ProductController {
 
 	static async getByCategory(req, res, next) {
 		const { id } = req.params;
-		console.log('TCL: ProductController -> getByCategory -> id', id);
 
 		try {
-			const productsByCategory = await Product.find(
-				{
-					category: new ObjectId(id),
-				},
-				function(err, documents) {
-					if (err) {
-						throw new ErrorHandler(500, err.message);
-					}
-					console.log('TCL: ProductController -> getByCategory -> documents', documents);
-				},
-			).exec();
+			const productsByCategory = await Product.find({
+				category: id,
+			});
 			res.status(200).send({
 				message: 'Product for category fetch succesful',
 				Product: productsByCategory,
@@ -134,6 +125,27 @@ class ProductController {
 		} catch (error) {
 			error.statusCode = 500;
 			error.message = { 1: 'Failed to retrieve Product with provided id', 2: error.message };
+			next(error);
+		}
+	}
+
+	static async matchSearch(req, res, next) {
+    
+    const { searchValue } = req.params;
+    const regex = new RegExp(searchValue, 'g');
+		console.log('TCL: ProductController -> getByCategory -> id', searchValue);
+
+		try {
+			const searchResult = await Product.find({
+				name: { $regex: regex, $options: 'ixs' },
+			});
+			res.status(200).send({
+				message: 'Product for category fetch succesful',
+				searchResults: searchResult,
+			});
+		} catch (error) {
+			error.statusCode = 500;
+			error.message = { 1: 'Failed to match result', 2: error.message };
 			next(error);
 		}
 	}
