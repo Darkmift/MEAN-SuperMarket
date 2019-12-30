@@ -130,9 +130,8 @@ class ProductController {
 	}
 
 	static async matchSearch(req, res, next) {
-    
-    const { searchValue } = req.params;
-    const regex = new RegExp(searchValue, 'g');
+		const { searchValue } = req.params;
+		const regex = new RegExp(searchValue, 'g');
 		console.log('TCL: ProductController -> getByCategory -> id', searchValue);
 
 		try {

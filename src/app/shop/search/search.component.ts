@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductsService } from '../services/products.service';
 
 @Component({
   selector: 'app-search',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  searchValue = '';
+  constructor(private productService: ProductsService) { }
 
   ngOnInit() {
+  }
+
+  onSearchSubmit(regex: string) {
+    console.log('TCL: SearchComponent -> onSearchSubmit -> regex', regex);
+    this.productService.getProductsByRegex(regex);
   }
 
 }

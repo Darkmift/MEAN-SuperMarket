@@ -14,6 +14,7 @@ export class ProductsService {
   private apiUrl = environment.apiUrl;
   private countSubject = new Subject<number>();
   private productsByCategoryDataSubject = new Subject<Product[]>();
+  private searchProductsResult = new Subject<Product[]>();
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -21,6 +22,7 @@ export class ProductsService {
   ) { }
 
 
+  // Subject getters
   getCountSubject() {
     return this.countSubject.asObservable();
   }
@@ -28,6 +30,12 @@ export class ProductsService {
   getproductsByCategoryDataSubject() {
     return this.productsByCategoryDataSubject.asObservable();
   }
+
+  getsearchProductsResult() {
+    return this.searchProductsResult.asObservable();
+  }
+
+  ////
 
   getProductCount() {
     this.http.get
@@ -47,6 +55,17 @@ export class ProductsService {
         const productsArray = response.Product;
         if (productsArray) {
           this.productsByCategoryDataSubject.next(productsArray);
+        }
+      });
+  }
+
+  getProductsByRegex(regex: string) {
+    this.http.get
+      <{ message: string, searchResults: Product[]; }>
+      (`${this.apiUrl}/products/search/${regex}`).subscribe((response) => {
+        const productsArray = response.searchResults;
+        if (productsArray) {
+          this.searchProductsResult.next(productsArray);
         }
       });
   }

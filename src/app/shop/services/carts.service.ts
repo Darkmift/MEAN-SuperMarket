@@ -99,7 +99,6 @@ export class CartsService {
     this.http.post
       <{ message: string, isNew: boolean, productItem: CartItem; }>(`${this.apiUrl}cartItems/`, { cartRef, productRef, amount })
       .subscribe((response) => {
-        console.log('TCL: sendToCart -> response', response);
         this.cartItem.next(response.productItem);
         this.getCartItems(cartRef);
       });
@@ -108,7 +107,6 @@ export class CartsService {
   getCartItems(cartRef: string) {
     this.http.get
       <{ message: string, CartItemList: CartItem[]; }>(`${this.apiUrl}cartItems/cart/${cartRef}`).subscribe((response) => {
-        console.log('TCL: getCartItems -> response', response.CartItemList);
         this.cartItemsDataSubject.next(response.CartItemList);
       });
   }

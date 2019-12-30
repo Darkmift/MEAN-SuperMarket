@@ -1,6 +1,12 @@
 <div class="card card-size">
   <div class="card-body overflow-auto row">
     <span id="resetView565656"></span>
+    <div class="alert alert-info col-12 p-2 my-1"
+      role="alert"
+      *ngIf="isSearchResults">
+      Search result: <span class="badge badge-success text-light">{{productArray.length}} </span>
+    </div>
+
     <app-product-item class="col-lg-3 col-md-4 col-sm-6 p-0 my-1"
       *ngFor="let product of productArray"
       [productObj]="product"
