@@ -63,7 +63,7 @@ export class ProductDisplayComponent implements OnInit, OnDestroy {
       this.productArray = productArray;
     });
 
-    // get products by regex
+    // get products by regex -- manage conditional display of results
     this.getsearchProductsResultSubjectListener = this.productService.getsearchProductsResult().subscribe((productArray: Product[]) => {
       console.log('hello?');
       document.getElementById('resetView565656').scrollIntoView(true);
