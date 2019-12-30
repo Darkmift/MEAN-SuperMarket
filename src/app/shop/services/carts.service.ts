@@ -91,6 +91,7 @@ export class CartsService {
         console.log('TCL: createNewCart -> response', response);
         if (response.result) {
           this.lastOrNewDataSubject.next(response.result);
+          this.activeCart = response.result;
         }
       });
   }
