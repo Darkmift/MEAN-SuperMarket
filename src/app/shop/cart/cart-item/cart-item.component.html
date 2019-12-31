@@ -28,18 +28,24 @@
 
         <!-- price -->
         <div class="card-text gridList p-0">
-          <span *ngIf="shopOrOrderConfig">
+
+          <ng-container *ngIf="shopOrOrderConfig; else elseTemplate">
             <span>&nbsp;Price:&nbsp;</span>
             <span class="badge badge-success text-light m-1"> ${{cartItemObj.price}} </span>
             <span>&nbsp;Amount:&nbsp;</span>
             <span class="badge badge-success text-light m-1"> {{cartItemObj.amount}} </span>
             <span>&nbsp;Total:&nbsp;</span>
-          </span>
-          <span class="badge badge-success text-light m-1"> ${{cartItemObj.total}} </span>
+            <span class="badge badge-success text-light m-1"> ${{cartItemObj.total}} </span>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <span>&nbsp;Total:&nbsp;</span>
+            <span class="badge badge-success text-light m-1"> ${{cartItemObj.total}} </span>
+          </ng-template>
+
         </div>
       </div>
     </div>
 
   </div>
-  
+
 </div>

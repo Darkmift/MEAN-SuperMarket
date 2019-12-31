@@ -4,7 +4,6 @@ import { ShopComponent } from './shop.component';
 import { AuthGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
-  { path: ':id', component: ShopComponent },
   { path: '', component: ShopComponent },
 ];
 

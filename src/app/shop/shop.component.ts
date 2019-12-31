@@ -1,17 +1,18 @@
 // credit: https://www.freakyjolly.com/angular-8-re-sizable-elements-and-layouts-in-angular-8-application/
 
-import { Component, OnInit, HostListener, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, HostListener, ElementRef, ViewChild, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { OrdersService } from './services/orders.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.css']
 })
-export class ShopComponent implements OnInit {
+export class ShopComponent implements OnInit, OnDestroy {
   @ViewChild('parentContainer', { static: true }) parentDiv: ElementRef;
-  cartId: string;
+  private switchToOrderViewSubjectListener: Subscription;
   // resize config
   cartDiv = {
     width: 0,
@@ -25,23 +26,28 @@ export class ShopComponent implements OnInit {
   };
   /////
   // switch to shop on false,orders on true
-  showShopOrOrder = true;
+  showShopOrOrder: boolean;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private ordersService: OrdersService, ) { }
+    private ordersService: OrdersService, ) {
+
+  }
 
   ngOnInit() {
+    this.showShopOrOrder = this.ordersService.getShopOrOrder();
+    // listen to view switch
+    this.switchToOrderViewSubjectListener = this.ordersService.getswitchToOrderViewSubject().subscribe((shopOrOrder: boolean) => {
+      console.log('TCL: ShopComponent -> ngOnInit -> shopOrOrder', shopOrOrder);
+      this.showShopOrOrder = shopOrOrder;
+    });
+
     // resize code
     const totalWidth = this.parentDiv.nativeElement.offsetWidth;
     this.cartDiv.width = Math.floor((totalWidth / 100) * 25);
     this.shopDiv.width = Math.floor((totalWidth / 100) * 75);
     /////
-
-    this.cartId = this.route.snapshot.params.id;
-
-    // listen to view switch
   }
 
   // resize methods
@@ -91,6 +97,10 @@ export class ShopComponent implements OnInit {
   // switch back to shop
   switchToShop() {
     this.ordersService.switchViews(false);
+  }
+
+  ngOnDestroy(): void {
+    this.switchToOrderViewSubjectListener.unsubscribe();
   }
 
 }

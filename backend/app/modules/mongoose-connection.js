@@ -8,6 +8,7 @@ const mongooseConnection = mongoose
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 		useFindAndModify: false,
+		auto_reconnect: true,
 	})
 	.then(() => {
 		console.log('connected to DB');

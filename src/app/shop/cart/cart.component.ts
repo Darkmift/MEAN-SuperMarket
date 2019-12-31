@@ -64,9 +64,10 @@ export class CartComponent implements OnInit, OnDestroy {
 
   }
 
-  switchToOrder() {
-    this.orderService.switchViews(true);
+  switchToOrder(switchView: boolean) {
+    this.orderService.switchViews(switchView);
   }
+
 
   ngOnDestroy(): void {
     this.getlastOrNewDataSubjectLisetner.unsubscribe();

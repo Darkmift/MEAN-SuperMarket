@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../../auth/auth.service';
@@ -13,12 +13,15 @@ import { CartsService } from './carts.service';
 export class OrdersService {
   private apiUrl = environment.apiUrl;
   private countSubject = new Subject<number>();
+  // view variables
+  private shopOrOrder: boolean;
   private switchToOrderViewSubject = new Subject<boolean>();
 
   constructor(
     private http: HttpClient,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private route: ActivatedRoute,
   ) { }
 
   getCountSubject() {
@@ -43,5 +46,14 @@ export class OrdersService {
   // switch between shop and order view (true:set to order,false:set to shop)
   switchViews(setView: boolean) {
     this.switchToOrderViewSubject.next(setView);
+    this.shopOrOrder = setView;
+    localStorage.setItem('shopOrOrder', setView ? '1' : '0');
+  }
+
+  // fetch view var
+  getShopOrOrder() {
+    console.log('TCL: getShopOrOrder -> localStorage->', localStorage.getItem('shopOrOrder'));
+    this.shopOrOrder = localStorage.getItem('shopOrOrder') === '1' ? true : false;
+    return this.shopOrOrder;
   }
 }

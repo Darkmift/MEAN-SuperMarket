@@ -7,6 +7,7 @@
       <br>
       <small>Items in cart: <span class="badge badge-success text-light p-1">{{activeItems}} </span></small>
     </span>
+    <hr>
   </ng-container>
   <ng-template #elseOrder>
     <small class="card-title m-2 font-italic">
@@ -14,9 +15,11 @@
       <br>&nbsp;&nbsp;before completing your order:
     </small>
     <br>
-    <a class="badge badge-primary text-light mt-1 ml-1 p-1">Return to shop</a>
+    <a class="badge badge-primary text-light mt-1 ml-1 p-1"
+      (click)="switchToOrder(true)">Return to shop</a>
+    <span style="height: 10px;">&nbsp;</span>
   </ng-template>
-  <hr>
+
 
   <!-- itemList container -->
   <div class="card itemList">
@@ -44,7 +47,7 @@
       </ng-container>
       <ng-template #elseButton>
         <button class="card-link btn btn-primary col-5 mb-2"
-          (click)="switchToOrder()">Check Out</button>
+          (click)="switchToOrder(false)">Check Out</button>
       </ng-template>
     </ng-container>
     <!-- cart view -->
