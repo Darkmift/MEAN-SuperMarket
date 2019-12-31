@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class CartItemComponent implements OnInit {
   @Input() cartItemObj: CartItem;
+  @Input() shopOrOrderConfig: boolean;
   isShown = false;
   private capitalize = Capitalize;
   constructor(private cartService: CartsService) { }

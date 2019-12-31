@@ -1,23 +1,64 @@
 <div class="card-body m-0 p-0">
-  <span class="card-title font-weight-bold">
-    Welcome<span *ngIf="hasPreviousCart">&nbsp;back</span>&nbsp;{{user?.firstName}},
+
+  <!-- Title section -->
+  <ng-container *ngIf="shopOrOrderConfig; else elseOrder">
+    <span class="card-title font-weight-bold">
+      Welcome<span *ngIf="hasPreviousCart">&nbsp;back</span>&nbsp;{{user?.firstName}},
+      <br>
+      <small>Items in cart: <span class="badge badge-success text-light p-1">{{activeItems}} </span></small>
+    </span>
+  </ng-container>
+  <ng-template #elseOrder>
+    <small class="card-title m-2 font-italic">
+      Feel free to review your cart contents
+      <br>&nbsp;&nbsp;before completing your order:
+    </small>
     <br>
-    <small>Items in cart: <span class="badge badge-success text-light">{{activeItems}} </span></small>
-  </span>
+    <a class="badge badge-primary text-light mt-1 ml-1 p-1">Return to shop</a>
+  </ng-template>
   <hr>
-  <!-- itemList -->
+
+  <!-- itemList container -->
   <div class="card itemList">
     <div class="card-body overflow-auto">
       <!-- itemList -->
-      <app-cart-item *ngFor="let item of cartItemArray"
+      <app-cart-item [shopOrOrderConfig]="shopOrOrderConfig"
+        *ngFor="let item of cartItemArray"
         [cartItemObj]="item"></app-cart-item>
     </div>
   </div>
-  <hr>
+  <hr *ngIf="shopOrOrderConfig">
+
+  <!-- bottom section -->
   <div class="row">
-    <p class="card-text col-6 mt-2 font-weight-bold">
-      Total:&nbsp;<span class="badge badge-success text-light">${{cart?.total.toFixed(2)}}</span>
-    </p>
-    <div class="card-link btn btn-primary col-5 mb-2">Check Out</div>
+    <!-- shop view -->
+    <ng-container *ngIf="shopOrOrderConfig; else bottomElse">
+      <p class="card-text col-6 mt-2 font-weight-bold">
+        Total:&nbsp;<span class="badge badge-success text-light">${{cart?.total.toFixed(2)}}</span>
+      </p>
+      <ng-container *ngIf="cart?.total===0; else elseButton">
+        <button class="card-link btn btn-primary col-5 mb-2"
+          [disabled]="true"
+          role="button"
+          aria-disabled="true">Fill out Cart</button>
+      </ng-container>
+      <ng-template #elseButton>
+        <button class="card-link btn btn-primary col-5 mb-2"
+          (click)="switchToOrder()">Check Out</button>
+      </ng-template>
+    </ng-container>
+    <!-- cart view -->
+    <ng-template #bottomElse>
+      <div class="col-12 d-flex ml-1 mt-3">
+        <small class="card-text">Items in cart: <span class="badge badge-success text-light p-1">{{activeItems}}
+          </span>
+        </small>
+        <span style="margin:auto;"></span>
+        <small class="card-text font-weight-bold mr-5">
+          Total:&nbsp;<span class="badge badge-success text-light p-1">${{cart?.total.toFixed(2)}}</span>
+        </small>
+      </div>
+
+    </ng-template>
   </div>
 </div>

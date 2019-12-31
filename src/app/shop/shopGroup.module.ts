@@ -11,6 +11,7 @@ import { ProductDisplayComponent } from './product-select/product-display/produc
 import { SearchComponent } from './search/search.component';
 import { ProductItemComponent } from './product-select/product-item/product-item.component';
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
+import { OrderComponent } from './order/order.component';
 
 
 
@@ -24,7 +25,8 @@ import { CartItemComponent } from './cart/cart-item/cart-item.component';
     ProductDisplayComponent,
     SearchComponent,
     ProductItemComponent,
-    CartItemComponent
+    CartItemComponent,
+    OrderComponent
   ],
   imports: [
     CommonModule,

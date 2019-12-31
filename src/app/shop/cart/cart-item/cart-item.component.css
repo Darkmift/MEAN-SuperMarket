@@ -1,7 +1,3 @@
-.card {
-  height: 22vh;
-}
-
 .gridList {
   display: grid;
   grid-template-columns: 1fr 1fr;

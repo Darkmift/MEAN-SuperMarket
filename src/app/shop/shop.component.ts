@@ -2,6 +2,7 @@
 
 import { Component, OnInit, HostListener, ElementRef, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { OrdersService } from './services/orders.service';
 
 @Component({
   selector: 'app-shop',
@@ -23,20 +24,27 @@ export class ShopComponent implements OnInit {
     width: 0,
   };
   /////
+  // switch to shop on false,orders on true
+  showShopOrOrder = true;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private ordersService: OrdersService, ) { }
 
   ngOnInit() {
     // resize code
     const totalWidth = this.parentDiv.nativeElement.offsetWidth;
     this.cartDiv.width = Math.floor((totalWidth / 100) * 25);
     this.shopDiv.width = Math.floor((totalWidth / 100) * 75);
+    /////
 
     this.cartId = this.route.snapshot.params.id;
+
+    // listen to view switch
   }
 
+  // resize methods
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(event: MouseEvent) {
 
@@ -69,7 +77,6 @@ export class ShopComponent implements OnInit {
     this.cartDiv.width += offsetX;
   }
 
-
   @HostListener('document:mousedown', ['$event'])
   onMouseDown(event: any) {
 
@@ -78,6 +85,12 @@ export class ShopComponent implements OnInit {
       this.cartDiv.oldX = event.clientX;
     }
 
+  }
+  ////
+
+  // switch back to shop
+  switchToShop() {
+    this.ordersService.switchViews(false);
   }
 
 }

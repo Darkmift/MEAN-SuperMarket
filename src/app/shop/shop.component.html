@@ -1,16 +1,23 @@
 <app-search></app-search>
 <div #parentContainer
   class="parentContainer">
-  <!-- search bar -->
   <!-- cartDiv -->
   <div class="cartDiv bg-light-blue card bg-light-blue"
     [style.width.px]="cartDiv.width">
-    <app-cart></app-cart>
-    <div class="grabber" id="resizeDiv"></div>
+    <app-cart [shopOrOrderConfig]="showShopOrOrder"></app-cart>
+    <div class="grabber"
+      id="resizeDiv"></div>
   </div>
   <!-- ShopDiv -->
   <div class="shopDiv card bg-light-blue"
     [style.width.px]="shopDiv.width">
-    <app-product-select></app-product-select>
+
+    <ng-container *ngIf="showShopOrOrder; else elseTemplate">
+      <app-product-select></app-product-select>
+    </ng-container>
+    <ng-template #elseTemplate>
+      <app-order></app-order>
+    </ng-template>
+
   </div>
 </div>

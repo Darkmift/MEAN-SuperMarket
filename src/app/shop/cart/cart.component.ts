@@ -1,10 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Cart } from '../models/Cart';
 import { CartsService } from '../services/carts.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'src/app/auth/models/user.model';
 import { Subscription } from 'rxjs';
 import { CartItem } from '../models/CartItem';
+import { OrdersService } from '../services/orders.service';
 
 @Component({
   selector: 'app-cart',
@@ -13,6 +14,7 @@ import { CartItem } from '../models/CartItem';
 })
 export class CartComponent implements OnInit, OnDestroy {
 
+  @Input() shopOrOrderConfig: boolean;
   private getlastOrNewDataSubjectLisetner: Subscription;
   private getHasPreviousCartSubjectLisetner: Subscription;
   private getCartItemsSubjectListener: Subscription;
@@ -25,7 +27,8 @@ export class CartComponent implements OnInit, OnDestroy {
 
   constructor(
     private authService: AuthService,
-    private cartService: CartsService) { }
+    private cartService: CartsService,
+    private orderService: OrdersService) { }
 
   ngOnInit() {
     // fetch user data
@@ -59,6 +62,10 @@ export class CartComponent implements OnInit, OnDestroy {
       this.cart.total = total;
     });
 
+  }
+
+  switchToOrder() {
+    this.orderService.switchViews(true);
   }
 
   ngOnDestroy(): void {
