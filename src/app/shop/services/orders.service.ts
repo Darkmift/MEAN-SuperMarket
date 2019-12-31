@@ -52,7 +52,6 @@ export class OrdersService {
 
   // fetch view var
   getShopOrOrder() {
-    console.log('TCL: getShopOrOrder -> localStorage->', localStorage.getItem('shopOrOrder'));
     this.shopOrOrder = localStorage.getItem('shopOrOrder') === '1' ? true : false;
     return this.shopOrOrder;
   }

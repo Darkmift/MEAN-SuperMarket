@@ -1,1 +1,139 @@
-<p>order works!</p>
+        <!-- orderForm start -->
+        <div class="row mx-3">
+          <form class="bg-light p-2 border-custom offset-2 col-8 p-4 overflow-auto"
+            style="height: 75vh;"
+            name="form"
+            (ngSubmit)="onSubmit(orderForm)"
+            #orderForm="ngForm"
+            novalidate>
+
+            <h4 class="font-italic">Almost done! just a few more details...</h4>
+            <br>
+
+            <h5>Shipping details:</h5>
+            <hr>
+            <!-- city select -->
+            <div class="form-group">
+              <label for="city">Select your city</label>
+              <select class="form-control"
+                #city="ngModel"
+                name="city"
+                [ngClass]="{ 'is-invalid': orderForm.submitted && city.value===cityList[0] }"
+                [(ngModel)]="submittedUserData.city"
+                [disabled]="isReadOnly"
+                (dblclick)="fillUserDataOnDClick('city')"
+                required>
+                <option *ngFor="let option of cityList"
+                  [value]="option">{{option}}</option>
+              </select>
+
+              <div *ngIf="orderForm.submitted && city.value===cityList[0]"
+                class="invalid-feedback">
+                <div>Please select your city</div>
+              </div>
+            </div>
+
+            <!-- street -->
+            <div class="form-group">
+              <label for="street">Street Name</label>
+              <input type="text"
+                [readonly]="isReadOnly"
+                class="form-control"
+                name="street"
+                [(ngModel)]="submittedUserData.street"
+                #street="ngModel"
+                [ngClass]="{ 'is-invalid': orderForm.submitted && street.invalid }"
+                placeholder="Please provide your street"
+                (dblclick)="fillUserDataOnDClick('street')"
+                required
+                minlength="3" />
+              <div *ngIf="orderForm.submitted && street.invalid"
+                class="invalid-feedback">
+                <div *ngIf="street.errors.required">Please add your street name</div>
+                <div *ngIf="street.errors.minlength">street name must be at least 3 charcters</div>
+              </div>
+            </div>
+
+            <!-- shipping date -->
+            <div class="form-group">
+              <label for="date">Pick shipping date:</label>
+              <input class="form-control"
+                placeholder="yyyy-mm-dd"
+                name="shippingDate"
+                [minDate]="{year: minMaxDates.startDate.year, month: minMaxDates.startDate.month, day: minMaxDates.startDate.day}"
+                [maxDate]="{year: minMaxDates.endDate.year, month: minMaxDates.endDate.month, day: minMaxDates.endDate.day}"
+                [(ngModel)]="submittedUserData.shippingDate"
+                [markDisabled]="isDisabled"
+                ngbDatepicker
+                #toggleID="ngbDatepicker"
+                #shippingDate="ngModel"
+                (click)="toggleID.toggle()"
+                [ngClass]="{'is-invalid': orderForm.submitted && !shippingDate.value}">
+              <div *ngIf="orderForm.submitted && !shippingDate.value"
+                class="text-danger">
+                <small>Please select a Date</small>
+              </div>
+            </div>
+
+            <h5>Payments:</h5>
+
+            <div class="row">
+              <!-- cc number -->
+              <div class="form-group col-8">
+                <label for="street">Credit Card:</label>
+                <input type="text"
+                  [readonly]="isReadOnly"
+                  class="form-control"
+                  name="cc"
+                  [(ngModel)]="submittedUserData.cc"
+                  #cc="ngModel"
+                  [ngClass]="{ 'is-invalid': orderForm.submitted && cc.invalid }"
+                  placeholder="Please provide your cc number"
+                  required
+                  (change)="matchCCRegex()"
+                  (keyup)="matchCCRegex()"
+                  minlength="15" />
+                <div *ngIf="orderForm.submitted && cc.invalid"
+                  class="invalid-feedback">
+                  <div *ngIf="street.errors.required">Please add your cc number</div>
+                  <div *ngIf="street.errors.minlength">cc must be at least 15 charcters</div>
+                </div>
+              </div>
+              <!-- cc type -->
+              <div class="form-group col-4">
+                <label for="street">Credit Card:</label>
+                <input type="text"
+                  [readonly]="true"
+                  class="form-control"
+                  name="ccType"
+                  [(ngModel)]="submittedUserData.ccType"
+                  #cc="ngModel"
+                  [ngClass]="{ 'is-invalid': orderForm.submitted && cc.invalid }"
+                  required />
+              </div>
+            </div>
+
+            <hr>
+
+
+            <div *ngIf="orderForm.submitted && shippingDate.invalid"
+              class="alert alert-danger m-3">
+              Please fill your city,street and pick a date
+            </div>
+
+            <div class="form-group">
+
+              <div *ngIf="isLoading"
+                class="spinner-border text-primary"
+                role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+
+              <button *ngIf="!isLoading"
+                class="btn btn-primary">Submit Order</button>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- orderForm end -->
