@@ -16,6 +16,7 @@ export class OrdersService {
   // view variables
   private shopOrOrder: boolean;
   private switchToOrderViewSubject = new Subject<boolean>();
+  private dateIsAvailableSubject = new Subject<boolean>();
 
   constructor(
     private http: HttpClient,
@@ -43,6 +44,10 @@ export class OrdersService {
     return this.switchToOrderViewSubject.asObservable();
   }
 
+  getDateIsAvailableSubject() {
+    return this.dateIsAvailableSubject.asObservable();
+  }
+
   // switch between shop and order view (true:set to order,false:set to shop)
   switchViews(setView: boolean) {
     this.switchToOrderViewSubject.next(setView);
@@ -54,5 +59,9 @@ export class OrdersService {
   getShopOrOrder() {
     this.shopOrOrder = localStorage.getItem('shopOrOrder') === '1' ? true : false;
     return this.shopOrOrder;
+  }
+
+  checkDateIsAvailable(date: Date) {
+    this.dateIsAvailableSubject.next(false);
   }
 }

@@ -2,38 +2,78 @@
 * https://www.regular-expressions.info/creditcard.html
 */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'src/app/auth/models/user.model';
+import { OrdersService } from '../services/orders.service';
+import { Subscription } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.css']
 })
-export class OrderComponent implements OnInit {
+export class OrderComponent implements OnInit, OnDestroy {
 
   isLoading = true;
   isReadOnly = true;
   user: User;
+  getDateIsAvailableSubjectListener: Subscription;
 
   cityList = ['Select City', 'Tel-Aviv', 'Holon', 'Arad', `Be'er Sheva`, 'Yokneam', 'Rehovot', 'Safed', 'Netivot', 'Eilat', 'Metula'];
-  submittedUserData = { city: this.cityList[0], street: '', shippingDate: null, cc: null, ccType: 'Other' };
+  submittedUserData = {
+    city: this.cityList[0],
+    street: null,
+    shippingDate: null,
+    cc: null,
+    ccType: 'Other'
+  };
   minMaxDates = this.setMinMaxDates();
-  constructor(private authService: AuthService) { }
+  dateNotAvailabe = false;
+  // blockDate: NgbDateStruct[] = [
+  //   { year: 0, month: 0, day: 0 }
+  // ];
+
+
+  constructor(
+    private orderService: OrdersService,
+    private toastrService: ToastrService,
+    private authService: AuthService, ) { }
 
   ngOnInit() {
+    // for dclick autofill
     this.user = this.authService.getUser();
+
     // dev stuff -- remove before deployment
-    // this.submittedUserData = { city: this.cityList[1], street: 'Main', shippingDate: { year: 2019, month: 12, day: 18 } };
+    this.submittedUserData = {
+      city: this.cityList[1],
+      street: 'Main',
+      shippingDate: { year: 2020, month: 1, day: 18 },
+      cc: '4111111111111111',
+      ccType: 'VISA'
+    };
+    ////
+
+    this.getDateIsAvailableSubjectListener = this.orderService.getDateIsAvailableSubject().subscribe((dateAvailable: boolean) => {
+      if (!dateAvailable) {
+        this.toastrService.info(
+          `We're sorry`,
+          `We cannot deliver in said date`,
+          { progressBar: true }
+        );
+        this.dateNotAvailabe = true;
+        // this.shippingDateAvailable.setErrors({ dateNotAvailabe: true });
+        // this.blockDate[0] = this.submittedUserData.shippingDate;
+      }
+    });
 
     this.isLoading = false;
     setTimeout(() => {
       this.isReadOnly = false;
     }, 1000);
-    this.submittedUserData.city = this.cityList[0];
   }
 
   // some date stuff
@@ -43,7 +83,8 @@ export class OrderComponent implements OnInit {
     const startMonth = datePick.getMonth() + 1;
     const endMonth = startMonth === 12 ? 1 : startMonth + 1;
     const endYear = startMonth === 12 ? year + 1 : year;
-    const day = datePick.getDay() + 1;
+    const day = datePick.getDate() + 1;
+    console.log('TCL: OrderComponent -> setMinMaxDates -> day', day);
 
     return {
       startDate: { day, month: startMonth, year },
@@ -51,10 +92,14 @@ export class OrderComponent implements OnInit {
     };
   }
 
+
+
+
   // disable weekends
-  isDisabled(date: NgbDateStruct) {
+  isDisabled(date: NgbDateStruct/*, current: { month: number, year: number; }*/) {
     const d = new Date(date.year, date.month - 1, date.day);
-    return d.getDay() === 0 || d.getDay() === 6;
+    return d.getDay() >= 6 || d.getDay() === 0;
+    // || this.blockDate.find(x => NgbDate.from(x).equals(date)) ? true : false;
   }
 
   fillUserDataOnDClick(detail: string) {
@@ -74,7 +119,6 @@ export class OrderComponent implements OnInit {
     }
 
     ccNum = this.submittedUserData.cc = this.submittedUserData.cc.replace(/ /g, '').trim();
-    console.log('TCL: OrderComponent -> matchCCRegex -> ccNum', ccNum);
     const ccRegex = {
       visa: /^4[0-9]{12}(?:[0-9]{3})?$/,
       masterCard: /^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$/,
@@ -93,7 +137,6 @@ export class OrderComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    console.log('TCL: OrderComponent -> onSubmit -> form', form.controls.city.touched);
 
     if (!form.valid) {
       return;
@@ -103,8 +146,15 @@ export class OrderComponent implements OnInit {
 
     const submittedDate = this.submittedUserData.shippingDate;
     const jsDate = new Date(submittedDate.year, submittedDate.month - 1, submittedDate.day);
-    console.log('TCL: OrderComponent -> onSubmit -> jsDate', jsDate);
+    const orderInfo = { ...this.submittedUserData.shippingDate };
+    orderInfo.shippingDate = jsDate;
+    console.log('TCL: OrderComponent -> onSubmit -> orderInfo', orderInfo.shippingDate);
+    // this.blockDate[0] = this.submittedUserData.shippingDate;
+    this.orderService.checkDateIsAvailable(orderInfo.shippingDate);
+  }
 
+  ngOnDestroy(): void {
+    this.getDateIsAvailableSubjectListener.unsubscribe();
   }
 
 }

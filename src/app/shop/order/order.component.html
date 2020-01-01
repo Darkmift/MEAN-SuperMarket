@@ -3,7 +3,7 @@
           <form class="bg-light p-2 border-custom offset-2 col-8 p-4 overflow-auto"
             style="height: 75vh;"
             name="form"
-            (ngSubmit)="onSubmit(orderForm)"
+            (ngSubmit)="orderForm.valid && onSubmit(orderForm)"
             #orderForm="ngForm"
             novalidate>
 
@@ -67,8 +67,8 @@
                 ngbDatepicker
                 #toggleID="ngbDatepicker"
                 #shippingDate="ngModel"
-                (click)="toggleID.toggle()"
-                [ngClass]="{'is-invalid': orderForm.submitted && !shippingDate.value}">
+                (click)="[dateNotAvailabe=false,toggleID.toggle()]"
+                [ngClass]="{'is-invalid': orderForm.submitted && !shippingDate.value||dateNotAvailabe}">
               <div *ngIf="orderForm.submitted && !shippingDate.value"
                 class="text-danger">
                 <small>Please select a Date</small>
@@ -86,17 +86,18 @@
                   class="form-control"
                   name="cc"
                   [(ngModel)]="submittedUserData.cc"
-                  #cc="ngModel"
-                  [ngClass]="{ 'is-invalid': orderForm.submitted && cc.invalid }"
+                  #ccc="ngModel"
+                  [ngClass]="{ 'is-invalid': orderForm.submitted && ccc.invalid}"
                   placeholder="Please provide your cc number"
-                  required
                   (change)="matchCCRegex()"
                   (keyup)="matchCCRegex()"
-                  minlength="15" />
-                <div *ngIf="orderForm.submitted && cc.invalid"
+                  minlength="15"
+                  pattern="[0-9]+"
+                  required />
+                <div *ngIf="orderForm.submitted && ccc.invalid"
                   class="invalid-feedback">
-                  <div *ngIf="street.errors.required">Please add your cc number</div>
-                  <div *ngIf="street.errors.minlength">cc must be at least 15 charcters</div>
+                  <div *ngIf="ccc.errors.required">Please add your cc number</div>
+                  <div *ngIf="ccc.errors.minlength">cc must be at least 15 charcters</div>
                 </div>
               </div>
               <!-- cc type -->
@@ -108,19 +109,11 @@
                   name="ccType"
                   [(ngModel)]="submittedUserData.ccType"
                   #cc="ngModel"
-                  [ngClass]="{ 'is-invalid': orderForm.submitted && cc.invalid }"
                   required />
               </div>
             </div>
 
             <hr>
-
-
-            <div *ngIf="orderForm.submitted && shippingDate.invalid"
-              class="alert alert-danger m-3">
-              Please fill your city,street and pick a date
-            </div>
-
             <div class="form-group">
 
               <div *ngIf="isLoading"
