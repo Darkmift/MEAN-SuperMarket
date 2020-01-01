@@ -25,7 +25,7 @@
 
         <!-- product name -->
         <h5 class="card-title m-1"
-          [innerHTML]="capitalize(cartItemObj.name)| highlight: cartService.searchTerm">
+          [innerHTML]="capitalize(cartItemObj.name)| highlight: searchTerm">
           {{capitalize(cartItemObj.name)}}</h5>
 
         <!-- price -->

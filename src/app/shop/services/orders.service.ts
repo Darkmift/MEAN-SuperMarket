@@ -61,6 +61,12 @@ export class OrdersService {
     return this.shopOrOrder;
   }
 
+  // clear localstorage var
+  clearShopOrOrder() {
+    localStorage.removeItem('shopOrOrder');
+    this.switchViews(true);
+  }
+
   checkDateIsAvailable(date: Date) {
     this.dateIsAvailableSubject.next(false);
   }

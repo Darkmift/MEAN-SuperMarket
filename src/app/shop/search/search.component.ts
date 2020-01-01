@@ -19,7 +19,7 @@ export class SearchComponent implements OnInit {
 
   onSearchSubmit(regex: string) {
     this.productService.getProductsByRegex(regex);
-    this.cartService.searchTerm = regex;
+    this.cartService.setSearchTerm(regex);
   }
 
 }

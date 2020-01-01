@@ -26,7 +26,9 @@ export class CartsService {
   private cartItem = new Subject<CartItem>();
   private activeCart: Cart;
   // in use with highlightpipe
-  searchTerm;
+  private searchTerm;
+  private searchTermSubject = new Subject<string>();
+
 
   constructor(
     private http: HttpClient,
@@ -57,6 +59,10 @@ export class CartsService {
 
   getCartTotalSubject() {
     return this.cartTotalSubject.asObservable();
+  }
+
+  getSearchTermSubject() {
+    return this.searchTermSubject.asObservable();
   }
 
   ////
@@ -140,5 +146,14 @@ export class CartsService {
           this.cartTotalSubject.next(response.cartTotal);
         }
       });
+  }
+
+  setSearchTerm(regex) {
+    this.searchTerm = regex;
+    this.searchTermSubject.next(this.searchTerm);
+  }
+  
+  getSearchTerm() {
+    return this.searchTerm;
   }
 }
