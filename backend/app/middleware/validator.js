@@ -73,10 +73,10 @@ const validationSets = {
 	searchValue: [ param('searchValue').not().isEmpty() ],
 	// order validators
 	orderCreate: [
-		body('customerRef').not().isEmpty(),
-		body('name').not().isEmpty(),
+		// body('customerRef').not().isEmpty(),
+		// body('name').not().isEmpty(),
 		body('cartRef').not().isEmpty(),
-		body('total').isNumeric().not().isEmpty(),
+		// body('total').isNumeric().not().isEmpty(),
 		body('city').not().isEmpty(),
 		body('street').not().isEmpty(),
 		body('deliveryDate').custom(isValidDate).withMessage('the date must be valid').not().isEmpty(),
