@@ -12,6 +12,7 @@ import { SearchComponent } from './search/search.component';
 import { ProductItemComponent } from './product-select/product-item/product-item.component';
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
 import { OrderComponent } from './order/order.component';
+import { HighlightSearchPipe } from '../pipes/highlight.pipe';
 
 
 
@@ -26,7 +27,8 @@ import { OrderComponent } from './order/order.component';
     SearchComponent,
     ProductItemComponent,
     CartItemComponent,
-    OrderComponent
+    OrderComponent,
+    HighlightSearchPipe
   ],
   imports: [
     CommonModule,

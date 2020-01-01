@@ -14,12 +14,14 @@ export class CartItemComponent implements OnInit {
   @Input() shopOrOrderConfig: boolean;
   isShown = false;
   private capitalize = Capitalize;
+  searchTerm;
   constructor(private cartService: CartsService) { }
 
   ngOnInit() {
     if (this.cartItemObj.amount) {
       this.isShown = true;
     }
+    this.searchTerm = this.cartService.searchTerm;
   }
 
   removeItem() {

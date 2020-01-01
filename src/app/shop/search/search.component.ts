@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../services/products.service';
+import { CartsService } from '../services/carts.service';
 
 @Component({
   selector: 'app-search',
@@ -9,14 +10,16 @@ import { ProductsService } from '../services/products.service';
 export class SearchComponent implements OnInit {
 
   searchValue = '';
-  constructor(private productService: ProductsService) { }
+  constructor(
+    private cartService: CartsService,
+    private productService: ProductsService, ) { }
 
   ngOnInit() {
   }
 
   onSearchSubmit(regex: string) {
-    console.log('TCL: SearchComponent -> onSearchSubmit -> regex', regex);
     this.productService.getProductsByRegex(regex);
+    this.cartService.searchTerm = regex;
   }
 
 }

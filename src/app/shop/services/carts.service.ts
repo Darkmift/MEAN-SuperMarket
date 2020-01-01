@@ -24,13 +24,15 @@ export class CartsService {
   private cartItemsDataSubject = new Subject<CartItem[]>();
   private cartTotalSubject = new Subject<number>();
   private cartItem = new Subject<CartItem>();
+  private activeCart: Cart;
+  // in use with highlightpipe
+  searchTerm;
+
   constructor(
     private http: HttpClient,
     private router: Router,
     private authService: AuthService
   ) { }
-
-  private activeCart: Cart;
 
   // Subject Getters
   getlastOrNewDataSubject() {

@@ -24,7 +24,9 @@
         </button>
 
         <!-- product name -->
-        <h5 class="card-title m-1">{{capitalize(cartItemObj.name)}}</h5>
+        <h5 class="card-title m-1"
+          [innerHTML]="capitalize(cartItemObj.name)| highlight: cartService.searchTerm">
+          {{capitalize(cartItemObj.name)}}</h5>
 
         <!-- price -->
         <div class="card-text gridList p-0">
