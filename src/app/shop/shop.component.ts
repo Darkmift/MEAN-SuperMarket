@@ -48,7 +48,10 @@ export class ShopComponent implements OnInit, OnDestroy {
       console.log('TCL: ShopComponent -> ngOnInit -> shopOrOrder', shopOrOrder);
       this.showShopOrOrder = shopOrOrder;
     });
-    this.isAdmin = this.authService.getRole();
+    this.authService.getRole().then((role) => {
+      this.isAdmin = role;
+    });
+    console.log('TCL: ShopComponent -> ngOnInit ->  this.isAdmin', this.isAdmin);
     // resize code
     const totalWidth = this.parentDiv.nativeElement.offsetWidth;
     this.cartDiv.width = Math.floor((totalWidth / 100) * 25);

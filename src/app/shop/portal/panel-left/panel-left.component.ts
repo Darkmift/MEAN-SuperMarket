@@ -29,6 +29,7 @@ export class PanelLeftComponent implements OnInit {
 
   checkIsAdmin() {
     const isAdmin = this.authService.getRole();
+    console.log('TCL: PanelLeftComponent -> checkIsAdmin -> isAdmin', isAdmin);
     if (!isAdmin) {
       this.authService.logOut();
       this.toastService.error('Alert!', 'Not authorized', { progressBar: true });
