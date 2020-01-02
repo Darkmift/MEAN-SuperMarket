@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BootstrapModuleGroup } from '../bootstrapGroup/bootstrap-modules.module';
 import { ShopComponent } from './shop.component';
 import { CartComponent } from './cart/cart.component';
@@ -39,6 +39,7 @@ import { AdminEditComponent } from './admin-edit/admin-edit.component';
     CommonModule,
     BootstrapModuleGroup,
     FormsModule,
+    ReactiveFormsModule,
     ShopRoutingModule
   ]
 })

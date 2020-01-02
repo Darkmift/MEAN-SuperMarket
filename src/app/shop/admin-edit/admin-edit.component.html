@@ -1,1 +1,105 @@
-<p>admin-edit works!</p>
+<ng-container *ngIf="isLoading; else showEditForm">
+  <div class="spinner-border"
+    role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</ng-container>
+<ng-template #showEditForm>
+  <!-- form strat -->
+  <form [formGroup]="productForm"
+    #productFormNg="ngForm"
+    (ngSubmit)="onSubmit()">
+
+    <h5>Edit or Create Product:</h5>
+
+    <!-- category -->
+    <div class="form-group"
+      [ngClass]="{ 'mb-0': productFormNg.submitted && productForm.get('category').invalid }">
+      <label for="category">Category</label>
+      <select class="form-control"
+        name="category"
+        [ngClass]="{ 'is-invalid': productFormNg.submitted && productForm.get('category').invalid }"
+        formControlName="category"
+        required>
+        <option *ngFor="let category of categoryList"
+          [value]="category._id">
+          <span>{{category.name}}</span>
+        </option>
+      </select>
+
+      <div *ngIf="productFormNg.submitted && productForm.get('category').invalid">
+        <small style="color:#dc3545;"
+          *ngIf="productForm.get('category').errors.required">category is required</small>
+        <small style="color:#dc3545;"
+          *ngIf="productForm.get('category').errors.required && productForm.get('category').errors.nullSelected">
+          - The first one is not valid!
+        </small>
+      </div>
+    </div>
+
+    <!-- productName -->
+    <div class="form-group"
+      [ngClass]="{ 'mb-0': productFormNg.submitted && productForm.get('productName').invalid }">
+      <label for="productName">Name</label>
+      <input type="productName"
+        class="form-control"
+        name="productName"
+        id="productName"
+        [value]="submittedProductData.name"
+        [ngClass]="{ 'is-invalid': productFormNg.submitted && productForm.get('productName').invalid }"
+        formControlName="productName">
+
+      <div *ngIf="productFormNg.submitted && productForm.get('productName').invalid"
+        class="invalid-feedback">
+        <div *ngIf="productForm.get('productName').errors.required">product name is required</div>
+        <div *ngIf="productForm.get('productName').errors.minlength||productForm.get('productName').errors.maxlength">
+          Name must be between 5 and 16 Characters
+        </div>
+      </div>
+    </div>
+
+    <!-- price -->
+    <div class="form-group"
+      [ngClass]="{ 'mb-0': productFormNg.submitted && productForm.get('price').invalid }">
+      <label for="price">Price</label>
+      <input type="price"
+        class="form-control"
+        name="price"
+        id="price"
+        [value]="submittedProductData.price"
+        [ngClass]="{ 'is-invalid': productFormNg.submitted && productForm.get('price').invalid }"
+        formControlName="price">
+
+      <div *ngIf="productFormNg.submitted && productForm.get('price').invalid"
+        class="invalid-feedback">
+        <div *ngIf="productForm.get('price').errors.required">price is required</div>
+        <div *ngIf="productForm.get('price').errors.min">
+          You wanna give away for free?
+        </div>
+        <div *ngIf="productForm.get('price').errors.pattern">
+          Not a number
+        </div>
+      </div>
+    </div>
+
+    <!-- img -->
+    <div class="form-group">
+      <input type="file"
+        style="visibility: hidden;"
+        #filePicker
+        (change)="onImagePick($event)">
+      <a class="btn btn-primary text-light btn-block"
+        [ngClass]="{ 'btn-danger': productFormNg.submitted && productForm.get('imageUrl').invalid }"
+        (click)="filePicker.click()">Upload Image</a>
+
+      <div *ngIf="productFormNg.submitted && productForm.get('imageUrl').invalid">
+        <small style="color:#dc3545;"
+          *ngIf="productForm.get('imageUrl').errors.required">Image is required</small>
+      </div>
+    </div>
+
+    <button class="btn btn-primary"
+      type="submit">Submit</button>
+  </form>
+  <!-- form end -->
+</ng-template>
