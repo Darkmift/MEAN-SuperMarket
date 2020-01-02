@@ -8,7 +8,7 @@
   <!-- form strat -->
   <form [formGroup]="productForm"
     #productFormNg="ngForm"
-    (ngSubmit)="onSubmit()">
+    (ngSubmit)="productFormNg.valid && onSubmit()">
 
     <h5>Edit or Create Product:</h5>
 
@@ -41,7 +41,7 @@
     <div class="form-group"
       [ngClass]="{ 'mb-0': productFormNg.submitted && productForm.get('productName').invalid }">
       <label for="productName">Name</label>
-      <input type="productName"
+      <input type="text"
         class="form-control"
         name="productName"
         id="productName"
@@ -62,7 +62,7 @@
     <div class="form-group"
       [ngClass]="{ 'mb-0': productFormNg.submitted && productForm.get('price').invalid }">
       <label for="price">Price</label>
-      <input type="price"
+      <input type="text"
         class="form-control"
         name="price"
         id="price"
@@ -77,6 +77,30 @@
           You wanna give away for free?
         </div>
         <div *ngIf="productForm.get('price').errors.pattern">
+          Not a number
+        </div>
+      </div>
+    </div>
+
+    <!-- amount -->
+    <div class="form-group"
+      [ngClass]="{ 'mb-0': productFormNg.submitted && productForm.get('amount').invalid }">
+      <label for="amount">Amount</label>
+      <input type="number"
+        class="form-control"
+        name="amount"
+        id="amount"
+        [value]="submittedProductData.amount"
+        [ngClass]="{ 'is-invalid': productFormNg.submitted && productForm.get('amount').invalid }"
+        formControlName="amount">
+
+      <div *ngIf="productFormNg.submitted && productForm.get('amount').invalid"
+        class="invalid-feedback">
+        <div *ngIf="productForm.get('amount').errors.required">amount is required</div>
+        <div *ngIf="productForm.get('amount').errors.min">
+          no amount specified
+        </div>
+        <div *ngIf="productForm.get('amount').errors.pattern">
           Not a number
         </div>
       </div>

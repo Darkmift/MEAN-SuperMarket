@@ -46,6 +46,9 @@ export class AdminEditComponent implements OnInit, AfterViewInit {
       price: new FormControl(
         null,
         { validators: [Validators.required, Validators.min(0.01), Validators.pattern('[,.0-9]+')] }),
+      amount: new FormControl(
+        null,
+        { validators: [Validators.required, Validators.min(0.01), Validators.pattern('[,0-9]+')] }),
       imageUrl: new FormControl(null, { validators: [Validators.required], asyncValidators: [mimeType] }),
     });
   }
@@ -76,14 +79,11 @@ export class AdminEditComponent implements OnInit, AfterViewInit {
     reader.readAsDataURL(file);
   }
 
-  log() {
-    console.log('TCL: AdminEditComponent -> log -> fff');
-  }
-
   onSubmit() {
     this.isSubmitted = true;
-    console.log('TCL: AdminEditComponent -> onSubmit ->  this.isSubmitted', this.isSubmitted);
-    console.log('TCL: AdminEditComponent -> onSubmit -> this.form.controls.imgUrl', this.productForm);
+    console.log('TCL: onSubmit ->  this.productForm.value', this.productForm.value);
+    this.submittedProductData = { ...this.productForm.value };
+    console.log('TCL: onSubmit -> this.submittedProductData', this.submittedProductData);
   }
 
 }
