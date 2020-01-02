@@ -6,7 +6,8 @@
 </ng-container>
 <ng-template #showEditForm>
   <!-- form strat -->
-  <form [formGroup]="productForm"
+  <form class="p-2"
+    [formGroup]="productForm"
     #productFormNg="ngForm"
     (ngSubmit)="productFormNg.valid && onSubmit()">
 
