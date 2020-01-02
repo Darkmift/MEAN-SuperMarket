@@ -4,14 +4,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../../auth/auth.service';
-import { Cart } from '../models/Cart';
 import { CartsService } from './carts.service';
+import { Order } from '../models/Order';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrdersService {
-  private apiUrl = environment.apiUrl;
+  private apiUrl = `${environment.apiUrl}/orders`;
   private countSubject = new Subject<number>();
   // view variables
   private shopOrOrder: boolean;
@@ -23,6 +23,7 @@ export class OrdersService {
     private router: Router,
     private authService: AuthService,
     private route: ActivatedRoute,
+    private cartService: CartsService
   ) { }
 
   getCountSubject() {
@@ -32,7 +33,7 @@ export class OrdersService {
   getOrderCount() {
     this.http.get
       <{ message: string, orderCount: number; }>
-      (`${this.apiUrl}/Orders/getCount`).subscribe((response) => {
+      (`${this.apiUrl}/getCount`).subscribe((response) => {
         const count = response.orderCount;
         if (!isNaN(count)) {
           this.countSubject.next(count);
@@ -67,7 +68,23 @@ export class OrdersService {
     this.switchViews(true);
   }
 
-  checkDateIsAvailable(date: Date) {
-    this.dateIsAvailableSubject.next(false);
+  createOrder(orderInfo: Order) {
+    console.log('TCL: createOrder -> orderInfo', orderInfo);
+    const postData = { ...orderInfo };
+    delete postData.ngbShippingDate;
+    delete postData.ccType;
+
+    this.http.post
+      <{ message: string, orderCreated: boolean, result: any; }>
+      (`${this.apiUrl}/create`, postData).subscribe((response) => {
+        if (!response.orderCreated) {
+          this.dateIsAvailableSubject.next(false);
+        } else {
+          this.dateIsAvailableSubject.next(true);
+        }
+      });
+
+
+
   }
 }

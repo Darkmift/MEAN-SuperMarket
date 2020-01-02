@@ -13,6 +13,7 @@ import { ErrorModalComponent } from './error-modal/error-modal.component';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { OrderModalComponent } from './shop/order/order-modal/order-modal.component';
 
 @NgModule({
   declarations: [

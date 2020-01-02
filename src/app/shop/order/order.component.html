@@ -1,5 +1,5 @@
         <!-- orderForm start -->
-        <div class="row mx-3">
+        <div class="row mx-3" *ngIf="!hideOnSubmit">
           <form class="bg-light p-2 border-custom offset-2 col-8 p-4 overflow-auto"
             style="height: 75vh;"
             name="form"
@@ -59,17 +59,17 @@
               <label for="date">Pick shipping date:</label>
               <input class="form-control"
                 placeholder="yyyy-mm-dd"
-                name="shippingDate"
+                name="ngbShippingDate"
                 [minDate]="{year: minMaxDates.startDate.year, month: minMaxDates.startDate.month, day: minMaxDates.startDate.day}"
                 [maxDate]="{year: minMaxDates.endDate.year, month: minMaxDates.endDate.month, day: minMaxDates.endDate.day}"
-                [(ngModel)]="submittedUserData.shippingDate"
+                [(ngModel)]="submittedUserData.ngbShippingDate"
                 [markDisabled]="isDisabled"
                 ngbDatepicker
                 #toggleID="ngbDatepicker"
-                #shippingDate="ngModel"
+                #ngbShippingDate="ngModel"
                 (click)="[dateNotAvailabe=false,toggleID.toggle()]"
-                [ngClass]="{'is-invalid': orderForm.submitted && !shippingDate.value||dateNotAvailabe}">
-              <div *ngIf="orderForm.submitted && !shippingDate.value"
+                [ngClass]="{'is-invalid': orderForm.submitted && !ngbShippingDate.value||dateNotAvailabe}">
+              <div *ngIf="orderForm.submitted && !ngbShippingDate.value"
                 class="text-danger">
                 <small>Please select a Date</small>
               </div>
@@ -85,7 +85,7 @@
                   [readonly]="isReadOnly"
                   class="form-control"
                   name="cc"
-                  [(ngModel)]="submittedUserData.cc"
+                  [(ngModel)]="submittedUserData.ccLastDigits"
                   #ccc="ngModel"
                   [ngClass]="{ 'is-invalid': orderForm.submitted && ccc.invalid}"
                   placeholder="Please provide your cc number"

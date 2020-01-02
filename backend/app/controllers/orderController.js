@@ -13,7 +13,7 @@ class OrderController {
 			if (!fetchCart) {
 				throw new ErrorHandler(401, 'cart not found');
 			}
-
+			console.log('TCL: OrderController -> create -> fetchCart', fetchCart);
 			const fetchCustomer = await User.findById(fetchCart.customerRef);
 
 			// I know, I'm paranoid :)
@@ -42,7 +42,9 @@ class OrderController {
 				deliveryDate: deliveryDate,
 				ccLastDigits: ccLastDigits,
 			});
-
+			fetchCart.active = false;
+			await fetchCart.save();
+			console.log('TCL: OrderController -> create -> decativateCart', fetchCart);
 			const createdOrder = await newOrder.save();
 			res.status(201).json({
 				message: 'order added to db',

@@ -13,6 +13,7 @@ import { ProductItemComponent } from './product-select/product-item/product-item
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
 import { OrderComponent } from './order/order.component';
 import { HighlightSearchPipe } from '../pipes/highlight.pipe';
+import { OrderModalComponent } from './order/order-modal/order-modal.component';
 
 
 
@@ -28,8 +29,10 @@ import { HighlightSearchPipe } from '../pipes/highlight.pipe';
     ProductItemComponent,
     CartItemComponent,
     OrderComponent,
-    HighlightSearchPipe
+    HighlightSearchPipe,
+    OrderModalComponent
   ],
+  entryComponents: [OrderModalComponent],
   imports: [
     CommonModule,
     BootstrapModuleGroup,

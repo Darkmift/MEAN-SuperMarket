@@ -3,13 +3,17 @@
 */
 
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct, NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'src/app/auth/models/user.model';
 import { OrdersService } from '../services/orders.service';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { CartsService } from '../services/carts.service';
+import { Order } from '../models/Order';
+import { Cart } from '../models/Cart';
+import { OrderModalComponent } from './order-modal/order-modal.component';
 
 @Component({
   selector: 'app-order',
@@ -22,17 +26,22 @@ export class OrderComponent implements OnInit, OnDestroy {
   isReadOnly = true;
   user: User;
   getDateIsAvailableSubjectListener: Subscription;
+  getlastOrNewDataSubjectLisetner: Subscription;
+  hideOnSubmit = false;
 
   cityList = ['Select City', 'Tel-Aviv', 'Holon', 'Arad', `Be'er Sheva`, 'Yokneam', 'Rehovot', 'Safed', 'Netivot', 'Eilat', 'Metula'];
-  submittedUserData = {
+  submittedUserData: Order = {
+    cartRef: '',
     city: this.cityList[0],
     street: null,
-    shippingDate: null,
-    cc: null,
+    ngbShippingDate: null,
+    deliveryDate: new Date(),
+    ccLastDigits: null,
     ccType: 'Other'
   };
   minMaxDates = this.setMinMaxDates();
   dateNotAvailabe = false;
+  cart: Cart;
   // blockDate: NgbDateStruct[] = [
   //   { year: 0, month: 0, day: 0 }
   // ];
@@ -41,21 +50,40 @@ export class OrderComponent implements OnInit, OnDestroy {
   constructor(
     private orderService: OrdersService,
     private toastrService: ToastrService,
-    private authService: AuthService, ) { }
+    private cartService: CartsService,
+    private authService: AuthService,
+    private modalService: NgbModal, ) { }
 
   ngOnInit() {
     // for dclick autofill
     this.user = this.authService.getUser();
+    // fetch cart
+    this.cartService.getLastActiveCart(this.user.id, false);
+
+    // cart data
+    this.getlastOrNewDataSubjectLisetner = this.cartService.getlastOrNewDataSubject().subscribe((cart: Cart) => {
+      if (cart) {
+        this.cart = cart;
+        this.submittedUserData.cartRef = this.cart._id;
+        // fetch cartItems
+        this.cartService.getCartItems(this.cart._id);
+      }
+    });
+
 
     // dev stuff -- remove before deployment
     this.submittedUserData = {
+      cartRef: '',
       city: this.cityList[1],
       street: 'Main',
-      shippingDate: { year: 2020, month: 1, day: 18 },
-      cc: '4111111111111111',
+      ngbShippingDate: { year: 2020, month: 1, day: 18 },
+      deliveryDate: new Date(),
+      ccLastDigits: '4111111111111111',
       ccType: 'VISA'
     };
     ////
+
+
 
     this.getDateIsAvailableSubjectListener = this.orderService.getDateIsAvailableSubject().subscribe((dateAvailable: boolean) => {
       if (!dateAvailable) {
@@ -65,8 +93,16 @@ export class OrderComponent implements OnInit, OnDestroy {
           { progressBar: true }
         );
         this.dateNotAvailabe = true;
-        // this.shippingDateAvailable.setErrors({ dateNotAvailabe: true });
-        // this.blockDate[0] = this.submittedUserData.shippingDate;
+      } else {
+        this.hideOnSubmit = true;
+        const ngbModalOptions: NgbModalOptions = {
+          backdrop: 'static',
+          keyboard: false
+        };
+        this.submittedUserData.ccLastDigits = this.submittedUserData.ccLastDigits.substr(this.submittedUserData.ccLastDigits.length - 4);
+        const modalRef = this.modalService.open(OrderModalComponent, ngbModalOptions);
+        modalRef.componentInstance.order = this.submittedUserData;
+        modalRef.componentInstance.total = this.cart.total;
       }
     });
 
@@ -113,12 +149,12 @@ export class OrderComponent implements OnInit, OnDestroy {
 
     this.submittedUserData.ccType = 'Other';
 
-    let ccNum = this.submittedUserData.cc;
+    let ccNum = this.submittedUserData.ccLastDigits;
     if (!ccNum) {
       return;
     }
 
-    ccNum = this.submittedUserData.cc = this.submittedUserData.cc.replace(/ /g, '').trim();
+    ccNum = this.submittedUserData.ccLastDigits = this.submittedUserData.ccLastDigits.replace(/ /g, '').trim();
     const ccRegex = {
       visa: /^4[0-9]{12}(?:[0-9]{3})?$/,
       masterCard: /^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$/,
@@ -144,17 +180,20 @@ export class OrderComponent implements OnInit, OnDestroy {
 
     this.matchCCRegex();
 
-    const submittedDate = this.submittedUserData.shippingDate;
+    const submittedDate = this.submittedUserData.ngbShippingDate;
     const jsDate = new Date(submittedDate.year, submittedDate.month - 1, submittedDate.day);
-    const orderInfo = { ...this.submittedUserData.shippingDate };
-    orderInfo.shippingDate = jsDate;
-    console.log('TCL: OrderComponent -> onSubmit -> orderInfo', orderInfo.shippingDate);
-    // this.blockDate[0] = this.submittedUserData.shippingDate;
-    this.orderService.checkDateIsAvailable(orderInfo.shippingDate);
+
+    const orderInfo = { ...this.submittedUserData };
+    orderInfo.deliveryDate = jsDate;
+    orderInfo.ccLastDigits = orderInfo.ccLastDigits.substr(orderInfo.ccLastDigits.length - 4);
+    console.log('TCL: OrderComponent -> onSubmit -> orderInfo', orderInfo);
+    // this.blockDate[0] = this.submittedUserData.ngbShippingDate;
+    this.orderService.createOrder(orderInfo);
   }
 
   ngOnDestroy(): void {
     this.getDateIsAvailableSubjectListener.unsubscribe();
+    this.getlastOrNewDataSubjectLisetner.unsubscribe();
   }
 
 }

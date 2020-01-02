@@ -71,6 +71,10 @@ export class CartsService {
     return this.activeCart;
   }
 
+  getActiveCartId() {
+    return this.activeCart._id;
+  }
+
   getLastActiveCart(id: string, makeNew: boolean) {
     this.http.get
       <{ message: string, lastCart: Cart; }>
@@ -152,7 +156,7 @@ export class CartsService {
     this.searchTerm = regex;
     this.searchTermSubject.next(this.searchTerm);
   }
-  
+
   getSearchTerm() {
     return this.searchTerm;
   }
