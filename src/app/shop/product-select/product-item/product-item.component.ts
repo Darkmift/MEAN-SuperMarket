@@ -13,6 +13,7 @@ import { Cart } from '../../models/Cart';
   styleUrls: ['./product-item.component.css']
 })
 export class ProductItemComponent implements OnInit, OnDestroy {
+  @Input() isAdmin;
   @Input() productObj: Product;
   @Input() initialAmount: number;
   cartItem: CartItem;

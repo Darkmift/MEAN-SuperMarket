@@ -4,7 +4,9 @@
   <!-- cartDiv -->
   <div class="cartDiv bg-light-blue card bg-light-blue"
     [style.width.px]="cartDiv.width">
-    <app-cart [shopOrOrderConfig]="showShopOrOrder"></app-cart>
+    <app-cart *ngIf="!isAdmin"
+      [shopOrOrderConfig]="showShopOrOrder"></app-cart>
+    <app-admin-edit *ngIf="isAdmin"></app-admin-edit>
     <div class="grabber"
       id="resizeDiv"></div>
   </div>
@@ -13,7 +15,7 @@
     [style.width.px]="shopDiv.width">
 
     <ng-container *ngIf="showShopOrOrder; else elseTemplate">
-      <app-product-select></app-product-select>
+      <app-product-select [isAdmin]="isAdmin"></app-product-select>
     </ng-container>
     <ng-template #elseTemplate>
       <app-order></app-order>

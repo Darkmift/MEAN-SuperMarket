@@ -14,6 +14,7 @@ import { CartItemComponent } from './cart/cart-item/cart-item.component';
 import { OrderComponent } from './order/order.component';
 import { HighlightSearchPipe } from '../pipes/highlight.pipe';
 import { OrderModalComponent } from './order/order-modal/order-modal.component';
+import { AdminEditComponent } from './admin-edit/admin-edit.component';
 
 
 
@@ -30,7 +31,8 @@ import { OrderModalComponent } from './order/order-modal/order-modal.component';
     CartItemComponent,
     OrderComponent,
     HighlightSearchPipe,
-    OrderModalComponent
+    OrderModalComponent,
+    AdminEditComponent
   ],
   entryComponents: [OrderModalComponent],
   imports: [

@@ -14,6 +14,7 @@ import { OrdersService } from '../services/orders.service';
 })
 export class CartComponent implements OnInit, OnDestroy {
 
+  @Input() isAdmin;
   @Input() shopOrOrderConfig: boolean;
   private getlastOrNewDataSubjectLisetner: Subscription;
   private getHasPreviousCartSubjectLisetner: Subscription;

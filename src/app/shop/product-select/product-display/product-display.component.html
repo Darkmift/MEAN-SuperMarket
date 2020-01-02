@@ -10,6 +10,7 @@
     <app-product-item class="col-lg-3 col-md-4 col-sm-6 p-0 my-1"
       *ngFor="let product of productArray"
       [productObj]="product"
+      [isAdmin]="isAdmin"
       [initialAmount]="initialAmount[product._id] || 0"></app-product-item>
   </div>
 </div>

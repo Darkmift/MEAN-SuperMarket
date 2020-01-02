@@ -11,7 +11,6 @@ export class AuthGuard implements CanActivate {
     private orderService: OrdersService,
     private router: Router) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
-    console.log('TCL: AuthGuard -> constructor -> route', route.routeConfig.path);
 
     if (route.routeConfig.path !== 'shop') {
       this.orderService.clearShopOrOrder();

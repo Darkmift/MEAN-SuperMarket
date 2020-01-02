@@ -3,6 +3,7 @@ import { User } from 'src/app/auth/models/user.model';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Router } from '@angular/router';
 import { Capitalize } from '../../../helpers/helpers';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-panel-left',
@@ -20,12 +21,20 @@ export class PanelLeftComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router) { }
+    private router: Router,
+    private toastService: ToastrService) { }
 
   ngOnInit() {
   }
 
-  checkRole() { }
+  checkIsAdmin() {
+    const isAdmin = this.authService.getRole();
+    if (!isAdmin) {
+      this.authService.logOut();
+      this.toastService.error('Alert!', 'Not authorized', { progressBar: true });
+    }
+    this.resumeShopping();
+  }
 
   resumeShopping() {
     this.router.navigate(['shop']);

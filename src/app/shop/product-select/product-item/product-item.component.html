@@ -13,31 +13,39 @@
       </span>
     </p>
 
-    <!-- buttons -->
-    <div class="card-text btn-group"
-      role="group"
-      aria-label="Basic example">
+    <ng-container *ngIf="isAdmin; else showUserBtns">
+      <div class="btn btn-warning">Edit</div>
+    </ng-container>
+    <ng-template #showUserBtns>
+      <!-- buttons -->
+      <div class="card-text btn-group"
+        role="group"
+        aria-label="Basic example">
 
-      <!-- add btn -->
-      <button class="btn btn-success"
-        (click)="upDateCartItem(true)">
-        <span class="plus-minus">+</span>
-      </button>
+        <!-- add btn -->
+        <button class="btn btn-success"
+          (click)="upDateCartItem(true)">
+          <span class="plus-minus">+</span>
+        </button>
 
-      <!-- amount display input -->
-      <input type="number"
-        min="0"
-        max="{{productObj.amount}}"
-        [(ngModel)]="cartItem.amount"
-        (change)="setCartItemAmount()"
-        style="width:3vw;">
+        <!-- amount display input -->
+        <input type="number"
+          min="0"
+          max="{{productObj.amount}}"
+          [(ngModel)]="cartItem.amount"
+          (change)="setCartItemAmount()"
+          style="width:3vw;">
 
-      <!-- reduce btn -->
-      <button class="btn btn-danger"
-        (click)="upDateCartItem(false)">
-        <span class="plus-minus font-weight-bold">-</span>
-      </button>
-    </div>
+        <!-- reduce btn -->
+        <button class="btn btn-danger"
+          (click)="upDateCartItem(false)">
+          <span class="plus-minus font-weight-bold">-</span>
+        </button>
+      </div>
+    </ng-template>
+
+
+
 
   </div>
 </div>

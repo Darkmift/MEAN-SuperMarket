@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   @ViewChild('loginForm', { static: true }) loginForm: NgForm;
   isReadOnly = true;
   submittedUserData = {
-    email: 'test1@email.com',
+    email: 'sysAdmin@email.com',
     password: 'MooCow1',
   };
   private authStatusSub: Subscription;

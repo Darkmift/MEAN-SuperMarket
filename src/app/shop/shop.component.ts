@@ -4,6 +4,7 @@ import { Component, OnInit, HostListener, ElementRef, ViewChild, OnDestroy } fro
 import { Router, ActivatedRoute } from '@angular/router';
 import { OrdersService } from './services/orders.service';
 import { Subscription } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-shop',
@@ -28,10 +29,15 @@ export class ShopComponent implements OnInit, OnDestroy {
   // switch to shop on false,orders on true
   showShopOrOrder: boolean;
 
+  ////
+  // admin view
+  isAdmin: boolean | Promise<boolean> = false;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private ordersService: OrdersService, ) {
+    private ordersService: OrdersService,
+    private authService: AuthService) {
 
   }
 
@@ -42,7 +48,7 @@ export class ShopComponent implements OnInit, OnDestroy {
       console.log('TCL: ShopComponent -> ngOnInit -> shopOrOrder', shopOrOrder);
       this.showShopOrOrder = shopOrOrder;
     });
-
+    this.isAdmin = this.authService.getRole();
     // resize code
     const totalWidth = this.parentDiv.nativeElement.offsetWidth;
     this.cartDiv.width = Math.floor((totalWidth / 100) * 25);
@@ -95,9 +101,9 @@ export class ShopComponent implements OnInit, OnDestroy {
   ////
 
   // switch back to shop
-  switchToShop() {
-    this.ordersService.switchViews(false);
-  }
+  // switchToShop() {
+  //   this.ordersService.switchViews(false);
+  // }
 
   ngOnDestroy(): void {
     this.switchToOrderViewSubjectListener.unsubscribe();

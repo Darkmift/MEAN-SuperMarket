@@ -15,7 +15,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./product-display.component.css']
 })
 export class ProductDisplayComponent implements OnInit, OnDestroy {
-
+  @Input() isAdmin;
   @Input() selectedCategoryId: string;
   private productsByCategoryListener: Subscription;
   private getActiveCartsubjectLisenter: Subscription;

@@ -22,6 +22,8 @@ export class AuthService {
   private role: boolean;
   private currentUser: User;
   private apiUrl = environment.apiUrl + '/users';
+
+
   constructor(
     private http: HttpClient, private router: Router,
     private toastrService: ToastrService) { }
@@ -156,7 +158,10 @@ export class AuthService {
     return this.currentUser;
   }
 
-  getRole() {
+  async getRole() {
+    const id = this.getUserId();
+    const result = await this.http.get<{ isAdmin: boolean; }>(this.apiUrl + '/isAdmin/' + id).toPromise();
+    this.role = result.isAdmin;
     return this.role;
   }
 
