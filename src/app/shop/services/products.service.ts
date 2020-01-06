@@ -69,4 +69,46 @@ export class ProductsService {
         }
       });
   }
+
+  // createOrEdit true=create/false=edit
+  createOrEdit(
+    createOrEdit: boolean,
+    name: string,
+    categoryId: string,
+    price: string,
+    amount: string,
+    imageUrl: string,
+    image: File) {
+
+    const postData = new FormData();
+    postData.append('name', name);
+    postData.append('categoryId', categoryId);
+    postData.append('price', price);
+    postData.append('amount', amount);
+
+    if (createOrEdit) {
+      postData.append('image', image, image.name);
+      this.http
+        .post<{ message: string, result: Product; }>
+        (this.apiUrl + 'products/create', postData)
+        .subscribe((resData) => {
+          console.log('TCL: createOrEdit -> resData', resData);
+
+        });
+    } else {
+      if (image) {
+        postData.append('image', image, image.name);
+      } else {
+        postData.append('imgUrl', imageUrl);
+      }
+
+      this.http
+        .post<{ message: string, result: number; }>
+        (this.apiUrl + 'products/edit', postData)
+        .subscribe((resData) => {
+          console.log('TCL: createOrEdit -> resData', resData);
+
+        });
+    }
+  }
 }

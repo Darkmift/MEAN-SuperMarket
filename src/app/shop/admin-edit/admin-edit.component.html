@@ -11,6 +11,10 @@
     #productFormNg="ngForm"
     (ngSubmit)="productFormNg.valid && onSubmit()">
 
+    <a class="btn btn-success text-light"
+      (click)="createNew()">Create new</a>
+    <hr>
+
     <h5>Edit or Create Product:</h5>
 
     <!-- category -->
@@ -108,7 +112,7 @@
     </div>
 
     <!-- img -->
-    <div class="form-group">
+    <div class="form-group" *ngIf="createOrEdit">
       <input type="file"
         style="visibility: hidden;"
         #filePicker

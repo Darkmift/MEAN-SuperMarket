@@ -4,19 +4,23 @@ import { ProductCategory } from '../models/Category';
 import { mimeType } from './mime-type.validator';
 import { Observable } from 'rxjs';
 import { CategoriesService } from '../services/categories.service';
+import { ProductsService } from '../services/products.service';
 
 @Component({
   selector: 'app-admin-edit',
   templateUrl: './admin-edit.component.html',
   styleUrls: ['./admin-edit.component.css']
 })
-export class AdminEditComponent implements OnInit, AfterViewInit {
+export class AdminEditComponent implements OnInit {
   imagePreview: string;
   isLoading = true;
   isReadOnly = true;
   categoryList: ProductCategory[] = [];
   productForm: FormGroup;
-  isSubmitted = false;
+  // createOrEdit: true = create,false=edit
+  createOrEdit = false;
+  // define optional or required file input
+  requiredImg = null;
   submittedProductData = {
     name: '',
     price: 0,
@@ -25,7 +29,9 @@ export class AdminEditComponent implements OnInit, AfterViewInit {
     imgUrl: null
   };
 
-  constructor(private categoryService: CategoriesService, ) { }
+  constructor(
+    private categoryService: CategoriesService,
+    private productsService: ProductsService) { }
 
   ngOnInit() {
     this.isLoading = false;
@@ -35,6 +41,8 @@ export class AdminEditComponent implements OnInit, AfterViewInit {
       this.categoryList = [...categoryList];
       this.categoryList.unshift({ _id: null, name: 'please select category' });
     });
+
+    this.requiredImg = this.createOrEdit ? Validators.required : null;
 
     this.productForm = new FormGroup({
       category: new FormControl(
@@ -53,20 +61,27 @@ export class AdminEditComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit(): void {
+  createNew() {
 
-    setTimeout(() => {
-      this.isReadOnly = false;
-    }, 1000);
+    this.createOrEdit = true;
+    this.submittedProductData = {
+      name: '',
+      price: 0,
+      amount: 0,
+      category: this.categoryList[0],
+      imgUrl: null
+    };
+
+    this.productForm.reset();
   }
 
-
+  // custom category validator
   categorySelected(control: FormControl): { [key: string]: any; } {
     const response = control.value ? null : { nullSelected: true };
     return control.value ? null : { nullSelected: true };
   }
 
-
+  // image file input handler
   onImagePick(event: Event) {
     const file = (event.target as HTMLInputElement).files[0];
     this.productForm.patchValue({ imageUrl: file });
@@ -80,10 +95,20 @@ export class AdminEditComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit() {
-    this.isSubmitted = true;
     console.log('TCL: onSubmit ->  this.productForm.value', this.productForm.value);
     this.submittedProductData = { ...this.productForm.value };
     console.log('TCL: onSubmit -> this.submittedProductData', this.submittedProductData);
+
+    if (this.createOrEdit) {
+      this.productsService.createOrEdit(
+        this.createOrEdit,
+        this.submittedProductData.name,
+        this.submittedProductData.category._id,
+        this.submittedProductData.price.toString(),
+        this.submittedProductData.amount.toString(),
+        this.submittedProductData.imgUrl,
+        this.submittedProductData.imgUrl);
+    }
   }
 
 }
