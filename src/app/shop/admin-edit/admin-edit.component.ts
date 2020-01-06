@@ -44,26 +44,13 @@ export class AdminEditComponent implements OnInit {
 
     this.requiredImg = this.createOrEdit ? Validators.required : null;
 
-    this.productForm = new FormGroup({
-      category: new FormControl(
-        null,
-        { validators: [Validators.required, this.categorySelected] }),
-      productName: new FormControl(
-        null,
-        { validators: [Validators.required, Validators.minLength(5), Validators.maxLength(16)] }),
-      price: new FormControl(
-        null,
-        { validators: [Validators.required, Validators.min(0.01), Validators.pattern('[,.0-9]+')] }),
-      amount: new FormControl(
-        null,
-        { validators: [Validators.required, Validators.min(0.01), Validators.pattern('[,0-9]+')] }),
-      imageUrl: new FormControl(null, { validators: [Validators.required], asyncValidators: [mimeType] }),
-    });
+    this.createOrEdit = false;
+    this.formBuilder();
+
+
   }
 
   createNew() {
-
-    this.createOrEdit = true;
     this.submittedProductData = {
       name: '',
       price: 0,
@@ -72,7 +59,11 @@ export class AdminEditComponent implements OnInit {
       imgUrl: null
     };
 
+    this.createOrEdit = true;
+    this.formBuilder();
+
     this.productForm.reset();
+
   }
 
   // custom category validator
@@ -94,10 +85,46 @@ export class AdminEditComponent implements OnInit {
     reader.readAsDataURL(file);
   }
 
+  formBuilder() {
+    if (this.createOrEdit) {
+      this.productForm = new FormGroup({
+        category: new FormControl(
+          null,
+          { validators: [Validators.required, this.categorySelected] }),
+        productName: new FormControl(
+          null,
+          { validators: [Validators.required, Validators.minLength(5), Validators.maxLength(16)] }),
+        price: new FormControl(
+          null,
+          { validators: [Validators.required, Validators.min(0.01), Validators.pattern('[,.0-9]+')] }),
+        amount: new FormControl(
+          null,
+          { validators: [Validators.required, Validators.min(0.01), Validators.pattern('[,0-9]+')] }),
+        imageUrl: new FormControl(null, { validators: [Validators.required], asyncValidators: [mimeType] }),
+      });
+    } else {
+      this.productForm = new FormGroup({
+        category: new FormControl(
+          null,
+          { validators: [Validators.required, this.categorySelected] }),
+        productName: new FormControl(
+          null,
+          { validators: [Validators.required, Validators.minLength(5), Validators.maxLength(16)] }),
+        price: new FormControl(
+          null,
+          { validators: [Validators.required, Validators.min(0.01), Validators.pattern('[,.0-9]+')] }),
+        amount: new FormControl(
+          null,
+          { validators: [Validators.required, Validators.min(0.01), Validators.pattern('[,0-9]+')] })
+      });
+    }
+  }
+
   onSubmit() {
     console.log('TCL: onSubmit ->  this.productForm.value', this.productForm.value);
     this.submittedProductData = { ...this.productForm.value };
     console.log('TCL: onSubmit -> this.submittedProductData', this.submittedProductData);
+    return;
 
     if (this.createOrEdit) {
       this.productsService.createOrEdit(
