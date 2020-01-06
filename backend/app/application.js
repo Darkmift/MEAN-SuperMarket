@@ -1,5 +1,6 @@
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 global.firstInitialize = false; // set true to set the mongodb for first use after that make it false;
+global.isProd = true; // set true for prod
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 const express = require('express');
@@ -25,9 +26,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 const publicDir = path.join(__dirname, 'public');
-const imgFolder = path.join(__dirname, 'public/images');
 app.use('/public', express.static(publicDir));
-app.use('/images', express.static(imgFolder));
+const prodPath = path.join(__dirname, 'dist', 'MEAN-Supermarket');
+app.use('/', express.static(prodPath));
 
 app.use((req, res, next) => {
 	res.setHeader('Access-Control-Allow-Origin', '*');
@@ -48,6 +49,12 @@ app.use('/api/cartItems', cartItemRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
+if (global.isProd) {
+	app.use('/', (req, res, next) => {
+		res.sendFile(path.join(__dirname, 'dist', 'MEAN-Supermarket', 'index.html'));
+	});
+}
+
 //end of all other code
 
 //catch all errors and output {statusCode,message} back
