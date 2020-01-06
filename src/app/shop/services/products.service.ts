@@ -15,6 +15,7 @@ export class ProductsService {
   private countSubject = new Subject<number>();
   private productsByCategoryDataSubject = new Subject<Product[]>();
   private searchProductsResult = new Subject<Product[]>();
+  private productToEdit = new Subject<Product>();
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -35,7 +36,15 @@ export class ProductsService {
     return this.searchProductsResult.asObservable();
   }
 
+  getProductToEdit() {
+    return this.productToEdit.asObservable();
+  }
+
   ////
+
+  sendProductToEdit(product: Product) {
+    this.productToEdit.next(product);
+  }
 
   getProductCount() {
     this.http.get
@@ -77,34 +86,43 @@ export class ProductsService {
     categoryId: string,
     price: string,
     amount: string,
+    id: string,
     imageUrl: string,
     image: File) {
 
+    console.log('TCL: imageUrl', imageUrl);
+
     const postData = new FormData();
+
     postData.append('name', name);
     postData.append('categoryId', categoryId);
     postData.append('price', price);
     postData.append('amount', amount);
 
     if (createOrEdit) {
-      postData.append('image', image, image.name);
+      postData.append('image', image);
+
       this.http
         .post<{ message: string, result: Product; }>
-        (this.apiUrl + 'products/create', postData)
+        (this.apiUrl + '/products/create', postData)
         .subscribe((resData) => {
           console.log('TCL: createOrEdit -> resData', resData);
 
         });
     } else {
       if (image) {
-        postData.append('image', image, image.name);
+        postData.append('image', image);
       } else {
         postData.append('imgUrl', imageUrl);
       }
+      postData.append('_id', id);
+
+      console.log('TCL: imageUrl', imageUrl);
+
 
       this.http
-        .post<{ message: string, result: number; }>
-        (this.apiUrl + 'products/edit', postData)
+        .put<{ message: string, result: number; }>
+        (this.apiUrl + '/products/edit', postData)
         .subscribe((resData) => {
           console.log('TCL: createOrEdit -> resData', resData);
 

@@ -6,6 +6,7 @@ import { Capitalize } from '../../../helpers/helpers';
 import { CartsService } from '../../services/carts.service';
 import { Subscription } from 'rxjs';
 import { Cart } from '../../models/Cart';
+import { ProductsService } from '../../services/products.service';
 
 @Component({
   selector: 'app-product-item',
@@ -29,6 +30,7 @@ export class ProductItemComponent implements OnInit, OnDestroy {
 
   constructor(
     private toastService: ToastrService,
+    private productService: ProductsService,
     private cartService: CartsService) { }
 
   ngOnInit() {
@@ -94,6 +96,12 @@ export class ProductItemComponent implements OnInit, OnDestroy {
     this.sendToCart();
 
   }
+
+
+  sendToEdit() {
+    this.productService.sendProductToEdit(this.productObj);
+  }
+
 
   sendToCart() {
     this.cartService.sendToCart(this.cartItem, this.productObj._id);

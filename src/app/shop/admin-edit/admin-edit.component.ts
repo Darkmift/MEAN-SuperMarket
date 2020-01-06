@@ -1,8 +1,8 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ProductCategory } from '../models/Category';
 import { mimeType } from './mime-type.validator';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { CategoriesService } from '../services/categories.service';
 import { ProductsService } from '../services/products.service';
 
@@ -11,14 +11,15 @@ import { ProductsService } from '../services/products.service';
   templateUrl: './admin-edit.component.html',
   styleUrls: ['./admin-edit.component.css']
 })
-export class AdminEditComponent implements OnInit {
+export class AdminEditComponent implements OnInit, OnDestroy {
   imagePreview: string;
   isLoading = true;
   isReadOnly = true;
   categoryList: ProductCategory[] = [];
+  private getProductToEditSubjectListener: Subscription;
   productForm: FormGroup;
   // createOrEdit: true = create,false=edit
-  createOrEdit = false;
+  createOrEdit = true;
   // define optional or required file input
   requiredImg = null;
   submittedProductData = {
@@ -26,7 +27,8 @@ export class AdminEditComponent implements OnInit {
     price: 0,
     amount: 0,
     category: this.categoryList[0],
-    imgUrl: null
+    imgUrl: null,
+    id: null
   };
 
   constructor(
@@ -35,6 +37,32 @@ export class AdminEditComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading = false;
+    this.formBuilder();
+
+    this.getProductToEditSubjectListener = this.productsService.getProductToEdit().subscribe((product) => {
+
+      this.createOrEdit = false;
+      this.formBuilder();
+
+      const categoryIndex = this.categoryList.findIndex(categoryObj => categoryObj._id === product.category);
+      this.submittedProductData = {
+        name: product.name,
+        price: product.price,
+        amount: product.amount,
+        category: this.categoryList[categoryIndex],
+        imgUrl: product.imgUrl,
+        id: product._id
+      };
+
+
+      this.productForm.controls.productName.patchValue(product.name);
+      this.productForm.controls.category.patchValue(this.categoryList[categoryIndex]._id);
+      this.productForm.controls.price.patchValue(product.price);
+      this.productForm.controls.amount.patchValue(product.amount);
+
+      console.log('TCL: AdminEditComponent -> ngOnInit -> this.productForm.value', this.productForm.value);
+    });
+
 
     this.categoryService.getCategories();
     this.categoryService.getCategoryListSubject().subscribe((categoryList) => {
@@ -42,10 +70,7 @@ export class AdminEditComponent implements OnInit {
       this.categoryList.unshift({ _id: null, name: 'please select category' });
     });
 
-    this.requiredImg = this.createOrEdit ? Validators.required : null;
 
-    this.createOrEdit = false;
-    this.formBuilder();
 
 
   }
@@ -56,7 +81,8 @@ export class AdminEditComponent implements OnInit {
       price: 0,
       amount: 0,
       category: this.categoryList[0],
-      imgUrl: null
+      imgUrl: null,
+      id: ''
     };
 
     this.createOrEdit = true;
@@ -122,19 +148,30 @@ export class AdminEditComponent implements OnInit {
 
   onSubmit() {
     console.log('TCL: onSubmit ->  this.productForm.value', this.productForm.value);
-    this.submittedProductData = { ...this.productForm.value };
-    console.log('TCL: onSubmit -> this.submittedProductData', this.submittedProductData);
-    return;
+    let imgFile = null;
+    let imgName = null;
 
     if (this.createOrEdit) {
-      this.productsService.createOrEdit(
-        this.createOrEdit,
-        this.submittedProductData.name,
-        this.submittedProductData.category._id,
-        this.submittedProductData.price.toString(),
-        this.submittedProductData.amount.toString(),
-        this.submittedProductData.imgUrl,
-        this.submittedProductData.imgUrl);
+      imgFile = this.productForm.value.imageUrl;
+      imgName = imgFile.name;
+    } else {
+      imgName = this.submittedProductData.imgUrl;
+    }
+
+    this.productsService.createOrEdit(
+      this.createOrEdit,
+      this.productForm.value.productName,
+      this.productForm.value.category,
+      this.productForm.value.price.toString(),
+      this.productForm.value.amount.toString(),
+      this.submittedProductData.id,
+      imgName,
+      imgFile);
+  }
+
+  ngOnDestroy(): void {
+    if (this.getProductToEditSubjectListener) {
+      this.getProductToEditSubjectListener.unsubscribe();
     }
   }
 

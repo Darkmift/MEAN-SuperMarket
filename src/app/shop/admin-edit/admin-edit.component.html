@@ -11,7 +11,7 @@
     #productFormNg="ngForm"
     (ngSubmit)="productFormNg.valid && onSubmit()">
 
-    <a class="btn btn-success text-light"
+    <a class="btn btn-success text-light" *ngIf="!createOrEdit"
       (click)="createNew()">Create new</a>
     <hr>
 

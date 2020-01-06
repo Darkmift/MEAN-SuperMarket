@@ -42,7 +42,7 @@ class ProductController {
 				const imagePath = url + '/public/images/' + req.file.filename;
 				imgUrl = imagePath;
 			}
-
+			console.log('TCL: ProductController -> edit -> imgUrl', imgUrl);
 			const outputProduct = await Product.updateOne(
 				{ _id: _id },
 				{

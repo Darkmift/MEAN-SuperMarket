@@ -15,7 +15,8 @@
     </p>
 
     <ng-container *ngIf="isAdmin; else showUserBtns">
-      <div class="btn btn-warning">Edit</div>
+      <div class="btn btn-warning"
+        (click)="sendToEdit()">Edit</div>
     </ng-container>
     <ng-template #showUserBtns>
       <!-- buttons -->
