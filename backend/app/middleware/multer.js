@@ -1,5 +1,6 @@
 const multer = require('multer');
-const folderPath = 'backend/app/public/images';
+const path = require('path');
+const folderPath = path.join(__dirname, '../public/images');
 
 const MIME_TYPE_MAP = {
 	'image/png': 'png',

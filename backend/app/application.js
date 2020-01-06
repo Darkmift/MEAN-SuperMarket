@@ -25,7 +25,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 const publicDir = path.join(__dirname, 'public');
+const imgFolder = path.join(__dirname, 'public/images');
 app.use('/public', express.static(publicDir));
+app.use('/images', express.static(imgFolder));
 
 app.use((req, res, next) => {
 	res.setHeader('Access-Control-Allow-Origin', '*');
