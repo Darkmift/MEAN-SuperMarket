@@ -85,7 +85,7 @@ export class CartsService {
           this.lastCartDataSubject.next(lastCart);
           this.lastOrNewDataSubject.next(lastCart);
           this.hasPreviousCart.next(true);
-          this.setCartTotal(lastCart._id);
+          // this.setCartTotal(lastCart._id);
         } else {
           if (makeNew) {
             this.hasPreviousCart.next(false);

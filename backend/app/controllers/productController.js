@@ -8,13 +8,16 @@ var ObjectId = require('mongoose').Types.ObjectId;
 class ProductController {
 	static async create(req, res, next) {
 		try {
-			let { name, categoryId, imgUrl, price, amount } = req.body;
+			let { name, categoryId, price, amount } = req.body;
+
+			const url = req.protocol + '://' + req.get('host');
+			const imagePath = url + '/public/images/' + req.file.filename;
 
 			const newProduct = new Product({
 				name: name,
 				category: categoryId,
 				price: price,
-				imgUrl: imgUrl,
+				imgUrl: imagePath,
 				amount: amount,
 			});
 
@@ -33,6 +36,13 @@ class ProductController {
 		try {
 			let { name, categoryId, imgUrl, price, _id, amount } = req.body;
 
+			if (req.file) {
+				console.log('TCL: ProductController -> edit -> req.file.filename', req.file.filename);
+				const url = req.protocol + '://' + req.get('host');
+				const imagePath = url + '/public/images/' + req.file.filename;
+				imgUrl = imagePath;
+			}
+
 			const outputProduct = await Product.updateOne(
 				{ _id: _id },
 				{
@@ -42,7 +52,7 @@ class ProductController {
 					imgUrl: imgUrl,
 					amount: amount,
 				},
-			).exec();
+			);
 			console.log('TCL: ProductController -> edit -> outputProduct', outputProduct);
 
 			let message;

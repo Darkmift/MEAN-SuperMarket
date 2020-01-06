@@ -34,8 +34,11 @@ export class CartComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // fetch user data
     this.user = this.authService.getUser();
-    // fetch cart
-    this.cartService.getLastActiveCart(this.user.id, true);
+    if (!this.isAdmin) {
+      // fetch cart
+      this.cartService.getLastActiveCart(this.user.id, true);
+    }
+
 
     // hasPreviousCart boolean
     this.getHasPreviousCartSubjectLisetner = this.cartService.gethasPreviousCart().subscribe((response: boolean) => {
